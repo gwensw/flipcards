@@ -18,11 +18,22 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules|assets/,
         use: [
           'babel-loader',
           'eslint-loader',
         ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: './assets/[name].[hash].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.sass$/,
