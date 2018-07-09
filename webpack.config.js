@@ -25,7 +25,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -42,6 +42,13 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.handlebars$/,
+        loader: 'handlebars-loader',
+        options: {
+          inlineRequires: '/assets/'
+        }
       }
     ]
   },
