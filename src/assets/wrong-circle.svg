@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="61px" height="61px" viewBox="0 0 61 61" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-wrong-circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon-wrong-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="circle" fill="#C9C9C9" cx="30.5" cy="30.5" r="30.5"></circle>
+        <path d="M30.0918831,23.7279221 L42.8198052,11 L49.1837662,17.363961 L36.4558441,30.0918831 L49.1837662,42.8198052 L42.8198052,49.1837662 L30.0918831,36.4558441 L17.363961,49.1837662 L11,42.8198052 L23.7279221,30.0918831 L11,17.363961 L17.363961,11 L30.0918831,23.7279221 Z" id="cross" fill="#FFFFFF"></path>
+    </g>
+</svg>

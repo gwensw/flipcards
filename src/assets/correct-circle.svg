@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="61px" height="61px" viewBox="0 0 61 61" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-correct-circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon-correct-circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="circle" fill="#FFAA39" cx="30.5" cy="30.5" r="30.5"></circle>
+        <polyline id="Path-2" stroke="#FFFFFF" stroke-width="9" points="13 26.8891494 25.2871164 43.3867188 48.9511789 16"></polyline>
+    </g>
+</svg>

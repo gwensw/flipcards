@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="42px" viewBox="0 0 64 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>index-card-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="index-card-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-2" stroke="#FFFFFF" stroke-width="2" x="1" y="1" width="62" height="40" rx="2"></rect>
+        <path d="M2,11 L62,11" id="Line" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+        <path d="M2.5,33.5 L62.5,33.5" id="Line" stroke="#FFFFFF" stroke-linecap="square"></path>
+        <path d="M2.5,19.5 L62.5,19.5" id="Line-Copy-2" stroke="#FFFFFF" stroke-linecap="square"></path>
+        <path d="M2.5,26.5 L61.5,26.5" id="Line-Copy-3" stroke="#FFFFFF" stroke-linecap="square"></path>
+    </g>
+</svg>
