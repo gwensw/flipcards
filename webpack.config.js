@@ -13,6 +13,9 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  externals: {
+    flashcards: 'flashcards'
+  },
   mode: 'production',
   module: {
     rules: [
