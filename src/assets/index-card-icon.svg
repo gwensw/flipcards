@@ -4,9 +4,9 @@
     <title>index-card-icon</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="index-card-icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="Rectangle-2" stroke="#FFFFFF" stroke-width="2" x="1" y="1" width="62" height="40" rx="2"></rect>
-        <path d="M2,11 L62,11" id="Line" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square"></path>
+    <g id="index-card-icon" stroke="none" stroke-width="2" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle-2" stroke="#FFFFFF" stroke-width="4" x="1" y="1" width="62" height="40" rx="4"></rect>
+        <path d="M2,11 L62,11" id="Line" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"></path>
         <path d="M2.5,33.5 L62.5,33.5" id="Line" stroke="#FFFFFF" stroke-linecap="square"></path>
         <path d="M2.5,19.5 L62.5,19.5" id="Line-Copy-2" stroke="#FFFFFF" stroke-linecap="square"></path>
         <path d="M2.5,26.5 L61.5,26.5" id="Line-Copy-3" stroke="#FFFFFF" stroke-linecap="square"></path>

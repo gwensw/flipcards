@@ -5,7 +5,7 @@ body
   @extend %unpad
   font-family: $sans-serif
   color: $darkgrey
-  
+
 .header
   +displayflex()
   +justify-content(center)
@@ -14,10 +14,23 @@ body
   width: 100%
   background-color: $main
 
-.header__logo
-  +rotate('-8deg')
+.logo
 
-.header__logo--min
+.logo--min
+
+.logo__title
+  @extend %unpad
+  display: inline-block
+  font-weight: $extrabold
+  font-size: 24px
+  color: $white
+
+.logo__icon
+  margin-right: 5px
+  margin-bottom: -2px
+  width: 37px
+  height: 24px
+  +rotate('-8')
 
 @import 'tablet'
 @import 'desktop'
