@@ -1,12 +1,23 @@
 @import 'project-mixins'
 
 body
+  @extend %textured-background
+  @extend %unpad
   font-family: $sans-serif
   color: $darkgrey
   
-h1
-  @extend %textured-background
-  
-.imagetest
+.header
+  +displayflex()
+  +justify-content(center)
+  +align-items(center)
+  height: 46px
+  width: 100%
   background-color: $main
-  
+
+.header__logo
+  +rotate('-8deg')
+
+.header__logo--min
+
+@import 'tablet'
+@import 'desktop'

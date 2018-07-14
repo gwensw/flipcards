@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,800&subset=latin-ext')
 
-//project colours
+// project colours
 
 $white: #FFF
 $lightgrey: #C9C9C9
@@ -14,19 +14,105 @@ $diff3: #FFCD68
 $diff4: #FFBC50
 $diff5: #FFAA39
 
-//font families
+// font families
 
 $sans-serif: 'Open Sans', sans-serif
 
-//font weights
+// font weights
 
 $extrabold: 800
 $semibold: 600
 $regular: 400
 $light: 300
 
-//backgrounds
+// backgrounds
 
 %textured-background
   background-image: url("../assets/background-texture.png")
-  background-color: $main
+  background-color: $mainlight
+
+// breakpoints
+
+$breakpoint-tablet: 768px
+$breakpoint-desktop: 960px
+
+// useful
+
+%unpad
+  margin: 0
+  padding: 0
+
+// flexbox
+
+// DISPLAY
+=displayflex()
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
+// FLEX-DIRECTION : row | row-reverse | column | column-reverse
+=flex-direction($dir)
+  -webkit-flex-direction: $dir
+  -moz-flex-direction:    $dir
+  -ms-flex-direction:     $dir
+  flex-direction:         $dir
+
+// FLEX-WRAP : nowrap | wrap | wrap-reverse
+=flex-wrap($wrap)
+  -webkit-flex-wrap: $wrap
+  -moz-flex-wrap:    $wrap
+  -ms-flex-wrap:     $wrap
+  flex-wrap:         $wrap
+
+// JUSTIFY-CONTENT : flex-start | flex-end | center | space-between | space-around | space-evenly
+=justify-content($to)
+  -webkit-justify-content: $to
+  -moz-justify-content:    $to
+  -ms-justify-content:     $to
+  justify-content:         $to
+  -ms-flex-pack:           $to
+  
+// ALIGN-ITEMS : normal | flex-start | flex-end | center | baseline | stretch
+=align-items($with)
+  -webkit-align-items: $with
+  -moz-align-items:    $with
+  -ms-align-items:     $with
+  align-items:         $with
+
+// ALIGN SELF : auto | flex-start | flex-end | center | baseline | stretch
+=align-self($with)
+  -webkit-align-self: $with
+  -moz-align-self:    $with
+  -ms-align-self:     $with
+  align-self:         $with
+  
+// FLEX : auto (1, 1, auto) | initial (0, 1, auto) | none (0, 0, auto) | {positive integer}
+=flex($grow, $shrink, $basis)
+  -webkit-box-flex: $grow, $shrink, $basis
+  -moz-box-flex:    $grow, $shrink, $basis
+  -webkit-flex:     $grow, $shrink, $basis
+  -ms-flex:         $grow, $shrink, $basis
+  flex:             $grow, $shrink, $basis
+
+// ORDER : {integer, positive or negative}
+=order($ordinal)
+  -webkit-box-ordinal-group: $ordinal
+  -moz-box-ordinal-group:    $ordinal
+  -ms-flex-order:            $ordinal
+  -webkit-order:             $ordinal
+  order:                     $ordinal
+
+// transform
+
+// Browser Prefixes
+@mixin transform($transforms)
+	-webkit-transform: $transforms
+	-moz-transform: $transforms
+	-ms-transform: $transforms
+	transform: $transforms
+
+// Rotate
+@mixin rotate ($deg)
+	@include transform(rotate(#{$deg}deg))
