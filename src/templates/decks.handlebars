@@ -1,0 +1,16 @@
+<nav class="deckmenu">
+  {{#each deck}}
+    <div class="deck__container">
+      <a href='#/edit/{{this.name}}' class='deck__editicon' title="edit deck"></a>
+      <a href="#/train/{{this.name}}">
+        <div class="deck">
+          <p class="deck__length">{{this.cardLength}} cards</p>
+          <div class="deck__band">
+            <h2 class="deck__title">{{this.shortname}}</h2>
+          </div>
+          <p class="deck__difficulty" title="difficulty">{{[helpers/difficon] this.averageDifficulty}}</p>
+        </div>
+      </a>
+    </div>
+  {{/each}}
+</nav>

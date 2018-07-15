@@ -2,7 +2,7 @@
 
 import flashcards from 'flashcards'; // eslint-disable-line
 
-function setup() {
+function createSampleDecks() {
   if (!flashcards.listDecks().length) {
     flashcards.openDeck('100');
     flashcards.setDisplayName('food in Welsh');
@@ -42,4 +42,4 @@ function setup() {
   }
 }
 
-export default setup;
+export default createSampleDecks;
