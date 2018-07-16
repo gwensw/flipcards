@@ -21,6 +21,7 @@ function select() {
     deck: sortedDeck
   };
   Render.decks(context);
+  Render.header();
 }
 
 
