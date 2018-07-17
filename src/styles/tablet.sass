@@ -1,3 +1,41 @@
+$avgbar: 18px
+$avgbarwide: 46px
+  
 @media screen and (min-device-width: $breakpoint-tablet)
   .header
     height: 65px
+
+  .logo__title
+    font-size: 36px
+
+  .deckmenu
+    display: grid
+    -ms-grid-columns: 1fr 1fr 1fr
+    grid-template-columns: 1fr 1fr 1fr
+    grid-column-gap: 17px
+    grid-row-gap: 20px
+    margin-top: 120px
+    padding-bottom: 20px
+
+  .deck
+    width: 237px
+    height: 317px
+    font-size: 16px
+  
+  .deck__container
+    height: 317px + 5px
+
+  .deck__title
+    font-size: 20px
+
+  .avgchart
+    width: ($avgbar * 4) + $avgbarwide + (3px * 4)
+    margin-top: 56px
+
+  .avgchart__bar
+    width: $avgbar
+    height: 36px
+
+  .avgchart__bar--tall
+    width: $avgbarwide
+    height: 70px
