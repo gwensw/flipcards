@@ -29,6 +29,7 @@ $avgbarwide: 46px
     font-size: 20px
 
   .avgchart
+    +flex-wrap(wrap)
     width: ($avgbar * 4) + $avgbarwide + (3px * 4)
     margin-top: 56px
 
@@ -39,3 +40,10 @@ $avgbarwide: 46px
   .avgchart__bar--tall
     width: $avgbarwide
     height: 70px
+
+  .avgchart__label
+    display: block
+    width: 100%
+    font-weight: $light
+    font-size: 12px
+    text-align: center

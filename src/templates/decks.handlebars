@@ -9,7 +9,9 @@
             <h2 class="deck__title">{{this.shortname}}</h2>
           </div>
           {{#if this.averageDifficulty}}
-          <div class="avgchart" title="difficulty">{{[helpers/avgchart] this.averageDifficulty}}</div>
+          <div class="avgchart" title="difficulty">{{[helpers/avgchart] this.averageDifficulty}}
+            <p class="avgchart__label">AVERAGE DIFFICULTY</p>
+          </div>
           {{/if}}        
         </div>
       </a>
