@@ -1,7 +1,7 @@
 <nav class="deckmenu">
   {{#each deck}}
     <div class="deck__container">
-      <a href='#/edit/{{this.name}}' class='deck__editicon' title="edit deck"></a>
+      <a href='#/edit/{{this.name}}' class='deck__editicon' title="edit deck"><img src="../assets/edit-dark.svg" class="deck__editicon"></a>
       <a href="#/train/{{this.name}}">
         <div class="deck">
           <p class="deck__length">{{this.cardLength}} cards</p>
