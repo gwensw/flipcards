@@ -6,23 +6,26 @@ import Render from './render';
 import '../styles/main.sass';
 import indexCardIcon from '../assets/index-card-icon.svg'; // eslint-disable-line
 
+// adjust settings for project
+flashcards.settings.adjustDifficultyUp = 2;
+flashcards.settings.lowestDifficulty = 1;
+flashcards.settings.defaultDifficulty = 3;
+flashcards.settings.highestDifficulty = 5;
 
-flashcards.settings.adjustDifficultyUp = 2; // one steps forward, two steps back
 createSampleDecks(); // create sample decks if homepage is empty
 setupUserSettings(flashcards.listDecks()); // default user settings for all decks
 
 // initiate rendering of home interface with deck list
 function select() {
-  const sortedDeck = flashcards.listDecks().sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
-  for (let i = 0; i < sortedDeck.length; i += 1) {
-    sortedDeck[i].shortname = truncate(sortedDeck[i].displayName);
+  const sortedDecks = flashcards.listDecks().sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
+  for (let i = 0; i < sortedDecks.length; i += 1) {
+    sortedDecks[i].shortname = truncate(sortedDecks[i].displayName);
   }
   const context = {
-    deck: sortedDeck
+    deck: sortedDecks
   };
   Render.decks(context);
   Render.header();
 }
-
 
 select();

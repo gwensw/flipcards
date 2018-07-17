@@ -18,6 +18,12 @@ a
   width: 100%
   background-color: $main
 
+.header--fixed
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 999
+
 .logo
 
 .logo--min
@@ -48,19 +54,30 @@ a
   grid-template-columns: 1fr 1fr
   grid-column-gap: 7px
   grid-row-gap: 9px
-  margin: 30px auto 0
+  margin: 76px auto 0
+  padding-bottom: 20px
   
 .deck
-  width: 100%
-  height: 100%
+  width: 178px
+  height: 238px
   border: 1px solid $darkgrey
   border-radius: 24px
   background-color: $white
   font-size: 12px
 
+.deck--behind1
+  position: absolute
+  z-index: -1
+  top: 2px
+
+.deck--behind2
+  position: absolute
+  z-index: -2
+  top: 4px
+
 .deck__container
-  width: 178px
-  height: 238px
+  position: relative
+  height: 238px + 5px
 
 .deck__editicon
   width: 23px
@@ -68,6 +85,7 @@ a
   color: $darkgrey
 
 .deck__length
+  margin: 1em auto
   text-align: center
 
 .deck__band
@@ -85,7 +103,45 @@ a
   text-transform: uppercase
   text-align: center
 
-.deck__difficulty
+.avgchart
+  +displayflex()
+  +flex-direction(row)
+  +justify-content(space-between)
+  +align-items(flex-end)
+  width: 99px
+  margin: 40px auto auto
+
+.avgchart__bar
+  width: 14px
+  height: 21px
+  background-color: $diff1
+  color: $darkgrey
+
+.avgchart__bar:nth-child(2)
+  background-color: $diff2
+
+.avgchart__bar:nth-child(3)
+  background-color: $diff3
+
+.avgchart__bar:nth-child(4)
+  background-color: $diff4
+
+.avgchart__bar:nth-child(5)
+  background-color: $diff5
+  color: #fff
+
+.avgchart__bar--tall
+  +displayflex()
+  +justify-content(center)
+  +align-items(center)
+  width: 35px
+  height: 41px
+
+.avgchart__num
+  @extend %unpad
+  font-weight: $extrabold
+  font-size: 24px
+
 
 @import 'tablet'
 @import 'desktop'

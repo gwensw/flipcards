@@ -8,9 +8,13 @@
           <div class="deck__band">
             <h2 class="deck__title">{{this.shortname}}</h2>
           </div>
-          <p class="deck__difficulty" title="difficulty">{{[helpers/difficon] this.averageDifficulty}}</p>
+          {{#if this.averageDifficulty}}
+          <div class="avgchart" title="difficulty">{{[helpers/avgchart] this.averageDifficulty}}</div>
+          {{/if}}        
         </div>
       </a>
+      <div class="deck deck--behind1"></div>
+      <div class="deck deck--behind2"></div>
     </div>
   {{/each}}
 </nav>

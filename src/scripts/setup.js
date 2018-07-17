@@ -39,6 +39,17 @@ function createSampleDecks() {
       ['RTOS', ['Real Time Operating System', 'Real-time Operating System']],
       ['EMR', ['Elastic MapReduce', 'Elastic Map Reduce']]
     );
+    flashcards.openDeck('200');
+    flashcards.setDisplayName('Very Long Deck Title Indeed');
+    flashcards.openDeck('500');
+    flashcards.setDisplayName('Colours of the Rainbow');
+    flashcards.addCards(
+      ['glas', 'blue'],
+      ['coch', 'red'],
+      ['melyn', 'yellow'],
+      ['gwyrdd', 'green']
+    );
+    flashcards.openDeck('600');
   }
 }
 
