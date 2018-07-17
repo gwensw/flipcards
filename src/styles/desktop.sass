@@ -1,14 +1,21 @@
-@media screen and (min-device-width: $breakpoint-desktop)
-  .header
-    height: 100px
-    box-shadow: $darkgrey 0 1 11 1
+@media screen and (min-width: $breakpoint-desktop)
+  body
+    background-color: $white
+    background-image: url("../assets/background-texture-pale.png")
 
-  .header--thin
+  .header
+    +justify-content(space-between)
     height: 75px
+    box-shadow: 0px 1px 11px 1px $lightgrey
 
   .header__icon
     display: none
 
+  .logo__title
+    font-size: 52px
+    margin-bottom: 2px
+
   .logo__icon--large
     width: 75px
     height: 49px
+    margin: 0 8px -5px 13px

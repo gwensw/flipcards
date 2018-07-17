@@ -17,6 +17,7 @@ a
   height: 46px
   width: 100%
   background-color: $main
+  +standardTransition(height)
 
 .header--fixed
   position: fixed
@@ -34,6 +35,7 @@ a
   font-weight: $extrabold
   font-size: 24px
   color: $white
+  +standardTransition(font-size)
 
 .logo__icon
   margin-right: 5px
@@ -41,6 +43,7 @@ a
   width: 37px
   height: 24px
   +rotate('-8')
+  +standardTransition()
 
 .main
   +displayflex()
@@ -64,6 +67,7 @@ a
   border-radius: 24px
   background-color: $white
   font-size: 12px
+  +standardTransition()
 
 .deck--behind1
   position: absolute

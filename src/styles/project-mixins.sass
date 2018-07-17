@@ -29,6 +29,7 @@ $light: 300
 
 %textured-background
   background-image: url("../assets/background-texture.png")
+  background-repeat: repeat
   background-color: $mainlight
 
 // breakpoints
@@ -41,6 +42,10 @@ $breakpoint-desktop: 960px
 %unpad
   margin: 0
   padding: 0
+
+=standardTransition($property: all)
+  transition: $property
+  transition-duration: 0.2s
 
 // flexbox
 
