@@ -1,5 +1,8 @@
 @import 'project-mixins'
 
+html
+  box-sizing: border-box
+
 body
   @extend %textured-background
   @extend %unpad
@@ -57,8 +60,7 @@ a
   grid-template-columns: 1fr 1fr
   grid-column-gap: 7px
   grid-row-gap: 9px
-  margin: 77px auto 0
-  padding-bottom: 20px
+  margin: 77px auto 20px
   
 .deck
   width: 178px
@@ -68,6 +70,12 @@ a
   background-color: $white
   font-size: 12px
   +standardTransition()
+
+.deck__container:hover .deck--behind1
+  +translate(0, 2px)
+
+.deck__container:hover .deck--behind2,
+  +translate(0, 4px)
 
 .deck--behind1
   position: absolute
@@ -85,13 +93,16 @@ a
 
 .deck__editicon
   position: absolute
-  top: 6px
-  right: 5px
+  top: 11px
+  right: 7px
   z-index: 10
   width: 23px
   height: 18px
-  color: $darkgrey
   text-decoration: none
+  fill: $darkgrey
+
+.deck__editicon:hover
+  fill: $accent
 
 .deck__length
   margin: 1em auto
@@ -104,6 +115,8 @@ a
   height: 74px
   border-top: 1px solid $darkgrey
   border-bottom: 1px solid $darkgrey
+  background-color: $white
+  +standardTransition()
 
 .deck__title
   color: $darkgrey

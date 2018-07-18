@@ -21,20 +21,20 @@ $avgbarwide: 46px
     margin-top: 120px
 
   .deck
-    width: 237px
-    height: 317px
-    font-size: 16px
+    width: $deckwidthbig
+    height: $deckheightbig
+    font-size: 14px
   
   .deck__container
-    height: 317px + 5px
+    height: $deckheightbig + 5px
 
   .deck__title
-    font-size: 20px
+    font-size: 18px
 
   .avgchart
     +flex-wrap(wrap)
     width: ($avgbar * 4) + $avgbarwide + (3px * 4)
-    margin-top: 56px
+    margin-top: 46px
 
   .avgchart__bar
     width: $avgbar

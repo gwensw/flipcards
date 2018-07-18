@@ -37,6 +37,11 @@ $light: 300
 $breakpoint-tablet: 768px
 $breakpoint-desktop: 960px
 
+// dimensions
+
+$deckwidthbig: 225px
+$deckheightbig: 301px
+
 // useful
 
 %unpad
@@ -121,3 +126,7 @@ $breakpoint-desktop: 960px
 // Rotate
 @mixin rotate ($deg)
 	@include transform(rotate(#{$deg}deg))
+
+// Translate
+@mixin translate ($x, $y:0)
+	@include transform(translate($x, $y))
