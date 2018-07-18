@@ -47,6 +47,7 @@
     }
   },
   "dependencies": {
+    "director": "^1.2.8",
     "handlebars": "^4.0.11"
   }
 }
