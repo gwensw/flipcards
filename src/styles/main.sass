@@ -28,6 +28,13 @@ a
   left: 0
   z-index: 999
 
+.header__icon
+
+.header__icon--back
+  margin-left: 10px
+  height: 20px
+  width: 13px
+
 .logo
 
 .logo--min
@@ -52,7 +59,9 @@ a
   +displayflex()
   +justify-content(center)
   +align-items(center)
-  overflow: hidden
+  +flex-wrap(wrap)
+  overflow-x: hidden
+  padding-top: 77px
 
 .deckmenu
   display: grid
@@ -60,7 +69,7 @@ a
   grid-template-columns: 1fr 1fr
   grid-column-gap: 7px
   grid-row-gap: 9px
-  margin: 77px auto 20px
+  margin: 0 auto 20px
   
 .deck
   width: 178px

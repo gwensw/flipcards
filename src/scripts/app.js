@@ -20,7 +20,6 @@ setupUserSettings(flashcards.listDecks());
   ROUTING
 ----------*/
 
-// initiate rendering of home interface with deck list
 function select() {
   const sortedDecks = flashcards.listDecks().sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
   sortedDecks.map((deck) => {
@@ -34,16 +33,19 @@ function select() {
   Render.header();
 }
 
-function train() {
-  console.log('train here'); // eslint-disable-line
+function train(num) {
+  console.log('train here', num); // eslint-disable-line
 }
 
-function edit() {
-  console.log('edit here'); // eslint-disable-line
+function edit(name) {
+  flashcards.openDeck(name);
+  const { cards } = flashcards.exposeDeck();
+  Render.editView(cards);
+  Render.header(true, flashcards.getDisplayName(), true);
 }
 
-function editnew() {
-  console.log('editnew here'); // eslint-disable-line
+function editnew(num) {
+  console.log('editnew here', num); // eslint-disable-line
 }
 
 const routes = {

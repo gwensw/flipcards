@@ -1,4 +1,11 @@
-<div class="logo">
-  <img src="../assets/index-card-icon.svg" alt="flipcard logo" class="logo__icon logo__icon--large">
-  <h1 class="logo__title">FLIPCARDS</h1>
-</div>
+{{#if hasBacklink}}
+  <a href="#"><img src="../assets/back.svg" class="header__icon header__icon--back"></a>
+{{/if}}
+{{#if inEditMode}}
+  <input class="header__title header__title--editable" value="{{deckTitle}}">
+{{else}}
+  <div class="logo">
+    <img src="../assets/index-card-icon.svg" alt="flipcard logo" class="logo__icon logo__icon--large">
+    <h1 class="logo__title">FLIPCARDS</h1>
+  </div>
+{{/if}}
