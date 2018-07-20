@@ -28,12 +28,35 @@ a
   left: 0
   z-index: 999
 
-.header__icon
+.header__title
+  font-family: $sans-serif
+  font-size: 30px
+  text-align: center
+
+.header__title--editable
+  width: 220px
+  font-size: 20px
+  font-weight: $light
+
+.header__nav
+  position: absolute
+
+.header__nav--left
+  left: 9px
+
+.header__nav--right
+  right: 9px
+
+.header__icon:hover
+  cursor: pointer
 
 .header__icon--back
-  margin-left: 10px
   height: 20px
   width: 13px
+
+.header__icon--settings
+  height: 23px
+  width: 23px
 
 .logo
 
@@ -175,6 +198,41 @@ a
 
 .avgchart__label
   display: none
+
+.edit
+  width: 97%
+  margin: 0 auto 10px
+  padding: 5px
+  background-color: $white
+
+.edit__input
+  height: 43px
+  width: 82%
+  padding: 7px
+  border: 1px solid $darkgrey
+  font-family: $sans-serif
+  font-weight: $regular
+  font-size: 18px
+  color: $darkgrey
+
+.edit__selector
+  height: 43px
+  width: 53px
+  padding-left: 8px
+  border: none
+  border-radius: 0
+  color: $darkgrey
+  font-family: $sans-serif
+  font-weight: $extrabold
+  font-size: 22px
+
+// TODO: use sass repeat here to style each diff-
+.edit__selector--diff3
+  background-color: $diff3
+
+.edit__delete
+  height: 37px
+  width: 35px
 
 @import 'tablet'
 @import 'desktop'

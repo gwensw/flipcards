@@ -1,11 +1,29 @@
 {{#if hasBacklink}}
-  <a href="#"><img src="../assets/back.svg" class="header__icon header__icon--back"></a>
+  <nav class="header__nav header__nav--left">
+    <a href="#">
+      <img 
+        src="../assets/back.svg"
+        class="header__icon header__icon--back">
+    </a>
+  </nav>
 {{/if}}
 {{#if inEditMode}}
-  <input class="header__title header__title--editable" value="{{deckTitle}}">
+  <input 
+    class="header__title header__title--editable"
+    value="{{deckTitle}}">
 {{else}}
   <div class="logo">
-    <img src="../assets/index-card-icon.svg" alt="flipcard logo" class="logo__icon logo__icon--large">
-    <h1 class="logo__title">FLIPCARDS</h1>
+    <img src="../assets/index-card-icon.svg" 
+      alt="flipcard logo" 
+      class="logo__icon logo__icon--large">
+    <h1 
+      class="logo__title">FLIPCARDS</h1>
   </div>
 {{/if}}
+  <nav class="header__nav header__nav--right">
+    {{#if inEditMode}}
+    <img 
+      src="../assets/settings.svg"
+      class="header__icon header__icon--settings">
+    {{/if}}
+  </nav>

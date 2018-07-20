@@ -1,14 +1,14 @@
 <div class="edit">
   <input class="edit__input" type="text" placeholder="Side 1" value="{{side1}}">
   <input class="edit__input"  type="text" placeholder="Side 2" value="{{side2}}">
-  <select class="edit__selector" type="number">
+  <select class="edit__selector edit__selector--diff{{difficulty}}" type="number">
     {{#[helpers/diffselect] difficulty}}
-    <option value='' disabled>Difficulty</option>
-    <option value=1>1</option>
-    <option value=2>2</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
+      <option value='' disabled>Difficulty</option>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+      <option value=5>5</option>
     {{/[helpers/diffselect]}}
   </select>
   <img src="../assets/trashcan.svg" class="edit__delete">
