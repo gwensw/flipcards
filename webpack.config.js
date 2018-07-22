@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'production';
 
@@ -74,9 +73,6 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'bundle.css'
-    }),
-    new WebpackShellPlugin({
-      onBuildEnd: ['node BBdeploy.js']
     })
   ]
 };
