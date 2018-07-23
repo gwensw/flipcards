@@ -3,22 +3,56 @@
     background-color: $white
     background-image: url("../assets/background-texture-pale.png")
 
+  .button
+    box-shadow: 1px 2px 4px 0px $darkgrey
+
+  .button--nav
+    +displayflex()
+    +flex-direction(row)
+    +justify-content(space-around)
+    +align-items(center)
+    padding: 5px
+    border: 1px solid $white
+    border-radius: 15px
+    box-shadow: none
+    font-family: $sans-serif
+    font-weight: $semibold
+    font-size: 18px
+
+  .button--nav p
+    margin: 0 0 0 5px
+    padding: 0
+
   .header
-    +justify-content(space-between)
-    height: 75px
+    height: 60px
     box-shadow: 0px 1px 11px 1px $lightgrey
 
   .header__icon
     display: none
 
+  .header__title--editable
+    height: 38px
+    font-size: 26px
+
+  .logo--min
+    display: block
+
   .logo__title
-    font-size: 52px
     margin-bottom: 2px
+    font-size: 40px
+
+  .logo__title--min
+    margin-bottom: 0
+    font-size: 26px
+
+  .logo__icon
+    margin-right: 2px
+    margin-bottom: -3px
 
   .logo__icon--large
-    width: 75px
-    height: 49px
-    margin: 0 8px -5px 13px
+    height: 36px
+    width: auto
+    margin: 0 4px -5px 13px
 
   .main
     +align-items(flex-start)
@@ -30,3 +64,23 @@
     margin-left: 0
     padding-left: 20px
     padding-right: 190px
+
+  .edit
+    grid-template-columns: [col1-start] 1fr [col2-start] 60px [col3-start] 50px [col3-end]
+    
+  .edit__selector
+    grid-column-start: col2-start
+    grid-column-end: col3-start
+    grid-row-start: row1-start
+    grid-row-end: row2-end
+    height: 60px
+    width: 90%
+    margin: auto
+    padding-left: 35%
+  
+  .edit__delete
+    grid-column-start: col3-start
+    grid-column-end: col3-end
+    grid-row-start: row1-start
+    grid-row-end: row2-end
+    

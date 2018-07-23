@@ -13,6 +13,12 @@ a
   text-decoration: none
   color: inherit
 
+.button
+  color: $white
+
+.button--nav
+  display: none
+
 .header
   +displayflex()
   +justify-content(center)
@@ -59,9 +65,8 @@ a
   height: 23px
   width: 23px
 
-.logo
-
 .logo--min
+  display: none
 
 .logo__title
   @extend %unpad
@@ -74,8 +79,8 @@ a
 .logo__icon
   margin-right: 5px
   margin-bottom: -2px
-  width: 37px
   height: 24px
+  width: auto
   +rotate('-8')
   +standardTransition()
 
@@ -260,6 +265,10 @@ a
   height: 37px
   width: 35px
   margin: auto
+
+.edit__selector:hover,
+.edit__delete:hover
+  cursor: pointer
 
 @import 'tablet'
 @import 'desktop'
