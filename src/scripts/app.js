@@ -2,8 +2,8 @@ import flashcards from 'flashcards';  // eslint-disable-line
 import { Router } from 'director/build/director';
 import createSampleDecks from './setup';
 import setupUserSettings from './settings';
-import truncate from './truncate';
 import Render from './render';
+import Edit from './edit';
 import '../styles/main.sass';
 
 // adjust settings for project
@@ -16,20 +16,21 @@ flashcards.settings.highestDifficulty = 5;
 createSampleDecks();
 setupUserSettings(flashcards.listDecks());
 
+/*------------------
+BIND EVENT LISTENERS
+-------------------*/
+
+// handle updates to cards in edit mode
+document.querySelector('.main').addEventListener('change', (e) => {
+  Edit.cardtext(e);
+});
+
 /*---------
   ROUTING
 ----------*/
 
 function select() {
-  const sortedDecks = flashcards.listDecks().sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
-  sortedDecks.map((deck) => {
-    deck.shortname = truncate(deck.displayName); // eslint-disable-line no-param-reassign
-    return deck;
-  });
-  const context = {
-    deck: sortedDecks
-  };
-  Render.decks(context);
+  Render.decks(flashcards.listDecks());
   Render.header();
 }
 
