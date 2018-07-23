@@ -126,18 +126,21 @@ a
   z-index: -2
   top: 4px
 
-.deck__editicon
+.deck__link
   position: absolute
   top: 11px
   right: 7px
+  display: inline-block
   z-index: 10
+
+.deck__editicon
   width: 27px
   height: 21px
-  text-decoration: none
   fill: $darkgrey
 
 .deck__editicon:hover
   fill: $accent
+  cursor: pointer
 
 .deck__length
   margin: 1em auto
@@ -203,7 +206,6 @@ a
   display: none
 
 .edit
-  //box-sizing: border-box
   display: grid
   grid-gap: 5px
   grid-template-columns: [col1-start] 1fr [col2-start] 50px [col2-end]
