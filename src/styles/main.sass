@@ -13,17 +13,6 @@ a
   text-decoration: none
   color: inherit
 
-.button
-  color: $white
-
-.button--nav
-  display: none
-
-.button--nav:hover
-  border-width: 3px
-  font-weight: $semibold
-  cursor: pointer
-
 .header
   +displayflex()
   +justify-content(center)
@@ -97,6 +86,45 @@ a
   overflow-x: hidden
   padding-top: 77px
 
+.buttonrow
+  display: grid
+  -ms-grid-columns: 1fr 1fr
+  grid-template-columns: 1fr 1fr
+  column-gap: 3px
+  position: fixed
+  bottom: -1
+  width: 100%
+  z-index: 99
+
+.buttonrow--double
+  -ms-grid-rows: 1fr 1fr
+  grid-template-rows: 1fr 1fr
+
+.button
+  +displayflex()
+  +align-items(center)
+  +justify-content(center)
+  color: $white
+
+.button--nav
+  display: none
+
+.button--nav:hover
+  border-width: 3px
+  font-weight: $semibold
+  cursor: pointer
+
+.button--primary
+  order: 2
+  height: 60px
+  background-color: $accent
+
+.button--secondary
+  background-color: $main
+
+.button--fullwidth
+  grid-column-end: col2-end
+
 .deckmenu
   display: grid
   justify-content: space-between
@@ -104,7 +132,7 @@ a
   grid-template-columns: 1fr 1fr
   grid-row-gap: 9px
   width: 98%
-  margin: 0 auto 20px
+  margin: 0 auto 80px
 
 .deck__container
   position: relative
