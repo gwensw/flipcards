@@ -20,6 +20,19 @@ setupUserSettings(flashcards.listDecks());
 BIND EVENT LISTENERS
 -------------------*/
 
+// handle changes to deck display name
+document.querySelector('.header').addEventListener('change', (e) => {
+  flashcards.setDisplayName(e.target.value);
+  e.stopPropagation();
+});
+
+// allow enter key for input in header
+document.querySelector('.header').addEventListener('keydown', (e) => {
+  if (e.keyCode === 13) {
+    e.target.blur();
+  }
+});
+
 // handle updates to cards in edit mode
 document.querySelector('.main').addEventListener('change', (e) => {
   Edit.cardtext(e);
