@@ -7,6 +7,15 @@ import editCardTemplate from '../templates/editCard.handlebars';
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
 
+function growOnInput() {
+  const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
+  this.style.height = `${newHeight}px`;
+}
+
+function shrinkOnFocusout() {
+  this.removeAttribute('style');
+}
+
 const Render = {
   header(hasBacklink = false, deckTitle = '', inEditMode = false) {
     const context = { hasBacklink, deckTitle, inEditMode };
@@ -35,6 +44,12 @@ const Render = {
       };
       main.insertAdjacentHTML('afterbegin', editCardTemplate(context));
     }
+    // make textarea grow on focus/input, and obey stylesheet otherwise
+    document.querySelectorAll('.edit__input').forEach((el) => {
+      el.addEventListener('focus', growOnInput);
+      el.addEventListener('input', growOnInput);
+      el.addEventListener('focusout', shrinkOnFocusout);
+    });
   }
 };
 

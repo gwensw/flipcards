@@ -1,6 +1,8 @@
 <div id="card-{{index}}" class="edit" data-index="{{index}}" >
-  <input class="edit__input side1" type="text" placeholder="Side 1" value="{{side1}}">
-  <input class="edit__input side2"  type="text" placeholder="Side 2" value="{{side2}}">
+  <div class="edit__flexcontainer">
+    <textarea class="edit__input side1" type="text" placeholder="Side 1">{{side1}}</textarea>
+    <textarea class="edit__input side2"  type="text" placeholder="Side 2">{{side2}}</textarea>
+  </div>
   <select class="edit__selector edit__selector--diff{{difficulty}}" type="number">
     {{#[helpers/diffselect] difficulty}}
       <option value='' disabled>Difficulty</option>

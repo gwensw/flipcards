@@ -19,6 +19,11 @@ a
 .button--nav
   display: none
 
+.button--nav:hover
+  border-width: 3px
+  font-weight: $semibold
+  cursor: pointer
+
 .header
   +displayflex()
   +justify-content(center)
@@ -212,31 +217,44 @@ a
 
 .edit
   display: grid
-  grid-gap: 5px
+  grid-column-gap: 5px
+  // grid-template-columns: [col1-start] 1fr [col2-start] 50px [col2-end]
+  // grid-template-rows: [row1-start] 43px [row2-start] 43px [row2-end]
   grid-template-columns: [col1-start] 1fr [col2-start] 50px [col2-end]
-  grid-template-rows: [row1-start] 1fr [row2-start] 1fr [row2-end]
+  grid-template-rows: [row1-start] 43px [row2-start] 43px [row3-start] 1fr [row3-end]
   width: 97%
   margin: 0 auto 10px
   padding: 5px
   background-color: $white
 
-.edit__input
+.edit__flexcontainer
   grid-column-start: col1-start
   grid-column-end: col2-start
   grid-row-start: row1-start
-  height: 43px
+  grid-row-end: row2-end
+  +displayflex()
+  +flex-direction(column)
+
+.edit__input
   width: 100%
+  height: 43px
   padding: 7px
   border: 1px solid $darkgrey
   font-family: $sans-serif
   font-weight: $regular
   font-size: 18px
   color: $darkgrey
+  white-space: nowrap
+  overflow: hidden
+  resize: none
+  +standardTransition(height)
 
-.edit__input:nth-child(2)
-  grid-column-start: col1-start
-  grid-column-end: col2-start
-  grid-row-start: row2-start
+.edit__input:first-child
+  margin-bottom: 5px
+
+.edit__input:focus
+  white-space: normal
+  +standardTransition(height)
 
 .edit__selector
   -webkit-appearance: none
@@ -264,7 +282,7 @@ a
   grid-row-start: row2-start
   height: 37px
   width: 35px
-  margin: auto
+  margin: auto auto -2px
 
 .edit__selector:hover,
 .edit__delete:hover
