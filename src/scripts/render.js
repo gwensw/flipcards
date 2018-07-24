@@ -50,6 +50,11 @@ const Render = {
       el.addEventListener('input', growOnInput);
       el.addEventListener('focusout', shrinkOnFocusout);
     });
+  },
+  updateDiffColour(el, diffnum) {
+    const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
+    el.classList.remove(oldClass);
+    el.classList.add(`edit__selector--diff${diffnum}`);
   }
 };
 

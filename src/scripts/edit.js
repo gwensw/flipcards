@@ -1,4 +1,5 @@
 import flashcards from 'flashcards';  // eslint-disable-line
+import Render from './render';
 
 const Edit = {
   cardtext(e) {
@@ -8,8 +9,10 @@ const Edit = {
       const side = el.classList.contains('side1') ? 'side1' : 'side2';
       const val = el.value.split('/').map(x => x.trim());
       flashcards.editCard(parent.dataset.index, side, val);
-    } else if (el.classList.contains('diff')) {
-      flashcards.editCard(parent.dataset.index, 'difficulty', parseInt(el.value, 10));
+    } else if (el.classList.contains('edit__selector')) {
+      const newDiff = parseInt(el.value, 10);
+      flashcards.editCard(parent.dataset.index, 'difficulty', newDiff);
+      Render.updateDiffColour(el, newDiff);
     }
   }
 };
