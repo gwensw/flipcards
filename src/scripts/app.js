@@ -25,6 +25,14 @@ document.querySelector('.main').addEventListener('change', (e) => {
   Edit.cardtext(e);
 });
 
+// handles clicks - for card deletion or addition
+document.querySelector('.main').addEventListener('click', (e) => {
+  const el = e.target;
+  if (el.classList.contains('js-delete')) {
+    Edit.deleteCard(el);
+  }
+});
+
 /*---------
   ROUTING
 ----------*/

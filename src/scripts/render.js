@@ -55,6 +55,9 @@ const Render = {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
     el.classList.remove(oldClass);
     el.classList.add(`edit__selector--diff${diffnum}`);
+  },
+  deletedCard(cardToDelete) {
+    main.removeChild(cardToDelete);
   }
 };
 
