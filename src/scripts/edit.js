@@ -3,12 +3,13 @@ import Render from './render';
 
 const Edit = {
   cardtext(e) {
+    debugger; // eslint-disable-line
     const el = e.target;
     const parent = el.parentNode;
     if (el.classList.contains('js-side1') || el.classList.contains('js-side2')) {
       const side = el.classList.contains('js-side1') ? 'side1' : 'side2';
       const val = el.value.split('/').map(x => x.trim());
-      flashcards.editCard(parent.parent.dataset.index, side, val);
+      flashcards.editCard(parent.parentNode.dataset.index, side, val);
     } else if (el.classList.contains('js-setdiff')) {
       const newDiff = parseInt(el.value, 10);
       flashcards.editCard(parent.dataset.index, 'difficulty', newDiff);
