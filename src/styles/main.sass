@@ -88,8 +88,8 @@ a
 
 .buttonrow
   display: grid
-  -ms-grid-columns: 1fr 1fr
-  grid-template-columns: 1fr 1fr
+  -ms-grid-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
+  grid-template-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
   column-gap: 3px
   position: fixed
   bottom: -1
@@ -97,7 +97,7 @@ a
   z-index: 99
 
 .buttonrow--double
-  -ms-grid-rows: 1fr 1fr
+  -ms-grid-rows: [row1-start] 1fr [row2-start] 1fr [row2-end]
   grid-template-rows: 1fr 1fr
 
 .button
@@ -124,6 +124,9 @@ a
 
 .button--fullwidth
   grid-column-end: col2-end
+
+.button__flyout
+  display: none
 
 .deckmenu
   display: grid

@@ -1,7 +1,7 @@
 import flashcards from 'flashcards';  // eslint-disable-line
 import { Router } from 'director/build/director';
 import createSampleDecks from './setup';
-import setupUserSettings from './settings';
+import userSettings from './settings';
 import Render from './render';
 import Edit from './edit';
 import '../styles/main.sass';
@@ -14,7 +14,7 @@ flashcards.settings.highestDifficulty = 5;
 
 // create sample decks and backfill default user settings
 createSampleDecks();
-setupUserSettings(flashcards.listDecks());
+userSettings.setup(flashcards.listDecks());
 
 /*------------------
 BIND EVENT LISTENERS
@@ -66,8 +66,12 @@ function edit(name) {
   Render.header(true, flashcards.getDisplayName(), true);
 }
 
-function editnew(num) {
-  console.log('editnew here', num); // eslint-disable-line
+function editnew() {
+  const newName = Math.floor(Date.now() / 1000).toString();
+  flashcards.openDeck(newName);
+  flashcards.setDisplayName('New Deck');
+  userSettings.update(newName);
+  window.location.href = `#/edit/${newName}`;
 }
 
 const routes = {
