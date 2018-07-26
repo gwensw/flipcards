@@ -80,12 +80,18 @@
     height: 90px
     border-radius: 90px
 
+  .button__icon
+    +standardTransition()
+
   .button__flyout
-    display: block
+    +displayflex()
+    +align-items(center)
     position: absolute
-    left: -150px
-    width: 177px
-    height: 76px/2
+    right: 0
+    width: 0
+    height: 40px
+    margin-right: 80px
+    +standardTransition()
 
   .button--primary .button__flyout
     background-color: $accent
@@ -94,18 +100,34 @@
     background-color: $main
   
   .button__flyout p
+    max-height: 1.2em
+    overflow: hidden
     margin: 0
     font-family: $sans-serif
     font-weight: $semibold
-    font-size: 22px
+    font-size: 20px
+
+  .button--circle:hover .button__flyout
+    width: 160px
+    height: 51px
+    padding-left: 8px
+    +standardTransition()
+
+  .button--primary.button--circle:hover .button__icon
+    +rotate(90)
+    +standardTransition()
+
+  .button--secondary.button--circle:hover .button__icon
+    +scale(1.2)
+    +standardTransition()
 
   .deckmenu
     grid-template-columns: repeat(auto-fill, $deckwidthbig)
     width: 100%
-    max-width: 1270px
+    // max-width: 1270px
     margin-left: 0
-    padding-left: 20px
-    padding-right: 190px
+    padding-left: 30px
+    padding-right: 120px
 
   .edit
     grid-template-columns: [col1-start] 1fr [col2-start] 60px [col3-start] 50px [col3-end]

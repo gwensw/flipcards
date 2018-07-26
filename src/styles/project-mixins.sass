@@ -49,9 +49,11 @@ $deckheightbig: 301px
   margin: 0
   padding: 0
 
-=standardTransition($property: all)
+=standardTransition($property: all, $duration: 0.2, $timing: linear)
   transition: $property
-  transition-duration: 0.2s
+  transition-duration: #{$duration}s
+  transition-timing-function: $timing
+
 
 // flexbox
 
@@ -131,3 +133,7 @@ $deckheightbig: 301px
 // Translate
 @mixin translate ($x, $y:0)
 	@include transform(translate($x, $y))
+
+// Scale
+@mixin scale ($x, $y:$x)
+	@include transform(scale($x, $y))
