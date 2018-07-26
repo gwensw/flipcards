@@ -16,6 +16,15 @@ const Edit = {
       Render.updateDiffColour(el, newDiff);
     }
   },
+  addCard(el) {
+    const side1 = el.previousElementSibling.previousElementSibling;
+    const side2 = el.previousElementSibling;
+    const difficulty = 3;
+    flashcards.addCard(side1.value, side2.value, difficulty);
+    const newIndex = flashcards.deckLength() - 1;
+    Render.newCard(newIndex, side1.value, side2.value, difficulty);
+    Render.clearValues(side1, side2);
+  },
   deleteCard(el) {
     const cardToDelete = el.parentNode;
     const indexToDelete = cardToDelete.dataset.index;

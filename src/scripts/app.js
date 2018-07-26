@@ -43,6 +43,8 @@ document.querySelector('.main').addEventListener('click', (e) => {
   const el = e.target;
   if (el.classList.contains('js-delete')) {
     Edit.deleteCard(el);
+  } else if (el.classList.contains('js-add')) {
+    Edit.addCard(el);
   }
 });
 

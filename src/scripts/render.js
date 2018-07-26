@@ -3,6 +3,7 @@ import truncate from './truncate';
 import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
+import newCardTemplate from '../templates/newCard.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -33,16 +34,10 @@ const Render = {
     main.innerHTML = decksTemplate(context);
   },
   editView(cards) {
-    main.innerHTML = '';
+    main.innerHTML = newCardTemplate();
     const len = cards.length;
     for (let i = 0; i < len; i += 1) {
-      const context = {
-        index: i,
-        side1: cards[i].side1.join(' / '),
-        side2: cards[i].side2.join(' / '),
-        difficulty: cards[i].difficulty
-      };
-      main.insertAdjacentHTML('afterbegin', editCardTemplate(context));
+      this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty);
     }
     // make textarea grow on focus/input, and obey stylesheet otherwise
     document.querySelectorAll('.edit__input').forEach((el) => {
@@ -56,8 +51,23 @@ const Render = {
     el.classList.remove(oldClass);
     el.classList.add(`edit__selector--diff${diffnum}`);
   },
+  newCard(index, side1, side2, difficulty) {
+    const context = {
+      index,
+      side1,
+      side2,
+      difficulty
+    };
+    document.querySelector('.edit--new').insertAdjacentHTML('afterend', editCardTemplate(context));
+  },
   deletedCard(cardToDelete) {
     main.removeChild(cardToDelete);
+  },
+  clearValues(...elements) {
+    elements.forEach((el) => {
+      const element = el;
+      element.value = '';
+    });
   }
 };
 
