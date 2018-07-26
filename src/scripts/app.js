@@ -47,7 +47,7 @@ main.addEventListener('click', (e) => {
   if (el.classList.contains('js-delete')) {
     Edit.deleteCard(el);
   } else if (el.classList.contains('js-add')) {
-    Edit.addCard(el.parentNode);
+    Edit.addCard(el.parentNode.firstElementChild);
   }
 });
 

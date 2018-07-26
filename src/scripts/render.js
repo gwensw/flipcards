@@ -9,13 +9,21 @@ const main = document.querySelector('.main');
 const header = document.querySelector('.header');
 
 function growOnInput() {
-  console.log('grow on input');
   const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
   this.style.height = `${newHeight}px`;
 }
 
 function shrinkOnFocusout() {
   this.removeAttribute('style');
+}
+
+// make textarea grow on focus/input, and obey stylesheet otherwise
+function addTextareaListeners() {
+  document.querySelectorAll('.edit__input').forEach((el) => {
+    el.addEventListener('focus', growOnInput);
+    el.addEventListener('input', growOnInput);
+    el.addEventListener('focusout', shrinkOnFocusout);
+  });
 }
 
 const Render = {
@@ -40,12 +48,7 @@ const Render = {
     for (let i = 0; i < len; i += 1) {
       this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty);
     }
-    // make textarea grow on focus/input, and obey stylesheet otherwise
-    document.querySelectorAll('.edit__input').forEach((el) => {
-      el.addEventListener('focus', growOnInput);
-      el.addEventListener('input', growOnInput);
-      el.addEventListener('focusout', shrinkOnFocusout);
-    });
+    addTextareaListeners();
   },
   updateDiffColour(el, diffnum) {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
@@ -60,7 +63,8 @@ const Render = {
       difficulty
     };
     document.querySelector('.edit--new').insertAdjacentHTML('afterend', editCardTemplate(context));
-    document.querySelector('.edit--new').firstElementChild.focus();
+    document.querySelector('.js-newside1').focus();
+    addTextareaListeners();
   },
   deletedCard(cardToDelete) {
     main.removeChild(cardToDelete);

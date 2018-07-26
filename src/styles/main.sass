@@ -84,7 +84,6 @@ a
   +align-items(center)
   +flex-wrap(wrap)
   overflow-x: hidden
-  padding-top: 77px
 
 .buttonrow
   display: grid
@@ -134,7 +133,7 @@ a
   grid-template-columns: 1fr 1fr
   grid-row-gap: 9px
   width: 98%
-  margin: 0 auto 80px
+  margin: 77px auto 80px
 
 .deck__container
   position: relative
@@ -255,6 +254,17 @@ a
   padding: 5px
   background-color: $white
 
+.edit--new
+  border: 1px dashed $lightgrey 
+  background-color: transparent
+  margin: 62px auto 20px
+
+.edit__add
+  grid-column-start: col2-start
+  grid-row-start: row1-start
+  grid-row-end: row3-start
+  margin: auto
+
 .edit__flexcontainer
   grid-column-start: col1-start
   grid-column-end: col2-start
@@ -283,6 +293,19 @@ a
 .edit__input:focus
   white-space: normal
   +standardTransition(height)
+
+.edit__input::placeholder
+  color: $lightgrey
+  font-style: italic
+
+.edit__input--dark
+  border: none
+  background-color: $main
+  color: $white
+
+.edit__input--dark::placeholder
+  color: $white
+  opacity: 0.8
 
 .edit__selector
   -webkit-appearance: none
