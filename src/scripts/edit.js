@@ -17,8 +17,8 @@ const Edit = {
     }
   },
   addCard(el) {
-    const side1 = el.previousElementSibling.previousElementSibling;
-    const side2 = el.previousElementSibling;
+    const side1 = el.firstElementChild;
+    const side2 = side1.nextElementSibling;
     const difficulty = 3;
     flashcards.addCard(side1.value, side2.value, difficulty);
     const newIndex = flashcards.deckLength() - 1;

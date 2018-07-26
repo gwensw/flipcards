@@ -20,31 +20,46 @@ userSettings.setup(flashcards.listDecks());
 BIND EVENT LISTENERS
 -------------------*/
 
+const header = document.querySelector('.header');
+const main = document.querySelector('.main');
+
 // handle changes to deck display name
-document.querySelector('.header').addEventListener('change', (e) => {
+header.addEventListener('change', (e) => {
   flashcards.setDisplayName(e.target.value);
   e.stopPropagation();
 });
 
 // allow enter key for input in header
-document.querySelector('.header').addEventListener('keydown', (e) => {
+header.addEventListener('keydown', (e) => {
   if (e.keyCode === 13) {
     e.target.blur();
   }
 });
 
 // handle updates to cards in edit mode
-document.querySelector('.main').addEventListener('change', (e) => {
+main.addEventListener('change', (e) => {
   Edit.cardtext(e);
 });
 
 // handles clicks - for card deletion or addition
-document.querySelector('.main').addEventListener('click', (e) => {
+main.addEventListener('click', (e) => {
   const el = e.target;
   if (el.classList.contains('js-delete')) {
     Edit.deleteCard(el);
   } else if (el.classList.contains('js-add')) {
-    Edit.addCard(el);
+    Edit.addCard(el.parentNode);
+  }
+});
+
+// handle enter key presses
+main.addEventListener('keydown', (e) => {
+  const el = e.target;
+  if (e.keyCode === 13) {
+    // allow creation of new cards via enter key press
+    if (el.classList.contains('js-makenew')) {
+      e.preventDefault();
+      Edit.addCard(el.parentNode);
+    }
   }
 });
 

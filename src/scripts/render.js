@@ -9,6 +9,7 @@ const main = document.querySelector('.main');
 const header = document.querySelector('.header');
 
 function growOnInput() {
+  console.log('grow on input');
   const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
   this.style.height = `${newHeight}px`;
 }
@@ -59,6 +60,7 @@ const Render = {
       difficulty
     };
     document.querySelector('.edit--new').insertAdjacentHTML('afterend', editCardTemplate(context));
+    document.querySelector('.edit--new').firstElementChild.focus();
   },
   deletedCard(cardToDelete) {
     main.removeChild(cardToDelete);
