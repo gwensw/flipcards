@@ -72,15 +72,27 @@ function select() {
   Render.header();
 }
 
-function train(num) {
-  console.log('train here', num); // eslint-disable-line
+function train(name) {
+  const usersettings = userSettings.get(name);
+  const { autocheck } = userSettings.get(name);
+  // open deck and flip if user settings dictate
+  flashcards.openDeck(name);
+  if (usersettings.qSide !== flashcards.settings.questionSide) {
+    flashcards.flipDeck();
+  }
+  // if a saved state exists for this deck, apply it
+  if (usersettings.state !== undefined) {
+    flashcards.setSessionInfo(usersettings.state);
+  }
+  Render.trainingView(autocheck);
+  Render.header({ backlink: '#', deckTitle: flashcards.getDisplayName(), inTrainingMode: true });
 }
 
-function edit(name) {
+function edit(name, backlink = '#') {
   flashcards.openDeck(name);
   const { cards } = flashcards.exposeDeck();
   Render.editView(cards);
-  Render.header(true, flashcards.getDisplayName(), true);
+  Render.header({ backlink, deckTitle: flashcards.getDisplayName(), inEditMode: true });
 }
 
 function editnew() {
@@ -91,10 +103,15 @@ function editnew() {
   window.location.href = `#/edit/${newName}`;
 }
 
+function editcurrent(name) {
+  edit(name, `#/train/${name}`);
+}
+
 const routes = {
   '/': select,
   '/train/:deckname': train,
   '/edit/:deckname': edit,
+  '/editcurrent/:deckname': editcurrent,
   '/editnew': editnew
 };
 

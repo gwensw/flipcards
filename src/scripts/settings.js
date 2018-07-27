@@ -22,6 +22,10 @@ const userSettings = {
     const oldSettings = JSON.parse(localStorage.getItem('usersettings'));
     oldSettings[name] = deckSettings;
     localStorage.setItem('usersettings', JSON.stringify(oldSettings));
+  },
+  // parse and return user settings for a specified deck
+  get(name) {
+    return JSON.parse(localStorage.getItem('usersettings'))[name];
   }
 };
 

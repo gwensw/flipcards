@@ -1,15 +1,19 @@
-{{#if hasBacklink}}
+{{#if backlink}}
   <nav class="header__nav header__nav--left">
-    <a href="#">
+    <a href="{{backlink}}">
       <img 
         src="../assets/back.svg"
         class="header__icon header__icon--back">
-      <div class="logo logo--min">
-        <img src="../assets/index-card-icon.svg" 
-          alt="flipcards" 
-          class="logo__icon">
-        <h1 class="logo__title logo__title--min">FLIPCARDS</h1>
-      </div>
+      {{#if inTrainingMode}}
+        <h1 class="header__title">{{deckTitle}}</h1>    
+      {{else}}
+        <div class="logo logo--min">
+          <img src="../assets/index-card-icon.svg" 
+            alt="flipcards" 
+            class="logo__icon">
+          <h1 class="logo__title logo__title--min">FLIPCARDS</h1>
+        </div>
+      {{/if}}
     </a>
   </nav>
 {{/if}}
@@ -22,8 +26,7 @@
     <img src="../assets/index-card-icon.svg" 
       alt="flipcards" 
       class="logo__icon logo__icon--large">
-    <h1 
-      class="logo__title">FLIPCARDS</h1>
+    <h1 class="logo__title">FLIPCARDS</h1>
   </div>
 {{/if}}
   <nav class="header__nav header__nav--right">

@@ -13,7 +13,7 @@ const Edit = {
     } else if (el.classList.contains('js-setdiff')) {
       const newDiff = parseInt(el.value, 10);
       flashcards.editCard(parent.dataset.index, 'difficulty', newDiff);
-      Render.updateDiffColour(el, newDiff);
+      Render.updatedDiffColour(el, newDiff);
     }
   },
   addCard(el) {

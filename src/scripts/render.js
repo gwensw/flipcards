@@ -4,21 +4,20 @@ import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
+import trainingTemplate from '../templates/training.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
 
-function growOnInput() {
-  const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
-  this.style.height = `${newHeight}px`;
-}
-
-function shrinkOnFocusout() {
-  this.removeAttribute('style');
-}
-
 // make textarea grow on focus/input, and obey stylesheet otherwise
 function addTextareaListeners() {
+  function growOnInput() {
+    const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
+    this.style.height = `${newHeight}px`;
+  }
+  function shrinkOnFocusout() {
+    this.removeAttribute('style');
+  }
   document.querySelectorAll('.edit__input').forEach((el) => {
     el.addEventListener('focus', growOnInput);
     el.addEventListener('input', growOnInput);
@@ -27,8 +26,18 @@ function addTextareaListeners() {
 }
 
 const Render = {
-  header(hasBacklink = false, deckTitle = '', inEditMode = false) {
-    const context = { hasBacklink, deckTitle, inEditMode };
+  header({
+    backlink = false,
+    deckTitle = '',
+    inEditMode = false,
+    inTrainingMode = false
+  } = {}) {
+    const context = {
+      backlink,
+      deckTitle,
+      inEditMode,
+      inTrainingMode
+    };
     header.innerHTML = headerTemplate(context);
   },
   decks(decks) {
@@ -50,7 +59,7 @@ const Render = {
     }
     addTextareaListeners();
   },
-  updateDiffColour(el, diffnum) {
+  updatedDiffColour(el, diffnum) {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
     el.classList.remove(oldClass);
     el.classList.add(`edit__selector--diff${diffnum}`);
@@ -74,6 +83,10 @@ const Render = {
       const element = el;
       element.value = '';
     });
+  },
+  // render training interface and deck
+  trainingView(autocheck) {
+    main.innerHTML = trainingTemplate({ autocheck });
   }
 };
 
