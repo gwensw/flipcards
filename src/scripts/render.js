@@ -43,7 +43,7 @@ const Render = {
   decks(decks) {
     const sortedDecks = decks.sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
     sortedDecks.map((deck) => {
-      deck.shortname = truncate(deck.displayName); // eslint-disable-line no-param-reassign
+      deck.displayName = truncate(deck.displayName); // eslint-disable-line no-param-reassign
       return deck;
     });
     const context = {

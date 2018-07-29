@@ -30,8 +30,13 @@ a
 
 .header__title
   font-family: $sans-serif
-  font-size: 30px
+  font-size: 24px
+  color: $white
+  font-weight: $regular
   text-align: center
+
+.header__title--widescreen
+  display: none
 
 .header__title--editable
   width: 220px
@@ -54,6 +59,11 @@ a
 .header__icon--back
   height: 20px
   width: 13px
+
+.header__icon--home
+  height: 24px
+  width: 37px
+  +rotate('-8')
 
 .header__icon--settings
   height: 23px

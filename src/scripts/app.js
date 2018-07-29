@@ -85,14 +85,22 @@ function train(name) {
     flashcards.setSessionInfo(usersettings.state);
   }
   Render.trainingView(autocheck);
-  Render.header({ backlink: '#', deckTitle: flashcards.getDisplayName(), inTrainingMode: true });
+  Render.header({
+    backlink: '#',
+    deckTitle: flashcards.getDisplayName(),
+    inTrainingMode: true
+  });
 }
 
 function edit(name, backlink = '#') {
   flashcards.openDeck(name);
   const { cards } = flashcards.exposeDeck();
   Render.editView(cards);
-  Render.header({ backlink, deckTitle: flashcards.getDisplayName(), inEditMode: true });
+  Render.header({
+    backlink,
+    deckTitle: flashcards.getDisplayName(),
+    inEditMode: true
+  });
 }
 
 function editnew() {

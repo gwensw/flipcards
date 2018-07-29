@@ -54,7 +54,6 @@ $deckheightbig: 301px
   transition-duration: #{$duration}s
   transition-timing-function: $timing
 
-
 // flexbox
 
 // DISPLAY
@@ -121,10 +120,11 @@ $deckheightbig: 301px
 
 // Browser Prefixes
 @mixin transform($transforms)
-	-webkit-transform: $transforms
-	-moz-transform: $transforms
-	-ms-transform: $transforms
-	transform: $transforms
+  -webkit-transform: $transforms
+  -moz-transform: $transforms
+  -ms-transform: $transforms
+  transform: $transforms
+  -webkit-backface-visibility: hidden
 
 // Rotate
 @mixin rotate ($deg)

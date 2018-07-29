@@ -12,7 +12,7 @@
         <div class="deck">
           <p class="deck__length">{{this.cardLength}} cards</p>
           <div class="deck__band">
-            <h2 class="deck__title">{{this.shortname}}</h2>
+            <h2 class="deck__title">{{this.displayName}}</h2>
           </div>
           {{#if this.averageDifficulty}}
           <div class="avgchart" title="difficulty">{{[helpers/avgchart] this.averageDifficulty}}
