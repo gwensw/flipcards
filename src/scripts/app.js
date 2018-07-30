@@ -88,7 +88,8 @@ function train(name) {
   Render.header({
     backlink: '#',
     deckTitle: flashcards.getDisplayName(),
-    inTrainingMode: true
+    inTrainingMode: true,
+    name
   });
 }
 
@@ -99,7 +100,8 @@ function edit(name, backlink = '#') {
   Render.header({
     backlink,
     deckTitle: flashcards.getDisplayName(),
-    inEditMode: true
+    inEditMode: true,
+    name
   });
 }
 

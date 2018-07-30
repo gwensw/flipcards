@@ -29,12 +29,14 @@ const Render = {
   header({
     backlink = false,
     deckTitle = '',
+    name = false,
     inEditMode = false,
     inTrainingMode = false
   } = {}) {
     const context = {
       backlink,
       deckTitle,
+      name,
       inEditMode,
       inTrainingMode
     };

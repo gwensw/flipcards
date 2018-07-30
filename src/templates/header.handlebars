@@ -6,6 +6,8 @@
       {{else}}
         <img src="../assets/back.svg" class="header__icon header__icon--back">
       {{/if}}
+    </a>
+    <a href="#">
       <div class="logo logo--min">
         <img src="../assets/index-card-icon.svg" alt="flipcards" class="logo__icon">
         <h1 class="logo__title logo__title--min">FLIPCARDS</h1>
@@ -28,10 +30,25 @@
 {{/if}}
 <nav class="header__nav header__nav--right">
   {{#if inEditMode}}
+    <a href='#/train/{{name}}'>
+      <div class="button button--nav">
+        <img src="../assets/play.svg">  
+        <p>TRAIN</p>
+      </div>
+    </a>
     <img src="../assets/settings.svg" class="header__icon header__icon--settings">
     <div class="button button--nav">
       <img src="../assets/settings.svg">  
       <p>SETTINGS</p>
     </div>
+  {{/if}}
+  {{#if inTrainingMode}}
+    <a href='#/editcurrent/{{name}}'>
+      <img src="../assets/edit-white.svg" class="header__icon header__icon--edit">
+      <div class="button button--nav">
+        <img src="../assets/edit-white.svg">  
+        <p>EDIT DECK</p>
+      </div>
+    </a>
   {{/if}}
 </nav>

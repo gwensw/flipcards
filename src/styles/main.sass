@@ -52,6 +52,8 @@ a
 
 .header__nav--right
   right: 9px
+  +displayflex()
+  +flex-direction(row)
 
 .header__icon:hover
   cursor: pointer
@@ -61,13 +63,17 @@ a
   width: 13px
 
 .header__icon--home
-  height: 24px
-  width: 37px
+  height: 23px
+  width: 36px
   +rotate('-8')
 
 .header__icon--settings
   height: 23px
   width: 23px
+
+.header__icon--edit
+  height: 23px
+  width: 29px
 
 .logo--min
   display: none
@@ -116,11 +122,6 @@ a
 
 .button--nav
   display: none
-
-.button--nav:hover
-  border-width: 3px
-  font-weight: $semibold
-  cursor: pointer
 
 .button--primary
   order: 2
