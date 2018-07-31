@@ -112,25 +112,36 @@ a
   z-index: 99
 
 .buttonrow--double
-  -ms-grid-rows: [row1-start] 1fr [row2-start] 1fr [row2-end]
-  grid-template-rows: 1fr 1fr
+  -ms-grid-columns: [col1-start] 1fr [col1-end]
+  grid-template-columns: [col1-start] 1fr [col1-end]
+  -ms-grid-rows: [row1-start] 66px [row2-start] 88px [row2-end]
+  grid-template-rows: [row1-start] 66px [row2-start] 88px [row2-end]
 
 .button
+  @extend %unpad
   +displayflex()
   +align-items(center)
   +justify-content(center)
+  font-family: $sans-serif
+  font-weight: $semibold
+  font-size: 26px
   color: $white
+  border: none
+  cursor: pointer
 
 .button--nav
   display: none
 
 .button--primary
   order: 2
-  height: 60px
+  height: 100%
   background-color: $accent
 
 .button--secondary
+  height: 100%
   background-color: $main
+  font-weight: $regular
+  font-size: 22px
 
 .button--fullwidth
   grid-column-end: col2-end

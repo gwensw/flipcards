@@ -32,6 +32,10 @@ const Listeners = {
         Edit.deleteCard(el);
       } else if (el.classList.contains('js-add')) {
         Edit.addCard(el.parentNode.firstElementChild);
+      } else if (el.id === 'show') {
+        console.log('showing answer now');
+      } else if (el.id === 'shuffle') {
+        console.log('shuffling now');
       }
     });
 

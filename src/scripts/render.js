@@ -7,6 +7,7 @@ import newCardTemplate from '../templates/newCard.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
 import questionTemplate from '../templates/question.handlebars';
 import answerTemplate from '../templates/answer.handlebars';
+import questionButtonsTemplate from '../templates/questionButtons.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -94,16 +95,19 @@ const Render = {
   // render the question text on the card and insert appropriate user controls
   question(qText = 'no text supplied', diff, isFlipped = false) {
     const long = qText.length > 290;
-    document.getElementById('card').innerHTML = questionTemplate({
+    const card = document.getElementById('card');
+    card.innerHTML = questionTemplate({
       qText,
       diff,
       isFlipped,
       long
     });
+    card.insertAdjacentHTML('afterend', questionButtonsTemplate());
   },
   // render the answer text on the card and insert appropriate user controls
   answer(aText = 'no text supplied', isFlipped = false) {
-    document.getElementById('card').innerHTML = answerTemplate({ aText, isFlipped });
+    const card = document.getElementById('card');
+    card.innerHTML = answerTemplate({ aText, isFlipped });
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {
