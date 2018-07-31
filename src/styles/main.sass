@@ -8,6 +8,7 @@ body
   @extend %unpad
   font-family: $sans-serif
   color: $darkgrey
+  +standardTransition(background)
 
 a
   text-decoration: none
@@ -356,20 +357,32 @@ a
   background-color: $white
   border-radius: 24px
   overflow: hidden
+  +standardTransition()
 
-.card__text
+.card__textcontainer
+  +displayflex()
+  +align-items(center)
   height: 100%
+  width: 100%
+  padding: 12px 0
   overflow-y: scroll
   overflow-x: hidden
+
+.card__text
+  max-width: 94%
+  margin: 0 auto
   font-family: $sans-serif
   font-weight: $regular
   font-size: 20px
+  text-align: center
   white-space: pre-line
 
 .card__text--long
   font-size: 16px
+  +align-self(flex-start)
 
 .card__text--leftalign
+  text-align: left
 
 .card__text p
   @extend %unpad
