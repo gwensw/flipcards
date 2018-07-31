@@ -5,7 +5,7 @@ const __defaultSettings = {
   firstanswer: true
 };
 
-const userSettings = {
+const UserSettings = {
   // create empty deck settings object in local storage, if none exists
   // & make sure any existing decks have user settings (backwards compatibility check)
   setup(decks) {
@@ -29,4 +29,4 @@ const userSettings = {
   }
 };
 
-export default userSettings;
+export default UserSettings;

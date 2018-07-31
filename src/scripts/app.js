@@ -1,10 +1,11 @@
 import flashcards from 'flashcards';  // eslint-disable-line
 import { Router } from 'director/build/director';
 import createSampleDecks from './setup';
-import userSettings from './settings';
+import UserSettings from './settings';
 import Render from './render';
-import Edit from './edit';
 import '../styles/main.sass';
+import Listeners from './listeners';
+import Play from './play';
 
 // adjust settings for project
 flashcards.settings.adjustDifficultyUp = 2;
@@ -14,54 +15,18 @@ flashcards.settings.highestDifficulty = 5;
 
 // create sample decks and backfill default user settings
 createSampleDecks();
-userSettings.setup(flashcards.listDecks());
+UserSettings.setup(flashcards.listDecks());
 
 /*------------------
 BIND EVENT LISTENERS
 -------------------*/
 
-const header = document.querySelector('.header');
-const main = document.querySelector('.main');
+Listeners.init();
 
-// handle changes to deck display name
-header.addEventListener('change', (e) => {
-  flashcards.setDisplayName(e.target.value);
-  e.stopPropagation();
-});
+/*------
+HELPERS
+-------*/
 
-// allow enter key for input in header
-header.addEventListener('keydown', (e) => {
-  if (e.keyCode === 13) {
-    e.target.blur();
-  }
-});
-
-// handle updates to cards in edit mode
-main.addEventListener('change', (e) => {
-  Edit.cardtext(e);
-});
-
-// handles clicks - for card deletion or addition
-main.addEventListener('click', (e) => {
-  const el = e.target;
-  if (el.classList.contains('js-delete')) {
-    Edit.deleteCard(el);
-  } else if (el.classList.contains('js-add')) {
-    Edit.addCard(el.parentNode.firstElementChild);
-  }
-});
-
-// handle enter key presses
-main.addEventListener('keydown', (e) => {
-  const el = e.target;
-  if (e.keyCode === 13) {
-    // allow creation of new cards via enter key press
-    if (el.classList.contains('js-makenew')) {
-      e.preventDefault();
-      Edit.addCard(el.parentNode);
-    }
-  }
-});
 
 /*---------
   ROUTING
@@ -73,8 +38,9 @@ function select() {
 }
 
 function train(name) {
-  const usersettings = userSettings.get(name);
-  const { autocheck } = userSettings.get(name);
+  const usersettings = UserSettings.get(name);
+  const { autocheck } = usersettings;
+
   // open deck and flip if user settings dictate
   flashcards.openDeck(name);
   if (usersettings.qSide !== flashcards.settings.questionSide) {
@@ -84,6 +50,8 @@ function train(name) {
   if (usersettings.state !== undefined) {
     flashcards.setSessionInfo(usersettings.state);
   }
+
+  // render the basic page
   Render.trainingView(autocheck);
   Render.header({
     backlink: '#',
@@ -91,6 +59,9 @@ function train(name) {
     inTrainingMode: true,
     name
   });
+
+  // draw a card from the deck and render it (or results screen)
+  Play.drawNextCard();
 }
 
 function edit(name, backlink = '#') {
@@ -109,7 +80,7 @@ function editnew() {
   const newName = Math.floor(Date.now() / 1000).toString();
   flashcards.openDeck(newName);
   flashcards.setDisplayName('New Deck');
-  userSettings.update(newName);
+  UserSettings.update(newName);
   window.location.href = `#/edit/${newName}`;
 }
 

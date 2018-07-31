@@ -1,31 +1,3 @@
 <div class="progress"></div>
-<div class="card" id="card">
-  <div class="card__stack card__stack--1"></div>
-  <div class="card__stack card__stack--2"></div>
-  <div id="maincard">
-    <div class="card__side card__side--question"></div>
-    <div class="card__side card__side--answer"></div>
-  </div>
-</div>
-<div class="score js-hidden"></div>
-<div class="answer">
-  <input type="text" class="answer__input">
-  <button id="checkAnswer" class="button button--submit" type="button">Go ></button>
-  <div id="nextButtons" class="answer__next js-hidden">
-    {{#if autocheck}}
-      <button id="nextCard" class="button button--next" type="button">Next</button>
-    {{/if}}
-    {{#unless autocheck}}
-      <button id="wrongAnswer" class="button button--selfcheck" type="button">
-        <i class="fa fa-times" aria-hidden="true"></i>
-        I was wrong
-      </button>
-      <button id="correctAnswer" class="button button--selfcheck" type="button">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        I was right
-      </button>
-    {{/unless}}
-  </div>
-</div>
-<button id="retry" class="button button--retry js-hidden">Retry Wrong Answers</button>
-<button id="shuffle" class="button button--shuffle">Shuffle and Start Again</button>
+<div class="card" id="card"></div>
+<div class="buttonrow buttonrow--double"></div>

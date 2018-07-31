@@ -5,6 +5,8 @@ import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
+import questionTemplate from '../templates/question.handlebars';
+import answerTemplate from '../templates/answer.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -86,9 +88,40 @@ const Render = {
       element.value = '';
     });
   },
-  // render training interface and deck
-  trainingView(autocheck) {
+  trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
+  },
+  // render the question text on the card and insert appropriate user controls
+  question(qText = 'no text supplied', diff, isFlipped = false) {
+    const long = qText.length > 290;
+    document.getElementById('card').innerHTML = questionTemplate({
+      qText,
+      diff,
+      isFlipped,
+      long
+    });
+  },
+  // render the answer text on the card and insert appropriate user controls
+  answer(aText = 'no text supplied', isFlipped = false) {
+    document.getElementById('card').innerHTML = answerTemplate({ aText, isFlipped });
+  },
+  // renders updated user progress bar
+  progress(sessionInfo, totalCards, numToRetry) {
+    const bars = [];
+    const cardsAnswered = sessionInfo.correct + sessionInfo.incorrect;
+    const cardsRemaining = numToRetry ? numToRetry - cardsAnswered : totalCards - cardsAnswered;
+    for (let i = 0; i < totalCards; i += 1) {
+      if (sessionInfo.correctCards.includes(i)) {
+        bars.push('correct');
+      } else if (sessionInfo.incorrectCards.includes(i)) {
+        bars.push('incorrect');
+      }
+    }
+    for (let i = 0; i < cardsRemaining; i += 1) {
+      bars.push('incomplete');
+    }
+    // TODO: insert progress bars template
+    // document.querySelector('.progress').innerHTML = progressTemplate({ bars });
   }
 };
 

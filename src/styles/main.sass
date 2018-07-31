@@ -17,7 +17,7 @@ a
   +displayflex()
   +justify-content(center)
   +align-items(center)
-  height: 46px
+  height: $header-height-small
   width: 100%
   background-color: $main
   +standardTransition(height)
@@ -144,7 +144,7 @@ a
   grid-template-columns: 1fr 1fr
   grid-row-gap: 9px
   width: 98%
-  margin: 77px auto 80px
+  margin: $header-height-small+31px auto 80px
 
 .deck__container
   position: relative
@@ -224,20 +224,13 @@ a
 .avgchart__bar
   width: 14px
   height: 21px
-  background-color: $diff1
-  color: $darkgrey
 
-.avgchart__bar:nth-child(2)
-  background-color: $diff2
-
-.avgchart__bar:nth-child(3)
-  background-color: $diff3
-
-.avgchart__bar:nth-child(4)
-  background-color: $diff4
+@for $i from 1 through 5
+  .avgchart__bar:nth-child(#{$i})
+    background-color: nth($diffcolors, $i)
+    color: nth($difffonts, $i)
 
 .avgchart__bar:nth-child(5)
-  background-color: $diff5
   color: #fff
 
 .avgchart__bar--tall
@@ -268,7 +261,7 @@ a
 .edit--new
   border: 1px dashed $lightgrey 
   background-color: transparent
-  margin: 62px auto 20px
+  margin: $header-height-small+16px auto 20px
 
 .edit__add
   grid-column-start: col2-start
@@ -330,7 +323,6 @@ a
   padding-left: 38%
   border: none
   border-radius: 0
-  color: $darkgrey
   font-family: $sans-serif
   font-weight: $extrabold
   font-size: 22px
@@ -338,6 +330,7 @@ a
 @for $i from 1 through 5
   .edit__selector--diff#{$i}
     background-color: nth($diffcolors, $i)
+    color: nth($difffonts, $i)
 
 .edit__delete
   grid-column-start: col2-start
@@ -349,6 +342,62 @@ a
 .edit__selector:hover,
 .edit__delete:hover
   cursor: pointer
+
+.progress
+  height: 12px
+  width: 100%
+  margin-top: $header-height-small
+
+.card
+  position: relative
+  height: 416px
+  width: 100%
+  margin: 11px 7px 0
+  background-color: $white
+  border-radius: 24px
+  overflow: hidden
+
+.card__text
+  height: 100%
+  overflow-y: scroll
+  overflow-x: hidden
+  font-family: $sans-serif
+  font-weight: $regular
+  font-size: 20px
+  white-space: pre-line
+
+.card__text--long
+  font-size: 16px
+
+.card__text--leftalign
+
+.card__text p
+  @extend %unpad
+
+.card__difficulty
+  position: absolute
+  top: $card-difficulty-size / -2
+  right: $card-difficulty-size / -2
+  height: $card-difficulty-size
+  width: $card-difficulty-size
+  +rotate(45)
+
+@for $i from 1 through 5
+  .card__difficulty--diff#{$i}
+    background-color: nth($diffcolors, $i)
+
+.card__diffnumber
+  @extend %unpad
+  position: absolute
+  top: $card-difficulty-size * 0.02
+  right: $card-difficulty-size * 0.12
+  font-family: $sans-serif
+  font-weight: $extrabold
+  font-size: 22px
+
+@for $i from 1 through 5
+  .card__diffnumber--diff#{$i}
+    color: nth($difffonts, $i)
 
 @import 'tablet'
 @import 'desktop'
