@@ -7,7 +7,7 @@ import newCardTemplate from '../templates/newCard.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
 import questionTemplate from '../templates/question.handlebars';
 import answerTemplate from '../templates/answer.handlebars';
-import questionButtonsTemplate from '../templates/questionButtons.handlebars';
+import userControlsTemplate from '../templates/userControls.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -93,7 +93,7 @@ const Render = {
     main.innerHTML = trainingTemplate({ autocheck });
   },
   // render the question text on the card and insert appropriate user controls
-  question(qText = 'no text supplied', diff, isFlipped = false) {
+  question(qText = '', diff, isFlipped = false) {
     const long = qText.length > 290;
     const card = document.getElementById('card');
     card.innerHTML = questionTemplate({
@@ -102,12 +102,21 @@ const Render = {
       isFlipped,
       long
     });
-    card.insertAdjacentHTML('afterend', questionButtonsTemplate());
   },
   // render the answer text on the card and insert appropriate user controls
-  answer(aText = 'no text supplied', isFlipped = false) {
+  answer(aText = '', isFlipped = false) {
+    const long = aText.length > 290;
     const card = document.getElementById('card');
-    card.innerHTML = answerTemplate({ aText, isFlipped });
+    card.innerHTML = answerTemplate({ aText, isFlipped, long });
+  },
+  controls({ isQuestion = true, autocheck = false } = {}) {
+    // destroy the existing controls
+    document.querySelectorAll('.js-control').forEach((el) => {
+      el.remove();
+    });
+    // insert the new controls
+    const card = document.getElementById('card');
+    card.insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, autocheck }));
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {

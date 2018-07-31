@@ -1,5 +1,6 @@
 import flashcards from 'flashcards';  // eslint-disable-line
 import Edit from './edit';
+import Play from './play';
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
@@ -25,15 +26,17 @@ const Listeners = {
       Edit.cardtext(e);
     });
 
-    // handles clicks - for card deletion or addition
+    // handles clicks on main - for editing and training
     main.addEventListener('click', (e) => {
       const el = e.target;
       if (el.classList.contains('js-delete')) {
         Edit.deleteCard(el);
       } else if (el.classList.contains('js-add')) {
         Edit.addCard(el.parentNode.firstElementChild);
-      } else if (el.id === 'show') {
-        console.log('showing answer now');
+      } else if (el.id === 'show' || el.closest('#questionside')) {
+        Play.showAnswer();
+      } else if (el.closest('#answerside')) {
+        Play.showQuestion();
       } else if (el.id === 'shuffle') {
         console.log('shuffling now');
       }
