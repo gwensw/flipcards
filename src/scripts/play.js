@@ -54,6 +54,11 @@ const Play = {
     const aText = settings.firstanswer ? a.answers.slice(0, 1) : a.answers;
     Render.answer(aText);
     Render.controls({ isQuestion: false });
+  },
+  processResult(outcome) {
+    const submission = outcome === 'correct' ? flashcards.revealAnswer().answers[0] : '';
+    flashcards.checkAnswer(submission);
+    this.drawNextCard();
   }
 };
 

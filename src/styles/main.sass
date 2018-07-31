@@ -106,10 +106,16 @@ a
   display: grid
   -ms-grid-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
   grid-template-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
+  -ms-grid-rows: [row1-start] 88px [row1-end]
+  grid-template-rows: [row1-start] 88px [row1-end]
   position: fixed
   bottom: -3px
   width: 100%
   z-index: 99
+
+.buttonrow--short
+  -ms-grid-rows: [row1-start] 61px [row1-end]
+  grid-template-rows: [row1-start] 61px [row1-end]
 
 .buttonrow--double
   -ms-grid-columns: [col1-start] 1fr [col1-end]

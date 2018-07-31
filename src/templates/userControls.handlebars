@@ -3,4 +3,13 @@
     <button class="button button--primary" id="show">SHOW ANSWER</button>
     <button class="button button--secondary" id="shuffle">SHUFFLE &AMP; START AGAIN</button>
   </div>
+{{else}}
+  <div class="buttonrow js-control">
+    <button class="button button--primary" id="correct">
+      <img src="../assets/tick-large.svg">
+    </button>
+    <button class="button button--secondary" id="incorrect">
+      <img src="../assets/cross-large.svg">
+    </button>
+  </div>
 {{/if}}

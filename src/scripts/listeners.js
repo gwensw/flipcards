@@ -37,6 +37,9 @@ const Listeners = {
         Play.showAnswer();
       } else if (el.closest('#answerside')) {
         Play.showQuestion();
+      } else if (el.closest('#correct') || el.closest('#incorrect')) {
+        const outcome = el.closest('#correct') ? 'correct' : 'incorrect';
+        Play.processResult(outcome);
       } else if (el.id === 'shuffle') {
         console.log('shuffling now');
       }
