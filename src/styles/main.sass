@@ -97,34 +97,37 @@ a
 
 .main
   +displayflex()
-  +justify-content(center)
+  +flex-direction(column)
+  +justify-content(flex-start)
   +align-items(center)
   +flex-wrap(wrap)
-  overflow-x: hidden
+  min-height: 100%
 
 .buttonrow
   display: grid
   -ms-grid-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
   grid-template-columns: [col1-start] 1fr [col2-start] 1fr [col2-end]
-  -ms-grid-rows: [row1-start] 88px [row1-end]
-  grid-template-rows: [row1-start] 88px [row1-end]
-  position: fixed
-  bottom: -3px
+  -ms-grid-rows: [row1-start] $primary-button-height [row1-end]
+  grid-template-rows: [row1-start] $primary-button-height [row1-end]
   width: 100%
-  z-index: 99
+  align-self: flex-end
 
 .buttonrow--short
   -ms-grid-rows: [row1-start] 61px [row1-end]
   grid-template-rows: [row1-start] 61px [row1-end]
+  position: fixed
+  bottom: -3px
+  z-index: 99
 
 .buttonrow--gap
   column-gap: 3px
+  margin-top: $secondary-button-height
 
 .buttonrow--double
   -ms-grid-columns: [col1-start] 1fr [col1-end]
   grid-template-columns: [col1-start] 1fr [col1-end]
-  -ms-grid-rows: [row1-start] 66px [row2-start] 88px [row2-end]
-  grid-template-rows: [row1-start] 66px [row2-start] 88px [row2-end]
+  -ms-grid-rows: [row1-start] $secondary-button-height [row2-start] $primary-button-height [row2-end]
+  grid-template-rows: [row1-start] $secondary-button-height [row2-start] $primary-button-height [row2-end]
 
 .button
   @extend %unpad
@@ -374,9 +377,11 @@ a
 
 .card
   position: relative
-  height: 416px
-  width: 100%
-  margin: 11px 7px 0
+  height: 300px
+  width: 97%
+  flex-basis: auto
+  flex-grow: 1
+  margin: 11px auto 7px
   background-color: $white
   border-radius: 24px
   overflow: hidden

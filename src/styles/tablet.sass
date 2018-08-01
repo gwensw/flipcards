@@ -42,9 +42,26 @@ $avgbarwide: 46px
   .logo__title
     font-size: 36px
 
+  .buttonrow
+    -ms-grid-rows: [row1-start] $primary-button-height-tablet [row1-end]
+    grid-template-rows: [row1-start] $primary-button-height-tablet [row1-end]
+
   .buttonrow--short
     -ms-grid-rows: [row1-start] 70px [row1-end]
     grid-template-rows: [row1-start] 70px [row1-end]
+
+  .buttonrow--gap
+    margin-top: $secondary-button-height-tablet
+
+  .buttonrow--double
+    -ms-grid-rows: [row1-start] $secondary-button-height-tablet [row2-start] $primary-button-height-tablet [row2-end]
+    grid-template-rows: [row1-start] $secondary-button-height-tablet [row2-start] $primary-button-height-tablet [row2-end]
+
+  .button
+    font-size: 30px
+
+  .button--secondary
+    font-size: 26px
 
   .deckmenu
     -ms-grid-columns: 1fr 1fr 1fr
@@ -93,9 +110,8 @@ $avgbarwide: 46px
     margin-top: $header-height-big
 
   .card
-    height: 460px
     width: 88%
-    margin-top: 26px
+    margin: 26px auto 55px
 
   .card__text
     line-height: 1.8em
