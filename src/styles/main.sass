@@ -110,7 +110,7 @@ a
   -ms-grid-rows: [row1-start] $primary-button-height [row1-end]
   grid-template-rows: [row1-start] $primary-button-height [row1-end]
   width: 100%
-  align-self: flex-end
+  +align-self(flex-end)
 
 .buttonrow--short
   -ms-grid-rows: [row1-start] 61px [row1-end]
@@ -379,8 +379,7 @@ a
   position: relative
   height: 300px
   width: 97%
-  flex-basis: auto
-  flex-grow: 1
+  +flex(1, 0, auto)
   margin: 11px auto 7px
   background-color: $white
   border-radius: 24px

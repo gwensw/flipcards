@@ -3,33 +3,6 @@
     background-color: $white
     background-image: url("../assets/background-texture-pale.png")
 
-  .button
-    box-shadow: 1px 2px 4px 0px $lightgrey
-
-  .button--nav
-    +displayflex()
-    +flex-direction(row)
-    +justify-content(space-around)
-    +align-items(center)
-    margin: 3px auto 3px 10px
-    padding: 5px
-    border: 1px solid $white
-    border-radius: 15px
-    box-shadow: none
-    font-family: $sans-serif
-    font-weight: $semibold
-    font-size: 18px
-
-  .button--nav:hover
-    margin: 0 auto 0 6px
-    border-width: 3px
-    font-weight: $semibold
-    cursor: pointer
-
-  .button--nav p
-    margin: 0 0 0 5px
-    padding: 0
-
   .header
     box-shadow: 0px 1px 11px 1px $lightgrey
 
@@ -63,18 +36,68 @@
 
   .main
     +align-items(flex-start)
+
+  .buttonrow
+    +align-self(auto)
+
+  .buttonrow,
+  .buttonrow--double,
+  .buttonrow--gap
+    -ms-grid-columns: 350px 350px
+    grid-template-columns: 350px 350px
+    -ms-grid-rows: 60px
+    grid-template-rows: 60px
+    column-gap: 14px
+    width: auto
+    +align-self(center)
+
+  .buttonrow--gap
+    margin: 0
     
   .buttonrow--vertical
     grid-template-columns: [col1-start] 1fr [col1-end]
     grid-template-rows: [row1-start] 1fr [row2-start] 1fr [row2-end]
     row-gap: 25px
+    column-gap: 0
     bottom: 25px
     right: 25px
     width: auto
 
-  .button--primary
-    width: 404px
-    height: 76px
+  .button
+    box-shadow: 1px 2px 4px 0px $lightgrey
+
+  .button--nav
+    +displayflex()
+    +flex-direction(row)
+    +justify-content(space-around)
+    +align-items(center)
+    margin: 3px auto 3px 10px
+    padding: 5px
+    border: 1px solid $white
+    border-radius: 15px
+    box-shadow: none
+    font-family: $sans-serif
+    font-weight: $semibold
+    font-size: 18px
+
+  .button--nav:hover
+    margin: 0 auto 0 6px
+    border-width: 3px
+    font-weight: $semibold
+    cursor: pointer
+
+  .button--nav p
+    margin: 0 0 0 5px
+    padding: 0
+
+  .button--primary,
+  .button--secondary
+    font-size: 26px
+    border-radius: 20px
+
+  .button--primary:hover,
+  .button--secondary:hover
+    box-shadow: 1px 2px 4px 1px $lightgrey
 
   .button--circle
     position: relative
