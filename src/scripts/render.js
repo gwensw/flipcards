@@ -1,4 +1,5 @@
 // changes DOM elements, often in response to routing
+import Chart from 'chart.js';
 import truncate from './truncate';
 import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
@@ -9,9 +10,54 @@ import nextCardTemplate from '../templates/nextCard.handlebars';
 import questionTemplate from '../templates/question.handlebars';
 import answerTemplate from '../templates/answer.handlebars';
 import userControlsTemplate from '../templates/userControls.handlebars';
+import resultsTemplate from '../templates/results.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
+
+// plugin for chart text adapted from http://jsfiddle.net/nkzyx50o/
+Chart.pluginService.register({
+  beforeDraw(chart) {
+    if (chart.config.options.elements.center) {
+      // Get ctx from string
+      const { ctx } = chart.chart;
+
+      // Get options from the center object in options
+      const centerConfig = chart.config.options.elements.center;
+      const fontStyle = centerConfig.fontStyle || 'Arial';
+      const txt = centerConfig.text;
+      const color = centerConfig.color || '#000';
+      const sidePadding = centerConfig.sidePadding || 20;
+      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
+
+      // Start with a base font of 30px
+      ctx.font = `30px ${fontStyle}`;
+
+      // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+      const stringWidth = ctx.measureText(txt).width;
+      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+      // Find out how much the font can grow in width.
+      const widthRatio = elementWidth / stringWidth;
+      const newFontSize = Math.floor(30 * widthRatio);
+      const elementHeight = (chart.innerRadius * 2);
+
+      // Pick a new font size so it will not be larger than the height of label.
+      const fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+      // Set font settings to draw it correctly.
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      ctx.font = `${fontSizeToUse}px ${fontStyle}`;
+      ctx.fillStyle = color;
+
+      // Draw text in center
+      ctx.fillText(txt, centerX, centerY);
+    }
+  }
+});
 
 // make textarea grow on focus/input, and obey stylesheet otherwise
 function addTextareaListeners() {
@@ -27,6 +73,47 @@ function addTextareaListeners() {
     el.addEventListener('input', growOnInput);
     el.addEventListener('focusout', shrinkOnFocusout);
   });
+}
+
+// creates and returns a donut chart inside the specified element
+function makeNewChart(correct, incorrect, centertext, id) {
+  const donutChart = new Chart(document.getElementById(id), {
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [correct, incorrect],
+        backgroundColor: ['#70C1B3', '#F25F5C']
+      }],
+      labels: [
+        'Correct',
+        'Incorrect'
+      ]
+    },
+    options: {
+      elements: {
+        center: {
+          text: centertext,
+          color: '#36A2EB', // Default black
+          fontStyle: 'Helvetica', // Default Arial
+          sidePadding: 15 // Default 20 (as a percentage)
+        }
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        bodyFontFamily: 'Open Sans, sans-serif',
+        bodyFontSize: 16
+      },
+      animation: {
+        duration: 800,
+        animateScale: true
+      },
+      cutoutPercentage: 70
+    }
+  });
+  return donutChart;
 }
 
 const Render = {
@@ -77,8 +164,12 @@ const Render = {
       side2,
       difficulty
     };
-    document.querySelector('.edit--new').insertAdjacentHTML('afterend', editCardTemplate(context));
-    document.querySelector('.js-newside1').focus();
+    document
+      .querySelector('.edit--new')
+      .insertAdjacentHTML('afterend', editCardTemplate(context));
+    document
+      .querySelector('.js-newside1')
+      .focus();
     addTextareaListeners();
   },
   deletedCard(cardToDelete) {
@@ -96,7 +187,9 @@ const Render = {
   nextCard(qText, diff) {
     // TODO: remove (and animate removal of) the old card
     // TODO: create a new card and animate its appearance
-    document.querySelector('#card').innerHTML = nextCardTemplate();
+    document
+      .querySelector('#card')
+      .innerHTML = nextCardTemplate();
     // Render question text on the new card
     this.question(qText, diff);
     // TODO: animate card changeover
@@ -104,29 +197,40 @@ const Render = {
   // render the question text on the card and insert appropriate user controls
   question(qText = '', diff) {
     const long = qText.length > 290;
-    const question = document.getElementById('question');
     // add text to card
-    question.innerHTML = questionTemplate({ qText, long, diff });
+    document
+      .getElementById('question')
+      .innerHTML = questionTemplate({ qText, long, diff });
     // animate card flip
-    document.querySelector('.card__flipbox').classList.remove('card__flipbox--flip');
+    document
+      .querySelector('.card__flipbox')
+      .classList
+      .remove('card__flipbox--flip');
   },
   // render the answer text on the card and insert appropriate user controls
   answer(aText = '', diff) {
     const long = aText.length > 290;
-    const answer = document.getElementById('answer');
     // add text to card
-    answer.innerHTML = answerTemplate({ aText, long, diff });
+    document
+      .getElementById('answer')
+      .innerHTML = answerTemplate({ aText, long, diff });
     // animate card flip
-    document.querySelector('.card__flipbox').classList.add('card__flipbox--flip');
+    document
+      .querySelector('.card__flipbox')
+      .classList
+      .add('card__flipbox--flip');
   },
   controls({ isQuestion = true, autocheck = false } = {}) {
     // destroy the existing controls
-    document.querySelectorAll('.js-control').forEach((el) => {
-      el.remove();
-    });
+    document
+      .querySelectorAll('.js-control')
+      .forEach((el) => {
+        el.remove();
+      });
     // insert the new controls
-    const card = document.getElementById('card');
-    card.insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, autocheck }));
+    document
+      .getElementById('card')
+      .insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, autocheck }));
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {
@@ -145,6 +249,40 @@ const Render = {
     }
     // TODO: insert progress bars template
     // document.querySelector('.progress').innerHTML = progressTemplate({ bars });
+  },
+  results(correct, incorrect) {
+    // delete the card
+    const card = document.getElementById('card');
+    card.parentNode.removeChild(card);
+
+    // render the results text and space for chart
+    const total = incorrect + correct;
+    const percent = correct / total;
+    let message = 'Perfect score!';
+    if (percent < 1) {
+      message = 'Good job!';
+    }
+    if (percent < 0.6) {
+      message = 'Not too bad';
+    }
+    if (percent < 0.4) {
+      message = 'Keep practicing!';
+    }
+    const context = {
+      message,
+      correct,
+      total
+    };
+    document
+      .querySelector('.progress')
+      .insertAdjacentHTML('afterend', resultsTemplate(context));
+
+    // render the donut chart
+    makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
+
+    // TODO: render user controls
+
+    // TODO: focus on retry button if incorrect, shuffle button otherwise
   }
 };
 

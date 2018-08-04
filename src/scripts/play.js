@@ -18,8 +18,9 @@ const Play = {
     this.recordProgress();
     currentCard = numToRetry ? flashcards.draw(cardsToRetry.splice(0, 1)[0]) : flashcards.drawNext();
     if (!currentCard) {
-      // TODO: if there are no cards left, render the end results screen
-      console.log('no cards left');
+      // if there are no cards left, render the results
+      const session = flashcards.getSessionInfo();
+      Render.results(session.correct, session.incorrect);
     } else {
       Render.nextCard(currentCard.question[0], currentCard.difficulty);
       Render.controls();
