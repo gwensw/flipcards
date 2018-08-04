@@ -466,5 +466,20 @@ a
   .card__diffnumber--diff#{$i}
     color: nth($difffonts, $i)
 
+.results
+  +flex(1, 1, 0)
+  width: 100%
+  background-color: $white
+
+.results__chart
+  height: 300px
+  max-height: 300px
+  width: 100%
+
+.results__message
+  margin: 45px auto 30px
+  font-size: 24px
+  text-align: center
+
 @import 'tablet'
 @import 'desktop'

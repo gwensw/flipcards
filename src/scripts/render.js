@@ -1,5 +1,5 @@
 // changes DOM elements, often in response to routing
-import Chart from 'chart.js';
+import Chart from 'chart.js/dist/Chart.min';
 import truncate from './truncate';
 import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
@@ -23,15 +23,16 @@ Chart.pluginService.register({
       const { ctx } = chart.chart;
 
       // Get options from the center object in options
+      const fontSize = 16;
       const centerConfig = chart.config.options.elements.center;
-      const fontStyle = centerConfig.fontStyle || 'Arial';
+      const fontStyle = centerConfig.fontStyle || 'sans-serif';
       const txt = centerConfig.text;
       const color = centerConfig.color || '#000';
       const sidePadding = centerConfig.sidePadding || 20;
       const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2);
 
       // Start with a base font of 30px
-      ctx.font = `30px ${fontStyle}`;
+      ctx.font = `lighter ${fontSize}px ${fontStyle}`;
 
       // Get the width of the string and also the width of the element minus 10 to give it 5px side padding
       const stringWidth = ctx.measureText(txt).width;
@@ -39,7 +40,7 @@ Chart.pluginService.register({
 
       // Find out how much the font can grow in width.
       const widthRatio = elementWidth / stringWidth;
-      const newFontSize = Math.floor(30 * widthRatio);
+      const newFontSize = Math.floor(fontSize * widthRatio);
       const elementHeight = (chart.innerRadius * 2);
 
       // Pick a new font size so it will not be larger than the height of label.
@@ -82,35 +83,37 @@ function makeNewChart(correct, incorrect, centertext, id) {
     data: {
       datasets: [{
         data: [correct, incorrect],
-        backgroundColor: ['#70C1B3', '#F25F5C']
+        backgroundColor: ['#FFAA39', '#C9C9C9']
       }],
-      labels: [
-        'Correct',
-        'Incorrect'
-      ]
+      labels: ['Correct', 'Incorrect']
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       elements: {
         center: {
           text: centertext,
-          color: '#36A2EB', // Default black
-          fontStyle: 'Helvetica', // Default Arial
-          sidePadding: 15 // Default 20 (as a percentage)
+          color: '#4A4A4A',
+          fontStyle: 'Open Sans',
+          sidePadding: 50
+        },
+        arc: {
+          borderWidth: 5,
         }
       },
       legend: {
         display: false
       },
       tooltips: {
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: '#fff',
         bodyFontFamily: 'Open Sans, sans-serif',
         bodyFontSize: 16
       },
       animation: {
-        duration: 800,
+        duration: 600,
         animateScale: true
       },
-      cutoutPercentage: 70
+      cutoutPercentage: 68
     }
   });
   return donutChart;
