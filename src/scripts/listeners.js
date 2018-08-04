@@ -34,10 +34,14 @@ const Listeners = {
       } else if (el.classList.contains('js-add')) {
         Edit.addCard(el.parentNode.firstElementChild);
       } else if (el.id === 'show' || el.closest('#questionside')) {
+        // reveal answer side when user taps card or 'show' button
         Play.showAnswer();
       } else if (el.closest('#answerside')) {
+        // show question again when user taps card
+        document.querySelector('.card__flipbox').classList.remove('card__flipbox--flip');
         Play.showQuestion();
       } else if (el.closest('#correct') || el.closest('#incorrect')) {
+        // score and proceed to the next card once user has marked themselves
         const outcome = el.closest('#correct') ? 'correct' : 'incorrect';
         Play.processResult(outcome);
       } else if (el.id === 'shuffle') {

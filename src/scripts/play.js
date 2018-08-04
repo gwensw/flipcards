@@ -21,7 +21,7 @@ const Play = {
       // TODO: if there are no cards left, render the end results screen
       console.log('no cards left');
     } else {
-      this.showQuestion();
+      Render.nextCard(currentCard.question[0], currentCard.difficulty);
       Render.controls();
     }
   },
@@ -33,17 +33,7 @@ const Play = {
     UserSettings.update(name, settings);
     Render.progress(settings.state, flashcards.deckLength(), numToRetry);
   },
-  // submit answer for evaluation (in auto-check mode)
-  // submitAnswer() {
-  //   const settings = getSettings();
-  //   const attempt = document.querySelector('.answer__input');
-  //   const result = flashcards.checkAnswer(attempt.value.trim()),
-  //         answers = usersettings.firstanswer ? [result.answers[0]] : result.answers;
-  //   Render.answer(answers, result.newDifficulty, result.outcome);
-  //   document.querySelector('#card').addEventListener('click', drawNextCard);
-  //   recordProgress();
-  // },
-  // reveal question (could be someone flipping back, so no buttons redrawn)
+  // reveal question (as a result of user flipping back, so no buttons redrawn)
   showQuestion() {
     Render.question(currentCard.question[0], currentCard.difficulty);
   },
@@ -52,7 +42,7 @@ const Play = {
     const settings = getSettings();
     const a = flashcards.revealAnswer();
     const aText = settings.firstanswer ? a.answers.slice(0, 1) : a.answers;
-    Render.answer(aText);
+    Render.answer(aText, currentCard.difficulty);
     Render.controls({ isQuestion: false });
   },
   processResult(outcome) {

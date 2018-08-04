@@ -5,6 +5,7 @@ import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
+import nextCardTemplate from '../templates/nextCard.handlebars';
 import questionTemplate from '../templates/question.handlebars';
 import answerTemplate from '../templates/answer.handlebars';
 import userControlsTemplate from '../templates/userControls.handlebars';
@@ -92,22 +93,31 @@ const Render = {
   trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
   },
+  nextCard(qText, diff) {
+    // TODO: remove (and animate removal of) the old card
+    // TODO: create a new card and animate its appearance
+    document.querySelector('#card').innerHTML = nextCardTemplate();
+    // Render question text on the new card
+    this.question(qText, diff);
+    // TODO: animate card changeover
+  },
   // render the question text on the card and insert appropriate user controls
-  question(qText = '', diff, isFlipped = false) {
+  question(qText = '', diff) {
     const long = qText.length > 290;
-    const card = document.getElementById('card');
-    card.innerHTML = questionTemplate({
-      qText,
-      diff,
-      isFlipped,
-      long
-    });
+    const question = document.getElementById('question');
+    // add text to card
+    question.innerHTML = questionTemplate({ qText, long, diff });
+    // animate card flip
+    document.querySelector('.card__flipbox').classList.remove('card__flipbox--flip');
   },
   // render the answer text on the card and insert appropriate user controls
-  answer(aText = '', isFlipped = false) {
+  answer(aText = '', diff) {
     const long = aText.length > 290;
-    const card = document.getElementById('card');
-    card.innerHTML = answerTemplate({ aText, isFlipped, long });
+    const answer = document.getElementById('answer');
+    // add text to card
+    answer.innerHTML = answerTemplate({ aText, long, diff });
+    // animate card flip
+    document.querySelector('.card__flipbox').classList.add('card__flipbox--flip');
   },
   controls({ isQuestion = true, autocheck = false } = {}) {
     // destroy the existing controls
