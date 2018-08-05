@@ -107,7 +107,8 @@ function makeNewChart(correct, incorrect, centertext, id) {
       tooltips: {
         backgroundColor: '#fff',
         bodyFontFamily: 'Open Sans, sans-serif',
-        bodyFontSize: 16
+        bodyFontColor: '#4A4A4A',
+        yPadding: 9
       },
       animation: {
         duration: 600,
