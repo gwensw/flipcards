@@ -3,9 +3,8 @@ import UserSettings from './settings';
 import Render from './render';
 
 // keep track of incorrect cards to allow retrying of wrong answers at the end
-// TODO: change these back to let
-const cardsToRetry = [];
-const numToRetry = 0;
+let cardsToRetry = [];
+let numToRetry = 0;
 let currentCard = false;
 
 function getSettings() {
@@ -50,6 +49,15 @@ const Play = {
   processResult(outcome) {
     const submission = outcome === 'correct' ? flashcards.revealAnswer().answers[0] : '';
     flashcards.checkAnswer(submission);
+    this.drawNextCard();
+  },
+  // handles clicks on the shuffle button
+  shuffle() {
+    // remove record of incorrect cards
+    cardsToRetry = [];
+    numToRetry = 0;
+    // shuffle the deck and draw the first card
+    flashcards.shuffle();
     this.drawNextCard();
   }
 };

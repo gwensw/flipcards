@@ -45,7 +45,7 @@ const Listeners = {
         const outcome = el.closest('#correct') ? 'correct' : 'incorrect';
         Play.processResult(outcome);
       } else if (el.id === 'shuffle') {
-        console.log('shuffling now');
+        Play.shuffle();
       }
     });
 
