@@ -1,11 +1,14 @@
 const webpack = require('webpack');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+
+const smp = new SpeedMeasurePlugin();
 
 const nodeEnv = process.env.NODE_ENV || 'production';
 
-module.exports = {
+module.exports = smp.wrap({
   devtool: 'source-map',
   entry: {
     filename: './src/scripts/app.js'
@@ -17,15 +20,24 @@ module.exports = {
     flashcards: 'flashcards'
   },
   mode: 'production',
+  watchOptions: {
+    ignored: /node_modules/
+  },
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules|assets|BBdeploy\.js/,
-        use: [
-          'babel-loader',
-          'eslint-loader',
-        ],
+        loader: 'eslint-loader',
+        options: {
+          cache: true
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules|assets|BBdeploy\.js/,
+        loader: 'babel-loader',
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -55,13 +67,15 @@ module.exports = {
       }
     ]
   },
-  // optimization: {
-  //   minimizer: [
-  //     new UglifyJsPlugin({
-  //       sourceMap: true
-  //     })
-  //   ]
-  // },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: false,
+        parallel: true,
+        cache: true
+      })
+    ]
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
@@ -75,4 +89,4 @@ module.exports = {
       filename: 'bundle.css'
     })
   ]
-};
+});
