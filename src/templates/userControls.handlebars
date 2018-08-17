@@ -1,15 +1,26 @@
-{{#if isQuestion}}
+{{#if isResults}}
   <div class="buttonrow buttonrow--double js-control">
-    <button class="button button--primary" id="show">SHOW ANSWER</button>
-    <button class="button button--secondary" id="shuffle">SHUFFLE &AMP; START AGAIN</button>
+    {{#if retry}}
+      <button class="button button--primary" id="retry">RETRY WRONG CARDS</button>
+    {{else}}
+      <button class="button button--primary" id="shuffle">SHUFFLE &AMP; START AGAIN</button>
+    {{/if}}
+    <a href='#' class="button button--secondary">END TRAINING</a>
   </div>
 {{else}}
-  <div class="buttonrow buttonrow--gap js-control">
-    <button class="button button--primary" id="correct">
-      <img src="../assets/tick-large.svg">
-    </button>
-    <button class="button button--secondary button--incorrect" id="incorrect">
-      <img src="../assets/cross-large.svg">
-    </button>
-  </div>
+  {{#if isQuestion}}
+    <div class="buttonrow buttonrow--double js-control">
+      <button class="button button--primary" id="show">SHOW ANSWER</button>
+      <button class="button button--secondary" id="shuffle">SHUFFLE &AMP; START AGAIN</button>
+    </div>
+  {{else}}
+    <div class="buttonrow buttonrow--gap js-control">
+      <button class="button button--primary" id="correct">
+        <img src="../assets/tick-large.svg">
+      </button>
+      <button class="button button--secondary button--incorrect" id="incorrect">
+        <img src="../assets/cross-large.svg">
+      </button>
+    </div>
+  {{/if}}
 {{/if}}

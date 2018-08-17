@@ -128,6 +128,7 @@ a
   grid-template-columns: [col1-start] 1fr [col1-end]
   -ms-grid-rows: [row1-start] $secondary-button-height [row2-start] $primary-button-height [row2-end]
   grid-template-rows: [row1-start] $secondary-button-height [row2-start] $primary-button-height [row2-end]
+  margin-top: auto
 
 .button
   @extend %unpad
@@ -136,7 +137,7 @@ a
   +justify-content(center)
   font-family: $sans-serif
   font-weight: $semibold
-  font-size: 26px
+  font-size: 24px
   color: $white
   border: none
   cursor: pointer
@@ -153,7 +154,6 @@ a
   height: 100%
   background-color: $main
   font-weight: $regular
-  font-size: 22px
 
 .button--incorrect
   background-color: $lightgrey
@@ -468,6 +468,8 @@ a
 
 .results
   +flex(1, 1, 0)
+  +displayflex()
+  +flex-direction(column)
   width: 100%
   background-color: $white
 

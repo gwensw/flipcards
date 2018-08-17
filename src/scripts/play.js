@@ -21,6 +21,7 @@ const Play = {
       // if there are no cards left, render the results
       const session = flashcards.getSessionInfo();
       Render.results(session.correct, session.incorrect);
+      Render.controls({ isResults: true });
     } else {
       Render.nextCard(currentCard.question[0], currentCard.difficulty);
       Render.controls();

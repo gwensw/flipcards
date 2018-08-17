@@ -224,7 +224,7 @@ const Render = {
       .classList
       .add('card__flipbox--flip');
   },
-  controls({ isQuestion = true, autocheck = false } = {}) {
+  controls({ isQuestion = true, isResults = false, autocheck = false } = {}) {
     // destroy the existing controls
     document
       .querySelectorAll('.js-control')
@@ -232,9 +232,10 @@ const Render = {
         el.remove();
       });
     // insert the new controls
+    const selector = isResults ? '.results__chart' : '.card';
     document
-      .getElementById('card')
-      .insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, autocheck }));
+      .querySelector(selector)
+      .insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, isResults, autocheck }));
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {
