@@ -56,8 +56,9 @@ const Play = {
     // remove record of incorrect cards
     cardsToRetry = [];
     numToRetry = 0;
-    // shuffle the deck and draw the first card
+    // shuffle the deck, reset the view, and draw the first card
     flashcards.shuffle();
+    Render.trainingView();
     this.drawNextCard();
   }
 };
