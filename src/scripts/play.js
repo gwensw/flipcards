@@ -7,8 +7,12 @@ let cardsToRetry = [];
 let numToRetry = 0;
 let currentCard = false;
 
+function getName() {
+  return flashcards.exposeDeck().name;
+}
+
 function getSettings() {
-  const { name } = flashcards.exposeDeck();
+  const name = getName();
   return UserSettings.get(name);
 }
 
@@ -20,7 +24,8 @@ const Play = {
       // if there are no cards left, render the results
       const session = flashcards.getSessionInfo();
       Render.results(session.correct, session.incorrect);
-      Render.controls({ isResults: true });
+      Render.controls({ isResults: true, retry: session.incorrect });
+      // TODO: focus on retry button if some incorrect, shuffle button otherwise
     } else {
       Render.nextCard(currentCard.question[0], currentCard.difficulty);
       Render.controls();
@@ -28,8 +33,8 @@ const Play = {
   },
   // autosaves progress and triggers progress bar render
   recordProgress() {
-    const { name } = flashcards.exposeDeck();
-    const settings = UserSettings.get(name);
+    const name = getName();
+    const settings = getSettings();
     settings.state = flashcards.getSessionInfo();
     UserSettings.update(name, settings);
     Render.progress(settings.state, flashcards.deckLength(), numToRetry);
@@ -59,6 +64,14 @@ const Play = {
     // shuffle the deck, reset the view, and draw the first card
     flashcards.shuffle();
     Render.trainingView();
+    this.drawNextCard();
+  },
+  // retry incorrect cards
+  retry() {
+    cardsToRetry = flashcards.getSessionInfo().incorrectCards;
+    numToRetry = cardsToRetry.length;
+    Render.trainingView();
+    flashcards.openDeck(getName());
     this.drawNextCard();
   }
 };

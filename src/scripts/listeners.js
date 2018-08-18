@@ -46,6 +46,8 @@ const Listeners = {
         Play.processResult(outcome);
       } else if (el.id === 'shuffle') {
         Play.shuffle();
+      } else if (el.id === 'retry') {
+        Play.retry();
       }
     });
 

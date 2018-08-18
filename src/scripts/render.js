@@ -224,7 +224,12 @@ const Render = {
       .classList
       .add('card__flipbox--flip');
   },
-  controls({ isQuestion = true, isResults = false, autocheck = false } = {}) {
+  controls({
+    isQuestion = true,
+    isResults = false,
+    autocheck = false,
+    retry = false
+  } = {}) {
     // destroy the existing controls
     document
       .querySelectorAll('.js-control')
@@ -235,7 +240,12 @@ const Render = {
     const selector = isResults ? '.results__chart' : '.card';
     document
       .querySelector(selector)
-      .insertAdjacentHTML('afterend', userControlsTemplate({ isQuestion, isResults, autocheck }));
+      .insertAdjacentHTML('afterend', userControlsTemplate({
+        isQuestion,
+        isResults,
+        autocheck,
+        retry
+      }));
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {
@@ -284,10 +294,6 @@ const Render = {
 
     // render the donut chart
     makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
-
-    // TODO: render user controls
-
-    // TODO: focus on retry button if incorrect, shuffle button otherwise
   }
 };
 
