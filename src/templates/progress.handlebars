@@ -1,0 +1,13 @@
+{{#each bars}}
+  <div class="progress__block progress__block--{{this.result}}">
+    {{#if this.correct}}
+      <img src="../assets/tick-small.svg" class="progress__icon">
+    {{else}}
+      {{#if this.incorrect}}
+        <img src="../assets/cross-small.svg" class="progress__icon">
+      {{else}}
+        <img src="../assets/cross-small.svg" class="progress__icon progress__icon--incomplete">
+      {{/if}}
+    {{/if}}
+  </div>
+{{/each}}

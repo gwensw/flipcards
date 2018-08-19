@@ -11,6 +11,7 @@ import questionTemplate from '../templates/question.handlebars';
 import answerTemplate from '../templates/answer.handlebars';
 import userControlsTemplate from '../templates/userControls.handlebars';
 import resultsTemplate from '../templates/results.handlebars';
+import progressTemplate from '../templates/progress.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -249,21 +250,22 @@ const Render = {
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry) {
+    // build progress blocks
     const bars = [];
     const cardsAnswered = sessionInfo.correct + sessionInfo.incorrect;
     const cardsRemaining = numToRetry ? numToRetry - cardsAnswered : totalCards - cardsAnswered;
     for (let i = 0; i < totalCards; i += 1) {
       if (sessionInfo.correctCards.includes(i)) {
-        bars.push('correct');
+        bars.push({ result: 'correct', correct: true });
       } else if (sessionInfo.incorrectCards.includes(i)) {
-        bars.push('incorrect');
+        bars.push({ result: 'incorrect', incorrect: true });
       }
     }
     for (let i = 0; i < cardsRemaining; i += 1) {
-      bars.push('incomplete');
+      bars.push({ result: 'incomplete' });
     }
-    // TODO: insert progress bars template
-    // document.querySelector('.progress').innerHTML = progressTemplate({ bars });
+    // insert progress bar template
+    document.querySelector('.progress').innerHTML = progressTemplate({ bars });
   },
   results(correct, incorrect) {
     // delete the card

@@ -371,9 +371,25 @@ a
   cursor: pointer
 
 .progress
+  +displayflex()
+  +flex-direction(row)
+  +justify-content(flex-start)
+  +align-items(stretch)
   height: 12px
   width: 100%
   margin-top: $header-height-small
+
+.progress__block
+  +flex(1, 1, auto)
+
+.progress__block--correct
+  background-color: $accent
+
+.progress__block--incorrect
+  background-color: $lightgrey
+
+.progress__icon
+  display: none
 
 .card
   position: relative
@@ -383,6 +399,7 @@ a
   margin: 11px auto 7px
   perspective: 1000px
   +standardTransition()
+  cursor: pointer
 
 .card__flipbox
   width: 100%
