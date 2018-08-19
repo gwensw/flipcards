@@ -59,8 +59,7 @@ const Play = {
   // handles clicks on the shuffle button
   shuffle() {
     // remove record of incorrect cards
-    cardsToRetry = [];
-    numToRetry = 0;
+    this.reset();
     // shuffle the deck, reset the view, and draw the first card
     flashcards.shuffle();
     Render.trainingView();
@@ -73,6 +72,11 @@ const Play = {
     Render.trainingView();
     flashcards.openDeck(getName());
     this.drawNextCard();
+  },
+  // clear session when user ends training
+  reset() {
+    cardsToRetry = [];
+    numToRetry = 0;
   }
 };
 
