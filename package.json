@@ -51,6 +51,7 @@
   "dependencies": {
     "chart.js": "^2.7.2",
     "director": "^1.2.8",
-    "handlebars": "^4.0.11"
+    "handlebars": "^4.0.11",
+    "micromodal": "^0.3.2"
   }
 }
