@@ -216,3 +216,27 @@
 
   .results__chart
     margin-bottom: 85px
+
+  .modal__container
+    max-width: 500px
+    max-height: 100vh
+    width: auto
+    height: auto
+
+  .modal__close
+    display: none
+
+  .modal__close--desktop
+    display: block
+
+  #settingsModal[aria-hidden="false"] .modal__overlay
+    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1)
+
+  #settingsModal[aria-hidden="false"] .modal__container
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1)
+
+  #settingsModal[aria-hidden="true"] .modal__overlay
+    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1)
+
+  #settingsModal[aria-hidden="true"] .modal__container
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1)

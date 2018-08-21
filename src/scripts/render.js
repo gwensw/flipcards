@@ -1,5 +1,6 @@
 // changes DOM elements, often in response to routing
 import Chart from 'chart.js/dist/Chart.min';
+import MicroModal from 'micromodal';
 import truncate from './truncate';
 import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
@@ -12,6 +13,7 @@ import answerTemplate from '../templates/answer.handlebars';
 import userControlsTemplate from '../templates/userControls.handlebars';
 import resultsTemplate from '../templates/results.handlebars';
 import progressTemplate from '../templates/progress.handlebars';
+import settingsTemplate from '../templates/settings.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -156,6 +158,8 @@ const Render = {
       this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty);
     }
     addTextareaListeners();
+    // hide settings modal if necessary
+    document.getElementById('settingsModal').classList.remove('is-open');
   },
   updatedDiffColour(el, diffnum) {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
@@ -296,6 +300,16 @@ const Render = {
 
     // render the donut chart
     makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
+  },
+  settings(name, displayName) {
+    // build the modal contents
+    const context = { displayName };
+    document.querySelector('#settingsModal .modal__overlay .modal__container').innerHTML = settingsTemplate(context);
+    // reveal the modal
+    MicroModal.show('settingsModal', {
+      // when closing the modal, redirect to edit page - allows use of back button to close
+      onClose() { window.location.hash = `edit/${name}`; }
+    });
   }
 };
 

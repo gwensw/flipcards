@@ -1,5 +1,4 @@
 import flashcards from 'flashcards';  // eslint-disable-line
-import MicroModal from 'micromodal';
 import Edit from './edit';
 import Play from './play';
 
@@ -19,14 +18,6 @@ const Listeners = {
     header.addEventListener('keydown', (e) => {
       if (e.keyCode === 13) {
         e.target.blur();
-      }
-    });
-
-    // open the settings modal
-    header.addEventListener('click', (e) => {
-      const el = e.target;
-      if (el.closest('.js-settings')) {
-        MicroModal.show('settingsModal');
       }
     });
 

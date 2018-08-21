@@ -88,12 +88,19 @@ function editcurrent(name) {
   edit(name, `#/train/${name}`);
 }
 
+function showSettings(name) {
+  flashcards.openDeck(name);
+  // render modal contents
+  Render.settings(name, flashcards.getDisplayName());
+}
+
 const routes = {
   '/': select,
   '/train/:deckname': train,
   '/edit/:deckname': edit,
   '/editcurrent/:deckname': editcurrent,
-  '/editnew': editnew
+  '/editnew': editnew,
+  'edit/:deckname/settings': showSettings
 };
 
 Router(routes).init('/');

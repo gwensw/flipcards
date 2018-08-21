@@ -1,4 +1,5 @@
 @import 'project-mixins'
+@import 'animations'
 
 *
   box-sizing: border-box
@@ -14,7 +15,8 @@ a
   text-decoration: none
   color: inherit
 
-.header
+.header,
+.modal__header
   +displayflex()
   +justify-content(center)
   +align-items(center)
@@ -29,7 +31,8 @@ a
   left: 0
   z-index: 999
 
-.header__title
+.header__title,
+.modal__title
   font-family: $sans-serif
   font-size: 24px
   color: $white
@@ -508,7 +511,6 @@ a
 
 .modal__overlay
   position: fixed
-  z-index: 999
   top: 0
   left: 0
   right: 0
@@ -517,26 +519,12 @@ a
   display: flex
   justify-content: center
   align-items: center
-
-#settingsModal[aria-hidden="false"] .modal__overlay
-  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1)
-
-#settingsModal[aria-hidden="false"] .modal__container
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1)
-
-#settingsModal[aria-hidden="true"] .modal__overlay
-  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1)
-
-#settingsModal[aria-hidden="true"] .modal__container
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1)
+  z-index: 999
 
 .modal__container
   background-color: #fff
-  padding: 30px
-  max-width: 500px
-  max-height: 100vh
-  border-radius: 4px
-  overflow-y: auto
+  width: 100%
+  height: 100vh
   box-sizing: border-box
 
 .modal__header
@@ -544,12 +532,8 @@ a
   justify-content: space-between
   align-items: center
 
-.modal__close
-  background: transparent
-  border: 0
-
-.modal__header .modal__close:before
-  content: "\2715"
+.modal__close--desktop
+  display: none
 
 .modal__title
 
@@ -558,31 +542,6 @@ a
   margin-bottom: 2rem
   line-height: 1.5
   color: rgba(0,0,0,.8)
-
-@keyframes mmfadeIn
-    from
-      opacity: 0
-    to
-      opacity: 1
-
-@keyframes mmfadeOut
-    from
-      opacity: 1
-    to
-      opacity: 0
-
-@keyframes mmslideIn
-  from
-    transform: translateY(15%)
-    to
-      transform: translateY(0)
-
-@keyframes mmslideOut
-    from
-      transform: translateY(0)
-    to
-      transform: translateY(-10%)
-
 
 @import 'tablet'
 @import 'desktop'
