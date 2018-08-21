@@ -70,7 +70,7 @@ module.exports = smp.wrap({
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
-        sourceMap: false,
+        sourceMap: true,
         parallel: true,
         cache: true
       })
