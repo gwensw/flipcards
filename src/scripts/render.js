@@ -318,12 +318,12 @@ const Render = {
     });
   },
   // renders a confirmation dialog inside the settings modal
-  deletionConfirmation() {
+  deletionConfirmation(displayName) {
     // get rid of the settings elements
     const settings = document.querySelector('.settings');
     settings.parentElement.removeChild(settings);
     // show the confirmation message inside the modal
-    settingsModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate());
+    settingsModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate({ displayName }));
   }
 };
 

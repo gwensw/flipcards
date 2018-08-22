@@ -50,7 +50,7 @@ const Edit = {
       // TODO: render a temporary undo dialog on the main screen
     } else {
       // render the confirmation screen
-      Render.deletionConfirmation();
+      Render.deletionConfirmation(flashcards.getDisplayName());
     }
   }
 };
