@@ -3,6 +3,47 @@
     background-color: $white
     background-image: url("../assets/background-texture-pale.png")
 
+  .modal__container
+    max-width: 500px
+    max-height: 100vh
+    min-width: 500px
+    height: auto
+
+  .modal__header
+    background-color: $white
+
+  .modal__title
+    display: none
+
+  .modal__close
+    display: none
+
+  .modal__close--desktop
+    display: block
+    visibility: visible
+    top: 7px
+    right: 7px
+    left: auto
+    width: 34px
+    height: 34px
+    margin: 0
+    padding: 0
+    border: none
+    background: url('../assets/dismiss.svg') no-repeat
+    background-size: contain
+
+  #settingsModal[aria-hidden="false"] .modal__overlay
+    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1)
+
+  #settingsModal[aria-hidden="false"] .modal__container
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1)
+
+  #settingsModal[aria-hidden="true"] .modal__overlay
+    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1)
+
+  #settingsModal[aria-hidden="true"] .modal__container
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1)
+
   .header
     box-shadow: 0px 1px 11px 1px $lightgrey
 
@@ -216,44 +257,3 @@
 
   .results__chart
     margin-bottom: 85px
-
-  .modal__container
-    max-width: 500px
-    max-height: 100vh
-    min-width: 500px
-    height: auto
-
-  .modal__header
-    background-color: $white
-
-  .modal__title
-    display: none
-
-  .modal__close
-    display: none
-
-  .modal__close--desktop
-    display: block
-    visibility: visible
-    top: 7px
-    right: 7px
-    left: auto
-    width: 34px
-    height: 34px
-    margin: 0
-    padding: 0
-    border: none
-    background: url('../assets/dismiss.svg') no-repeat
-    background-size: contain
-
-  #settingsModal[aria-hidden="false"] .modal__overlay
-    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1)
-
-  #settingsModal[aria-hidden="false"] .modal__container
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1)
-
-  #settingsModal[aria-hidden="true"] .modal__overlay
-    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1)
-
-  #settingsModal[aria-hidden="true"] .modal__container
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1)
