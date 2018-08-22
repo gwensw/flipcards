@@ -575,5 +575,21 @@ a
 .settings__label
   font-size: 18px
 
+.settings__button
+  +flex(1, 1, 100px)
+  +displayflex()
+  +align-items(center)
+  +justify-content(center)
+  height: 39px
+  margin-right: 6px
+  background-color: $main
+  font-weight: $regular
+  font-size: 18px
+  color: $white
+
+.settings__button--primary
+  background-color: $accent
+  margin: 0 0 0 6px
+
 @import 'tablet'
 @import 'desktop'
