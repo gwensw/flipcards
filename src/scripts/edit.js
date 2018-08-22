@@ -38,6 +38,20 @@ const Edit = {
           c.dataset.index -= 1; // eslint-disable-line no-param-reassign
         }
       });
+  },
+  deleteDeck(confirmed = false) {
+    if (confirmed) {
+      // send user back to main screen
+      window.location = '';
+      window.location.hash = '#/';
+      // delete the deck for real
+      const { name } = flashcards.exposeDeck();
+      flashcards.deleteDeck(name);
+      // TODO: render a temporary undo dialog on the main screen
+    } else {
+      // render the confirmation screen
+      Render.deletionConfirmation();
+    }
   }
 };
 

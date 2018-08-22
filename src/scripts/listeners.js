@@ -4,6 +4,7 @@ import Play from './play';
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
+const settingsModal = document.getElementById('settingsModal');
 
 const Listeners = {
 
@@ -62,6 +63,22 @@ const Listeners = {
           e.preventDefault();
           Edit.addCard(el.parentNode);
         }
+      }
+    });
+
+    // handle selections in deck settings modal
+    settingsModal.addEventListener('click', (e) => {
+      const el = e.target;
+      if (el.id === 'deleteDeck') {
+        // render the confirmation screen
+        Edit.deleteDeck(false);
+      } else if (el.id === 'confirmDelete') {
+        Edit.deleteDeck(true);
+      } else if (el.id === 'cancelDelete') {
+        // trick router into reloading settings
+        const oldhash = window.location.hash;
+        window.location.hash = '';
+        window.location.hash = oldhash;
       }
     });
   }

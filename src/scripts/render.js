@@ -13,10 +13,13 @@ import answerTemplate from '../templates/answer.handlebars';
 import userControlsTemplate from '../templates/userControls.handlebars';
 import resultsTemplate from '../templates/results.handlebars';
 import progressTemplate from '../templates/progress.handlebars';
+import modalHeaderTemplate from '../templates/modalHeader.handlebars';
 import settingsTemplate from '../templates/settings.handlebars';
+import deletionConfirmationTemplate from '../templates/deletionConfirmation.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
+const settingsModal = document.querySelector('#settingsModal .modal__overlay .modal__container');
 
 // plugin for chart text adapted from http://jsfiddle.net/nkzyx50o/
 Chart.pluginService.register({
@@ -302,14 +305,25 @@ const Render = {
     makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
   },
   settings(name, displayName) {
-    // build the modal contents
+    // build the modal header
     const context = { displayName };
-    document.querySelector('#settingsModal .modal__overlay .modal__container').innerHTML = settingsTemplate(context);
+    settingsModal.innerHTML = '';
+    settingsModal.insertAdjacentHTML('afterBegin', modalHeaderTemplate(context));
+    // build the modal contents
+    settingsModal.insertAdjacentHTML('beforeEnd', settingsTemplate());
     // reveal the modal
     MicroModal.show('settingsModal', {
       // when closing the modal, redirect to edit page - allows use of back button to close
       onClose() { window.location.hash = `edit/${name}`; }
     });
+  },
+  // renders a confirmation dialog inside the settings modal
+  deletionConfirmation() {
+    // get rid of the settings elements
+    const settings = document.querySelector('.settings');
+    settings.parentElement.removeChild(settings);
+    // show the confirmation message inside the modal
+    settingsModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate());
   }
 };
 
