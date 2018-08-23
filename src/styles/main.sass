@@ -24,7 +24,6 @@ a
   left: 0
   right: 0
   bottom: 0
-  background: rgba(74,74,74,0.64)
   display: flex
   justify-content: center
   align-items: center
@@ -47,6 +46,9 @@ a
   +justify-content(center)
   margin-top: 190px
   font-size: 20px
+
+#settingsModal[aria-hidden="false"] .modal__container
+  animation: mmslideIn .2s linear
 
 .header,
 .modal__header
@@ -160,6 +162,8 @@ a
 .buttonrow--short
   -ms-grid-rows: [row1-start] 61px [row1-end]
   grid-template-rows: [row1-start] 61px [row1-end]
+
+.buttonrow--fixed
   position: fixed
   bottom: -3px
   z-index: 99

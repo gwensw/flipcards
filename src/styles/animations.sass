@@ -10,14 +10,24 @@
     to
       opacity: 0
 
-@keyframes mmslideIn
+// modal sliding up (desktop)
+
+@keyframes mmslideUp
   from
     transform: translateY(15%)
     to
       transform: translateY(0)
 
-@keyframes mmslideOut
+@keyframes mmslideDown
     from
       transform: translateY(0)
     to
       transform: translateY(-10%)
+
+// modal sliding in from right (tablet & mobile)
+
+@keyframes mmslideIn
+  from
+    transform: translateX(100%)
+    to
+      transform: translateX(0)

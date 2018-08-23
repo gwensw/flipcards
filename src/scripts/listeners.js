@@ -77,7 +77,7 @@ const Listeners = {
       } else if (el.id === 'cancelDelete') {
         // trick router into reloading settings
         const oldhash = window.location.hash;
-        window.location.hash = '';
+        window.location.hash = oldhash.replace('/settings', '');
         window.location.hash = oldhash;
       }
     });

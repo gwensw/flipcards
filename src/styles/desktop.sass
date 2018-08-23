@@ -3,9 +3,15 @@
     background-color: $white
     background-image: url("../assets/background-texture-pale.png")
 
+  .modal__overlay
+    background: rgba(74,74,74,0.64)
+
   .modal__container
+    +displayflex()
+    +flex-direction(column)
     width: 610px
     height: auto
+    min-height: 675px
     max-height: 90vh
 
   .modal__header
@@ -36,13 +42,13 @@
     animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1)
 
   #settingsModal[aria-hidden="false"] .modal__container
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1)
+    animation: mmslideUp .3s cubic-bezier(0, 0, .2, 1)
 
   #settingsModal[aria-hidden="true"] .modal__overlay
     animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1)
 
   #settingsModal[aria-hidden="true"] .modal__container
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1)
+    animation: mmslideDown .3s cubic-bezier(0, 0, .2, 1)
 
   .header
     box-shadow: 0px 1px 11px 1px $lightgrey
@@ -104,6 +110,13 @@
     bottom: 25px
     right: 25px
     width: auto
+
+  .buttonrow--modal
+    position: relative
+    width: 90%
+    margin-top: auto
+    margin-bottom: 27px
+    column-gap: 40px
 
   .button
     box-shadow: 1px 2px 4px 0px $lightgrey
