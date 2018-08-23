@@ -4,7 +4,7 @@ import Play from './play';
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
-const settingsModal = document.getElementById('settingsModal');
+const globalModal = document.getElementById('globalModal');
 
 const Listeners = {
 
@@ -67,7 +67,7 @@ const Listeners = {
     });
 
     // handle selections in deck settings modal
-    settingsModal.addEventListener('click', (e) => {
+    globalModal.addEventListener('click', (e) => {
       const el = e.target;
       if (el.id === 'deleteDeck') {
         // render the confirmation screen

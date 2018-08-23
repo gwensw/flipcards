@@ -19,7 +19,7 @@ import deletionConfirmationTemplate from '../templates/deletionConfirmation.hand
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
-const settingsModal = document.querySelector('#settingsModal .modal__overlay .modal__container');
+const globalModal = document.querySelector('#globalModal .modal__overlay .modal__container');
 
 // plugin for chart text adapted from http://jsfiddle.net/nkzyx50o/
 Chart.pluginService.register({
@@ -162,7 +162,7 @@ const Render = {
     }
     addTextareaListeners();
     // hide settings modal if necessary
-    document.getElementById('settingsModal').classList.remove('is-open');
+    document.getElementById('globalModal').classList.remove('is-open');
   },
   updatedDiffColour(el, diffnum) {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
@@ -307,12 +307,12 @@ const Render = {
   settings(name, displayName) {
     // build the modal header
     const context = { displayName };
-    settingsModal.innerHTML = '';
-    settingsModal.insertAdjacentHTML('afterBegin', modalHeaderTemplate(context));
+    globalModal.innerHTML = '';
+    globalModal.insertAdjacentHTML('afterBegin', modalHeaderTemplate(context));
     // build the modal contents
-    settingsModal.insertAdjacentHTML('beforeEnd', settingsTemplate());
+    globalModal.insertAdjacentHTML('beforeEnd', settingsTemplate());
     // reveal the modal
-    MicroModal.show('settingsModal', {
+    MicroModal.show('globalModal', {
       // when closing the modal, redirect to edit page - allows use of back button to close
       onClose() { window.location.hash = `edit/${name}`; }
     });
@@ -323,7 +323,7 @@ const Render = {
     const settings = document.querySelector('.settings');
     settings.parentElement.removeChild(settings);
     // show the confirmation message inside the modal
-    settingsModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate({ displayName }));
+    globalModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate({ displayName }));
   }
 };
 
