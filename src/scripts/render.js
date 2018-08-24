@@ -141,6 +141,10 @@ function createModal(displayName, redirect, contents) {
   });
 }
 
+function forceHideModal() {
+  document.getElementById('globalModal').classList.remove('is-open');
+}
+
 const Render = {
   header({
     backlink = false,
@@ -168,6 +172,8 @@ const Render = {
       deck: sortedDecks
     };
     main.innerHTML = decksTemplate(context);
+    // hide modal if necessary
+    forceHideModal();
   },
   editView(cards) {
     main.innerHTML = newCardTemplate();
@@ -177,7 +183,7 @@ const Render = {
     }
     addTextareaListeners();
     // hide settings modal if necessary
-    document.getElementById('globalModal').classList.remove('is-open');
+    forceHideModal();
   },
   updatedDiffColour(el, diffnum) {
     const oldClass = el.classList.toString().match(/edit__selector--diff./)[0];
