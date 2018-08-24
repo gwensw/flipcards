@@ -126,6 +126,21 @@ function makeNewChart(correct, incorrect, centertext, id) {
   return donutChart;
 }
 
+// build and reveal a modal with header
+function createModal(displayName, redirect, contents) {
+  // build the modal header
+  const context = { displayName };
+  globalModal.innerHTML = '';
+  globalModal.insertAdjacentHTML('afterBegin', modalHeaderTemplate(context));
+  // add the modal contents
+  globalModal.insertAdjacentHTML('beforeEnd', contents);
+  // reveal the modal
+  MicroModal.show('globalModal', {
+    // when closing the modal, redirect to edit page - allows use of back button to close
+    onClose() { window.location.hash = redirect; }
+  });
+}
+
 const Render = {
   header({
     backlink = false,
@@ -192,6 +207,12 @@ const Render = {
       const element = el;
       element.value = '';
     });
+  },
+  diffselect(displayName, totalCards) {
+    // build the modal contents
+    const contents = `${totalCards}`;
+    // build and reveal the modal
+    createModal(displayName, '/', contents);
   },
   trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
@@ -305,17 +326,10 @@ const Render = {
     makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
   },
   settings(name, displayName) {
-    // build the modal header
-    const context = { displayName };
-    globalModal.innerHTML = '';
-    globalModal.insertAdjacentHTML('afterBegin', modalHeaderTemplate(context));
     // build the modal contents
-    globalModal.insertAdjacentHTML('beforeEnd', settingsTemplate());
-    // reveal the modal
-    MicroModal.show('globalModal', {
-      // when closing the modal, redirect to edit page - allows use of back button to close
-      onClose() { window.location.hash = `edit/${name}`; }
-    });
+    const contents = settingsTemplate();
+    // build and reveal the modal
+    createModal(displayName, `edit/${name}`, contents);
   },
   // renders a confirmation dialog inside the settings modal
   deletionConfirmation(displayName) {

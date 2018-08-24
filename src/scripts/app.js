@@ -38,15 +38,15 @@ function select() {
 }
 
 function selectDifficulty(name) {
+  flashcards.openDeck(name);
   const usersettings = UserSettings.get(name);
   // if a saved state exists for this deck, open deck, apply saved state and go straight to train
   if (usersettings.state !== undefined) {
-    flashcards.openDeck(name);
     flashcards.setSessionInfo(usersettings.state);
     window.location.href = `#/train/${name}`;
   } else {
     // TODO: render the difficulty selection modal
-    console.log('rendering difficulty selector goes here', name);
+    Render.diffselect(flashcards.getDisplayName(), flashcards.deckLength());
     // TODO: diffselect confirmation should trigger flashcards.openDeck(name, minDiff, maxDiff)
     // TODO: then it should change href to 'train'
   }
