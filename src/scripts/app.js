@@ -37,21 +37,29 @@ function select() {
   Render.header();
 }
 
-function train(name) {
+function selectDifficulty(name) {
   const usersettings = UserSettings.get(name);
-  const { autocheck } = usersettings;
+  // if a saved state exists for this deck, open deck, apply saved state and go straight to train
+  if (usersettings.state !== undefined) {
+    flashcards.openDeck(name);
+    flashcards.setSessionInfo(usersettings.state);
+    window.location.href = `#/train/${name}`;
+  } else {
+    // TODO: render the difficulty selection modal
+    console.log('rendering difficulty selector goes here', name);
+    // TODO: diffselect confirmation should trigger flashcards.openDeck(name, minDiff, maxDiff)
+    // TODO: then it should change href to 'train'
+  }
+}
 
-  // open deck and flip if user settings dictate
-  flashcards.openDeck(name);
+function train(name) {
+  // flip deck if user settings indicate
+  const usersettings = UserSettings.get(name);
   if (usersettings.qSide !== flashcards.settings.questionSide) {
     flashcards.flipDeck();
   }
-  // if a saved state exists for this deck, apply it
-  if (usersettings.state !== undefined) {
-    flashcards.setSessionInfo(usersettings.state);
-  }
-
-  // render the basic page
+  // render the basic page, passing in whether in autocheck or selfcheck mode
+  const { autocheck } = usersettings;
   Render.trainingView(autocheck);
   Render.header({
     backlink: '#',
@@ -59,7 +67,6 @@ function train(name) {
     inTrainingMode: true,
     name
   });
-
   // draw a card from the deck and render it (or results screen)
   Play.drawNextCard();
 }
@@ -97,6 +104,7 @@ function showSettings(name) {
 const routes = {
   '/': select,
   '/train/:deckname': train,
+  '/diffselect/:deckname': selectDifficulty,
   '/edit/:deckname': edit,
   '/editcurrent/:deckname': editcurrent,
   '/editnew': editnew,

@@ -75,6 +75,10 @@ const Play = {
   },
   // clear session when user ends training
   reset() {
+    const name = getName();
+    const settings = getSettings();
+    settings.state = undefined;
+    UserSettings.update(name, settings);
     cardsToRetry = [];
     numToRetry = 0;
   }
