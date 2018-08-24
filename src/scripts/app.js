@@ -40,21 +40,27 @@ function select() {
 function selectDifficulty(name) {
   flashcards.openDeck(name);
   const usersettings = UserSettings.get(name);
-  // if a saved state exists for this deck, open deck, apply saved state and go straight to train
+  // if a saved state exists for this deck, go straight to train
   if (usersettings.state !== undefined) {
-    flashcards.setSessionInfo(usersettings.state);
     window.location.href = `#/train/${name}`;
   } else {
-    // TODO: render the difficulty selection modal
+    // render the difficulty selection modal
     Render.diffselect(flashcards.getDisplayName(), flashcards.deckLength());
+    // TODO: use a listener to change the button number and apply a class 'disable' if necessary
     // TODO: diffselect confirmation should trigger flashcards.openDeck(name, minDiff, maxDiff)
     // TODO: then it should change href to 'train'
   }
 }
 
 function train(name) {
-  // flip deck if user settings indicate
+  // open (in case user loads the train url directly)
+  flashcards.openDeck(name);
+  // apply saved state if it exists
   const usersettings = UserSettings.get(name);
+  if (usersettings.state !== undefined) {
+    flashcards.setSessionInfo(usersettings.state);
+  }
+  // flip deck if user settings indicate
   if (usersettings.qSide !== flashcards.settings.questionSide) {
     flashcards.flipDeck();
   }
