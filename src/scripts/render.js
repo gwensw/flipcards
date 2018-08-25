@@ -6,6 +6,7 @@ import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
+import diffselectTemplate from '../templates/diffselect.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
 import nextCardTemplate from '../templates/nextCard.handlebars';
 import questionTemplate from '../templates/question.handlebars';
@@ -214,14 +215,24 @@ const Render = {
       element.value = '';
     });
   },
-  diffselect(displayName, totalCards) {
+  diffselect(name, displayName, totalCards) {
     // build the modal contents
-    const contents = `${totalCards}`;
+    const context = {
+      name,
+      totalCards
+    };
     // build and reveal the modal
-    createModal(displayName, '/', contents);
+    createModal(displayName, '/', diffselectTemplate(context));
+  },
+  // updates the size of the difficulty selector
+  selector(min, max) {
+    const selector = document.querySelector('.diffselector__frame');
+    selector.style.gridColumnStart = min;
+    selector.style.gridColumnEnd = max + 1;
   },
   trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
+    forceHideModal();
   },
   nextCard(qText, diff) {
     // TODO: remove (and animate removal of) the old card

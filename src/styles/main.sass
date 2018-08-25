@@ -208,6 +208,7 @@ a
   background-color: $lightgrey
 
 .button--fullwidth
+  grid-column-start: col1-start
   grid-column-end: col2-end
 
 .button__flyout
@@ -606,6 +607,64 @@ a
 .settings__button--primary
   background-color: $accent
   margin: 0 0 0 6px
+
+.diffselector
+  display: grid
+  grid-template-columns: repeat(5, 1fr)
+  grid-template-rows: 1fr
+  width: 345px
+  height: 103px
+  cursor: pointer
+
+.diffselector__num
+  grid-row-start: 1
+  grid-row-end: 2
+  +displayflex()
+  +align-items(center)
+  +justify-content(center)
+  font-weight: 800
+  font-size: 24px
+  font-family: sans-serif
+
+@for $i from 1 through 5
+  .diffselector__num:nth-child(#{$i})
+    grid-column-start: $i
+    grid-column-end: $i + 1
+    background-color: nth($diffcolors, $i)
+    color: nth($difffonts, $i)
+
+.diffselector__frame
+  position: relative
+  overflow: hidden
+  grid-column-start: 1
+  grid-column-end: 6
+  grid-row-start: 1
+  grid-row-end: 2
+  border: 9px solid $main
+  
+.diffselector__pointer
+  position: absolute
+  bottom: -11px
+  width: 22px
+  height: 22px
+  background-color: $main
+  transform: rotate(45deg)
+  
+.diffselector__pointer:nth-child(1)
+  left: 14px
+  
+.diffselector__pointer:nth-child(2)
+  right: 14px
+  
+.diffselector__overlay
+  grid-row-start: 1
+  grid-row-end: 2
+  z-index: 2
+  
+@for $i from 7 through 11
+  .diffselector__overlay:nth-child(#{$i})
+    grid-column-start: $i - 6
+    grid-column-end: $i - 5
 
 @import 'tablet'
 @import 'desktop'

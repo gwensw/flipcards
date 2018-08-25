@@ -1,6 +1,7 @@
 import flashcards from 'flashcards';  // eslint-disable-line
 import Edit from './edit';
 import Play from './play';
+import Difficulty from './difficulty';
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
@@ -66,10 +67,14 @@ const Listeners = {
       }
     });
 
-    // handle selections in deck settings modal
+    // handle selections in modals
     globalModal.addEventListener('click', (e) => {
       const el = e.target;
-      if (el.id === 'deleteDeck') {
+      if (el.dataset.diffnum) {
+        Difficulty.update(parseInt(el.dataset.diffnum, 10));
+      } else if (el.id === 'confirmDifficulty') {
+        Difficulty.confirm(el.dataset.name);
+      } else if (el.id === 'deleteDeck') {
         // render the confirmation screen
         Edit.deleteDeck(false);
       } else if (el.id === 'confirmDelete') {
