@@ -7,6 +7,7 @@ import decksTemplate from '../templates/decks.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
 import diffselectTemplate from '../templates/diffselect.handlebars';
+import diffselectButtonTemplate from '../templates/diffselectButton.handlebars';
 import trainingTemplate from '../templates/training.handlebars';
 import nextCardTemplate from '../templates/nextCard.handlebars';
 import questionTemplate from '../templates/question.handlebars';
@@ -216,19 +217,20 @@ const Render = {
     });
   },
   diffselect(name, displayName, totalCards) {
-    // build the modal contents
-    const context = {
-      name,
-      totalCards
-    };
     // build and reveal the modal
-    createModal(displayName, '/', diffselectTemplate(context));
+    createModal(displayName, '/', diffselectTemplate({ name }));
+    // create the button
+    this.selectorButton(totalCards);
   },
   // updates the size of the difficulty selector
   selector(min, max) {
     const selector = document.querySelector('.diffselector__frame');
     selector.style.gridColumnStart = min;
     selector.style.gridColumnEnd = max + 1;
+  },
+  selectorButton(totalCards) {
+    const selectorButton = document.getElementById('selectorButton');
+    selectorButton.innerHTML = diffselectButtonTemplate({ totalCards });
   },
   trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
@@ -294,12 +296,12 @@ const Render = {
       }));
   },
   // renders updated user progress bar
-  progress(sessionInfo, totalCards, numToRetry) {
+  progress(sessionInfo, totalCards, numToRetry, deckLength) {
     // build progress blocks
     const bars = [];
     const cardsAnswered = sessionInfo.correct + sessionInfo.incorrect;
     const cardsRemaining = numToRetry ? numToRetry - cardsAnswered : totalCards - cardsAnswered;
-    for (let i = 0; i < totalCards; i += 1) {
+    for (let i = 0; i < deckLength; i += 1) {
       if (sessionInfo.correctCards.includes(i)) {
         bars.push({ result: 'correct', correct: true });
       } else if (sessionInfo.incorrectCards.includes(i)) {

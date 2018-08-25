@@ -1,5 +1,5 @@
 <div class="modal__message">
-  <p>Train cards in difficulty range:</p>
+  <p>Tap to select difficulty range:</p>
   <div class="diffselector">
     <div class="diffselector__num">1</div>
     <div class="diffselector__num">2</div>
@@ -16,12 +16,4 @@
     <div class="diffselector__overlay" data-diffnum="4"></div>
     <div class="diffselector__overlay" data-diffnum="5"></div>
   </div>
-<div class="buttonrow buttonrow--fixed buttonrow--modal">
-  <button {{#if totalCards}}id="confirmDifficulty"{{/if}} class="button button--primary button--fullwidth" data-name="{{name}}">
-    {{#if totalCards}}
-      TRAIN {{totalCards}} CARDS
-    {{else}}
-      NO CARDS TO TRAIN
-    {{/if}}
-  </button>
-</div>
+<div id="selectorButton" class="buttonrow buttonrow--fixed buttonrow--modal" data-name="{{name}}"></div>

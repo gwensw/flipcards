@@ -6,6 +6,7 @@ import Render from './render';
 let cardsToRetry = [];
 let numToRetry = 0;
 let currentCard = false;
+let totalCards;
 
 function getName() {
   return flashcards.exposeDeck().name;
@@ -17,6 +18,33 @@ function getSettings() {
 }
 
 const Play = {
+  setup(name, minDiff, maxDiff, total) {
+    // open deck - optionally with mindiff and maxdiff
+    flashcards.openDeck(name, minDiff, maxDiff);
+    // apply saved state if it exists (this will apply the saved mindiff and maxdiff too)
+    const usersettings = UserSettings.get(name);
+    const { state } = usersettings;
+    if (state !== undefined) {
+      flashcards.setSessionInfo(state);
+    }
+    // calculate and internally save number of cards to test in session
+    totalCards = total || flashcards.deckLength();
+    // flip deck if user settings indicate
+    if (usersettings.qSide !== flashcards.settings.questionSide) {
+      flashcards.flipDeck();
+    }
+    // render the basic page, passing in whether in autocheck or selfcheck mode
+    const { autocheck } = usersettings;
+    Render.trainingView(autocheck);
+    Render.header({
+      backlink: '#',
+      deckTitle: flashcards.getDisplayName(),
+      inTrainingMode: true,
+      name
+    });
+    // draw a card from the deck and render it (or results screen)
+    this.drawNextCard();
+  },
   drawNextCard() {
     this.recordProgress();
     currentCard = numToRetry ? flashcards.draw(cardsToRetry.splice(0, 1)[0]) : flashcards.drawNext();
@@ -37,7 +65,7 @@ const Play = {
     const settings = getSettings();
     settings.state = flashcards.getSessionInfo();
     UserSettings.update(name, settings);
-    Render.progress(settings.state, flashcards.deckLength(), numToRetry);
+    Render.progress(settings.state, totalCards, numToRetry, flashcards.deckLength());
   },
   // reveal question (as a result of user flipping back, so no buttons redrawn)
   showQuestion() {
@@ -51,6 +79,7 @@ const Play = {
     Render.answer(aText, currentCard.difficulty);
     Render.controls({ isQuestion: false });
   },
+  // process user-submitted outcome
   processResult(outcome) {
     const submission = outcome === 'correct' ? flashcards.revealAnswer().answers[0] : '';
     flashcards.checkAnswer(submission);
@@ -60,10 +89,8 @@ const Play = {
   shuffle() {
     // remove record of incorrect cards
     this.reset();
-    // shuffle the deck, reset the view, and draw the first card
+    // shuffle the deck
     flashcards.shuffle();
-    Render.trainingView();
-    this.drawNextCard();
   },
   // retry incorrect cards
   retry() {

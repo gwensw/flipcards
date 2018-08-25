@@ -6,6 +6,7 @@ import Render from './render';
 import '../styles/main.sass';
 import Listeners from './listeners';
 import Play from './play';
+import Difficulty from './difficulty';
 
 // adjust settings for project
 flashcards.settings.adjustDifficultyUp = 2;
@@ -37,44 +38,15 @@ function select() {
   Render.header();
 }
 
-function selectDifficulty(name) {
-  flashcards.openDeck(name);
-  const usersettings = UserSettings.get(name);
-  // if a saved state exists for this deck, go straight to train
-  if (usersettings.state !== undefined) {
-    window.location.href = `#/train/${name}`;
+function train(name) {
+  const { state } = UserSettings.get(name);
+  if (state !== undefined) {
+    // launch training session directly if saved state exists
+    Play.setup(name);
   } else {
     // render the difficulty selection modal
-    Render.diffselect(flashcards.getDisplayName(), flashcards.deckLength());
-    // TODO: use a listener to change the button number and apply a class 'disable' if necessary
-    // TODO: diffselect confirmation should trigger flashcards.openDeck(name, minDiff, maxDiff)
-    // TODO: then it should change href to 'train'
+    Difficulty.init(name);
   }
-}
-
-function train(name) {
-  // open (in case user loads the train url directly)
-  flashcards.openDeck(name);
-  // apply saved state if it exists
-  const usersettings = UserSettings.get(name);
-  if (usersettings.state !== undefined) {
-    flashcards.setSessionInfo(usersettings.state);
-  }
-  // flip deck if user settings indicate
-  if (usersettings.qSide !== flashcards.settings.questionSide) {
-    flashcards.flipDeck();
-  }
-  // render the basic page, passing in whether in autocheck or selfcheck mode
-  const { autocheck } = usersettings;
-  Render.trainingView(autocheck);
-  Render.header({
-    backlink: '#',
-    deckTitle: flashcards.getDisplayName(),
-    inTrainingMode: true,
-    name
-  });
-  // draw a card from the deck and render it (or results screen)
-  Play.drawNextCard();
 }
 
 function edit(name, backlink = '#') {
@@ -110,7 +82,6 @@ function showSettings(name) {
 const routes = {
   '/': select,
   '/train/:deckname': train,
-  '/diffselect/:deckname': selectDifficulty,
   '/edit/:deckname': edit,
   '/editcurrent/:deckname': editcurrent,
   '/editnew': editnew,

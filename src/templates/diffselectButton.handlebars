@@ -1,0 +1,7 @@
+<button {{#if totalCards}}id="confirmDifficulty"{{/if}} class="button button--primary button--fullwidth {{#unless totalCards}}button--disabled{{/unless}}">
+  {{#if totalCards}}
+    TRAIN {{totalCards}} CARDS
+  {{else}}
+    NO CARDS TO TRAIN
+  {{/if}}
+</button>

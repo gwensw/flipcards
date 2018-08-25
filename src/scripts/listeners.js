@@ -48,6 +48,7 @@ const Listeners = {
         Play.processResult(outcome);
       } else if (el.id === 'shuffle') {
         Play.shuffle();
+        Difficulty.init(flashcards.exposeDeck().name);
       } else if (el.id === 'retry') {
         Play.retry();
       } else if (el.id === 'end') {
@@ -73,7 +74,7 @@ const Listeners = {
       if (el.dataset.diffnum) {
         Difficulty.update(parseInt(el.dataset.diffnum, 10));
       } else if (el.id === 'confirmDifficulty') {
-        Difficulty.confirm(el.dataset.name);
+        Difficulty.confirm(el.parentElement.dataset.name);
       } else if (el.id === 'deleteDeck') {
         // render the confirmation screen
         Edit.deleteDeck(false);
