@@ -17,6 +17,17 @@ function getSettings() {
   return UserSettings.get(name);
 }
 
+// save and return the current session state
+function saveState({ overwrite = false } = {}) {
+  const name = getName();
+  const settings = getSettings();
+  settings.state = overwrite ? undefined : flashcards.getSessionInfo();
+  settings.cardsToRetry = cardsToRetry;
+  settings.numToRetry = numToRetry;
+  UserSettings.update(name, settings);
+  return settings.state;
+}
+
 const Play = {
   setup(name, minDiff, maxDiff, total) {
     // open deck - optionally with mindiff and maxdiff
@@ -27,6 +38,9 @@ const Play = {
     if (state !== undefined) {
       flashcards.setSessionInfo(state);
     }
+    // if user was in the middle of a retry session, apply this info
+    cardsToRetry = usersettings.cardsToRetry || [];
+    numToRetry = usersettings.numToRetry || 0;
     // calculate and internally save number of cards to test in session
     totalCards = total || flashcards.deckLength();
     // flip deck if user settings indicate
@@ -61,11 +75,8 @@ const Play = {
   },
   // autosaves progress and triggers progress bar render
   recordProgress() {
-    const name = getName();
-    const settings = getSettings();
-    settings.state = flashcards.getSessionInfo();
-    UserSettings.update(name, settings);
-    Render.progress(settings.state, totalCards, numToRetry, flashcards.deckLength());
+    const state = saveState();
+    Render.progress(state, totalCards, numToRetry, flashcards.deckLength());
   },
   // reveal question (as a result of user flipping back, so no buttons redrawn)
   showQuestion() {
@@ -85,11 +96,9 @@ const Play = {
     flashcards.checkAnswer(submission);
     this.drawNextCard();
   },
-  // handles clicks on the shuffle button
+  // reset session and shuffle the deck
   shuffle() {
-    // remove record of incorrect cards
     this.reset();
-    // shuffle the deck
     flashcards.shuffle();
   },
   // retry incorrect cards
@@ -102,12 +111,9 @@ const Play = {
   },
   // clear session when user ends training
   reset() {
-    const name = getName();
-    const settings = getSettings();
-    settings.state = undefined;
-    UserSettings.update(name, settings);
     cardsToRetry = [];
     numToRetry = 0;
+    saveState({ overwrite: true });
   }
 };
 
