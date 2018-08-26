@@ -24,6 +24,7 @@ function saveState({ overwrite = false } = {}) {
   settings.state = overwrite ? undefined : flashcards.getSessionInfo();
   settings.cardsToRetry = cardsToRetry;
   settings.numToRetry = numToRetry;
+  settings.totalCards = totalCards;
   UserSettings.update(name, settings);
   return settings.state;
 }
@@ -32,17 +33,18 @@ const Play = {
   setup(name, minDiff, maxDiff, total) {
     // open deck - optionally with mindiff and maxdiff
     flashcards.openDeck(name, minDiff, maxDiff);
+    // calculate and internally save number of cards to test in session
+    totalCards = total || flashcards.deckLength();
     // apply saved state if it exists (this will apply the saved mindiff and maxdiff too)
     const usersettings = UserSettings.get(name);
     const { state } = usersettings;
     if (state !== undefined) {
       flashcards.setSessionInfo(state);
+      totalCards = usersettings.totalCards; // eslint-disable-line
     }
     // if user was in the middle of a retry session, apply this info
     cardsToRetry = usersettings.cardsToRetry || [];
     numToRetry = usersettings.numToRetry || 0;
-    // calculate and internally save number of cards to test in session
-    totalCards = total || flashcards.deckLength();
     // flip deck if user settings indicate
     if (usersettings.qSide !== flashcards.settings.questionSide) {
       flashcards.flipDeck();
@@ -90,7 +92,7 @@ const Play = {
     Render.answer(aText, currentCard.difficulty);
     Render.controls({ isQuestion: false });
   },
-  // process user-submitted outcome
+  // process user-submitted marking
   processResult(outcome) {
     const submission = outcome === 'correct' ? flashcards.revealAnswer().answers[0] : '';
     flashcards.checkAnswer(submission);
