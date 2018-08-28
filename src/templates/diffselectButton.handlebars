@@ -1,4 +1,4 @@
-<button {{#if totalCards}}id="confirmDifficulty"{{/if}} class="button button--primary button--fullwidth {{#unless totalCards}}button--disabled{{/unless}}">
+<button {{#if totalCards}}id="confirmDifficulty"{{/if}} class="button button--primary button--fullwidth {{#unless totalCards}}button--disabled" tabindex="-1{{/unless}}">
   {{#if totalCards}}
     TRAIN {{totalCards}} CARDS
   {{else}}

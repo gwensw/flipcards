@@ -10,8 +10,7 @@
     +displayflex()
     +flex-direction(column)
     width: 610px
-    height: auto
-    min-height: 675px
+    height: 675px
     max-height: 90vh
 
   .modal__header
@@ -20,6 +19,9 @@
 
   .modal__title
     display: none
+
+  .modal__message
+    +flex(1, 1, auto)
 
   .modal__close
     display: none
@@ -159,6 +161,11 @@
     width: 90px
     height: 90px
     border-radius: 90px
+
+  .button--disabled,
+  .button--disabled:hover
+    box-shadow: none
+    outline: none
 
   .button__icon
     +standardTransition()

@@ -311,7 +311,6 @@ const Render = {
     for (let i = 0; i < cardsRemaining; i += 1) {
       bars.push({ result: 'incomplete' });
     }
-    console.log('answered', cardsAnswered, 'remaining', cardsRemaining, 'total', totalCards);
     // insert progress bar template
     document.querySelector('.progress').innerHTML = progressTemplate({ bars });
   },

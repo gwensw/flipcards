@@ -44,7 +44,7 @@ a
   +flex-direction(column)
   +align-items(center)
   +justify-content(center)
-  margin-top: 190px
+  margin-top: 20vh
   font-size: 20px
 
 #globalModal[aria-hidden="false"] .modal__container
@@ -210,6 +210,11 @@ a
 .button--fullwidth
   grid-column-start: col1-start
   grid-column-end: col2-end
+
+.button--disabled
+  background-color: $white
+  color: $main
+  cursor: default
 
 .button__flyout
   display: none
@@ -614,6 +619,7 @@ a
   grid-template-rows: 1fr
   width: 345px
   height: 103px
+  margin-top: 16px
   cursor: pointer
 
 .diffselector__num
