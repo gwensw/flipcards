@@ -98,6 +98,9 @@ const Listeners = {
       if (el.name === 'align') {
         us.leftalign = el.value === 'left';
         UserSettings.update(name, us);
+      } else if (el.name === 'side') {
+        us.qSide = el.value;
+        UserSettings.update(name, us);
       }
     });
   }
