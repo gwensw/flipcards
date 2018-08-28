@@ -39,13 +39,12 @@ const Edit = {
         }
       });
   },
-  deleteDeck(confirmed = false) {
-    if (confirmed) {
+  deleteDeck(name = false) {
+    if (name) {
       // send user back to main screen
       window.location = '';
       window.location.hash = '#/';
       // delete the deck for real
-      const { name } = flashcards.exposeDeck();
       flashcards.deleteDeck(name);
       // TODO: render a temporary undo dialog on the main screen
     } else {

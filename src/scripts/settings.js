@@ -2,7 +2,9 @@
 const __defaultSettings = {
   qSide: 'side1',
   autocheck: true,
-  firstanswer: true
+  firstanswer: true,
+  leftalign: false,
+  separator: '/'
 };
 
 const UserSettings = {

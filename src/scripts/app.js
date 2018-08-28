@@ -76,7 +76,7 @@ function editcurrent(name) {
 function showSettings(name) {
   flashcards.openDeck(name);
   // render modal contents
-  Render.settings(name, flashcards.getDisplayName());
+  Render.settings(name, flashcards.getDisplayName(), UserSettings.get(name));
 }
 
 const routes = {

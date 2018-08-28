@@ -2,6 +2,7 @@ import flashcards from 'flashcards';  // eslint-disable-line
 import Edit from './edit';
 import Play from './play';
 import Difficulty from './difficulty';
+import UserSettings from './settings';
 
 const header = document.querySelector('.header');
 const main = document.querySelector('.main');
@@ -77,14 +78,26 @@ const Listeners = {
         Difficulty.confirm(el.parentElement.dataset.name);
       } else if (el.id === 'deleteDeck') {
         // render the confirmation screen
-        Edit.deleteDeck(false);
+        Edit.deleteDeck();
       } else if (el.id === 'confirmDelete') {
-        Edit.deleteDeck(true);
+        const name = document.querySelector('.settings').dataset.deck;
+        Edit.deleteDeck(name);
       } else if (el.id === 'cancelDelete') {
         // trick router into reloading settings
         const oldhash = window.location.hash;
         window.location.hash = oldhash.replace('/settings', '');
         window.location.hash = oldhash;
+      }
+    });
+
+    // change settings in modal
+    globalModal.addEventListener('change', (e) => {
+      const el = e.target;
+      const name = document.querySelector('.settings').dataset.deck;
+      const us = UserSettings.get(name);
+      if (el.name === 'align') {
+        us.leftalign = el.value === 'left';
+        UserSettings.update(name, us);
       }
     });
   }

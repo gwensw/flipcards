@@ -1,30 +1,56 @@
-<div class="settings">
-  <div class="settings__group">
-    <h2 class="settings__title">QUIZ SETTINGS</h2>
-    <div class="settings__option">
-      <label class="settings__label">Question side:</label>
+<div class='settings' data-deck='{{name}}'>
+  <div class='settings__group'>
+    <h2 class='settings__title'>QUIZ SETTINGS</h2>
+    <div class='settings__option'>
+      <label class='settings__label'>Question side:</label>
     </div>
-    <div class="settings__option">
-      <label class="settings__label">Auto-mark answers:</label>
-    </div>
-    <div class="settings__option">
-      <label class="settings__label">Display all answers:</label>
+    <div class='settings__option'>
+      <label class='settings__label'>Auto-mark answers:</label>
     </div>
   </div>
-  <div class="settings__group">
-    <h2 class="settings__title">CARD DISPLAY SETTINGS</h2>
-    <div class="settings__option">
-      <label class="settings__label">Align text:</label>
+  <div class='settings__group'>
+    <h2 class='settings__title'>CARD DISPLAY SETTINGS</h2>
+    <div class='settings__option'>
+      <p class='settings__label'>Align text:</p>
+      <div>
+        <label class='settings__radio'>
+          <input type='radio' name='align' value='center' {{#unless leftalign}}checked{{/unless}}>
+          <div>
+            <svg  width="23px" height="18px" viewBox="0 0 23 18">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g fill="#4A4A4A">
+                  <path d="M0.247,17.395 C0.404,17.552 0.584,17.642 0.808,17.642 L21.638,17.642 C21.862,17.642 22.042,17.552 22.199,17.395 C22.356,17.238 22.446,17.058 22.446,16.834 L22.446,15.24 C22.446,15.016 22.356,14.836 22.199,14.679 C22.042,14.522 21.862,14.432 21.638,14.432 L0.808,14.432 C0.584,14.432 0.404,14.522 0.247,14.679 C0.09,14.836 0,15.016 0,15.24 L0,16.834 C0,17.058 0.09,17.238 0.247,17.395 L0.247,17.395 Z M1.841,7.766 C1.998,7.923 2.177,8.013 2.402,8.013 L20.044,8.013 C20.268,8.013 20.448,7.923 20.605,7.766 C20.762,7.609 20.852,7.429 20.852,7.205 L20.852,5.611 C20.852,5.387 20.762,5.207 20.605,5.05 C20.448,4.893 20.268,4.803 20.044,4.803 L2.402,4.803 C2.177,4.803 1.998,4.893 1.841,5.05 C1.683,5.207 1.594,5.387 1.594,5.611 L1.594,7.205 C1.594,7.429 1.683,7.609 1.841,7.766 L1.841,7.766 Z M5.05,12.592 C5.207,12.749 5.387,12.839 5.611,12.839 L16.834,12.839 C17.059,12.839 17.238,12.749 17.395,12.592 C17.552,12.435 17.642,12.255 17.642,12.031 L17.642,10.437 C17.642,10.212 17.552,10.033 17.395,9.876 C17.238,9.719 17.059,9.629 16.834,9.629 L5.611,9.629 C5.387,9.629 5.207,9.719 5.05,9.876 C4.893,10.033 4.803,10.212 4.803,10.437 L4.803,12.031 C4.803,12.255 4.893,12.435 5.05,12.592 L5.05,12.592 Z M6.644,2.963 C6.801,3.12 7.003,3.209 7.205,3.209 L15.241,3.209 C15.443,3.209 15.645,3.12 15.802,2.963 C15.959,2.805 16.026,2.626 16.026,2.401 L16.026,0.808 C16.026,0.583 15.959,0.404 15.802,0.247 C15.645,0.09 15.443,0 15.241,0 L7.205,0 C7.003,0 6.801,0.09 6.644,0.247 C6.487,0.404 6.42,0.583 6.42,0.808 L6.42,2.401 C6.42,2.626 6.487,2.805 6.644,2.963 L6.644,2.963 Z" id="Imported-Layers"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </label>
+        <label class='settings__radio'>
+          <input type='radio' name='align' value='left' {{#if leftalign}}checked{{/if}}>
+          <div>
+            <svg width="23px" height="18px" viewBox="0 0 23 18">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="fa-align-left" fill="#4A4A4A">
+                  <path d="M0.247,17.395 C0.404,17.552 0.584,17.642 0.808,17.642 L21.638,17.642 C21.862,17.642 22.042,17.552 22.199,17.395 C22.356,17.238 22.446,17.058 22.446,16.834 L22.446,15.24 C22.446,15.016 22.356,14.836 22.199,14.679 C22.042,14.522 21.862,14.432 21.638,14.432 L0.808,14.432 C0.584,14.432 0.404,14.522 0.247,14.679 C0.09,14.836 0,15.016 0,15.24 L0,16.834 C0,17.058 0.09,17.238 0.247,17.395 L0.247,17.395 Z M0.247,12.592 C0.404,12.749 0.584,12.839 0.808,12.839 L16.834,12.839 C17.059,12.839 17.238,12.749 17.395,12.592 C17.552,12.435 17.642,12.255 17.642,12.031 L17.642,10.437 C17.642,10.212 17.552,10.033 17.395,9.876 C17.238,9.719 17.059,9.629 16.834,9.629 L0.808,9.629 C0.584,9.629 0.404,9.719 0.247,9.876 C0.09,10.033 0,10.212 0,10.437 L0,12.031 C0,12.255 0.09,12.435 0.247,12.592 L0.247,12.592 Z M0.247,7.766 C0.404,7.923 0.584,8.013 0.808,8.013 L20.044,8.013 C20.268,8.013 20.448,7.923 20.605,7.766 C20.762,7.609 20.852,7.429 20.852,7.205 L20.852,5.611 C20.852,5.387 20.762,5.207 20.605,5.05 C20.448,4.893 20.268,4.803 20.044,4.803 L0.808,4.803 C0.584,4.803 0.404,4.893 0.247,5.05 C0.09,5.207 0,5.387 0,5.611 L0,7.205 C0,7.429 0.09,7.609 0.247,7.766 L0.247,7.766 Z M0.247,2.962 C0.404,3.12 0.584,3.209 0.808,3.209 L15.241,3.209 C15.443,3.209 15.645,3.12 15.802,2.962 C15.959,2.805 16.026,2.626 16.026,2.401 L16.026,0.808 C16.026,0.583 15.959,0.404 15.802,0.247 C15.645,0.089 15.443,0 15.241,0 L0.808,0 C0.584,0 0.404,0.089 0.247,0.247 C0.09,0.404 0,0.583 0,0.808 L0,2.401 C0,2.626 0.09,2.805 0.247,2.962 L0.247,2.962 Z" id="Imported-Layers"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </label>
+      </div>
     </div>
-    <div class="settings__option">
-      <label class="settings__label">Separate answers with:</label>
+    <div class='settings__option'>
+      <label class='settings__label'>Display all answers:</label>
+    </div>
+    <div class='settings__option'>
+      <label class='settings__label'>Separate answers with:</label>
     </div>
   </div>
-  <div class="settings__group">
-    <h2 class="settings__title">DECK ACTIONS</h2>
-    <div class="settings__option">
-      <div id="downloadDeck" class="settings__button">DOWNLOAD</div>
-      <div id="deleteDeck" class="settings__button settings__button--primary">DELETE</div>
+  <div class='settings__group'>
+    <h2 class='settings__title'>DECK ACTIONS</h2>
+    <div class='settings__option'>
+      <div id='downloadDeck' class='settings__button'>DOWNLOAD</div>
+      <div id='deleteDeck' class='settings__button settings__button--primary'>DELETE</div>
     </div>
   </div>
 </div>

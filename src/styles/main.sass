@@ -350,6 +350,7 @@ a
   grid-row-start: row1-start
   grid-row-end: row3-start
   margin: auto
+  cursor: pointer
 
 .edit__flexcontainer
   grid-column-start: col1-start
@@ -594,6 +595,7 @@ a
   +standardTransition()
 
 .settings__label
+  @extend %unpad
   font-size: 18px
 
 .settings__button
@@ -612,6 +614,26 @@ a
 .settings__button--primary
   background-color: $accent
   margin: 0 0 0 6px
+
+.settings__radio > input
+  visibility: hidden
+  position: absolute
+
+.settings__radio > div
+  +displayflex-inline()
+  +align-items(center)
+  +justify-content(center)
+  height: 48px
+  width: 48px
+  border-radius: 24px
+  cursor: pointer
+
+.settings__radio > div > svg
+  width: 32px
+  height: auto
+
+.settings__radio > input:checked + div
+  background-color: $accent
 
 .diffselector
   display: grid

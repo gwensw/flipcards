@@ -236,23 +236,26 @@ const Render = {
     main.innerHTML = trainingTemplate({ autocheck });
     forceHideModal();
   },
-  nextCard(qText, diff) {
+  nextCard() {
     // TODO: remove (and animate removal of) the old card
     // TODO: create a new card and animate its appearance
     document
       .querySelector('#card')
       .innerHTML = nextCardTemplate();
-    // Render question text on the new card
-    this.question(qText, diff);
     // TODO: animate card changeover
   },
   // render the question text on the card and insert appropriate user controls
-  question(qText = '', diff) {
+  question(qText = '', diff, leftalign = false) {
     const long = qText.length > 290;
     // add text to card
     document
       .getElementById('question')
-      .innerHTML = questionTemplate({ qText, long, diff });
+      .innerHTML = questionTemplate({
+        qText,
+        long,
+        diff,
+        leftalign
+      });
     // animate card flip
     document
       .querySelector('.card__flipbox')
@@ -260,12 +263,17 @@ const Render = {
       .remove('card__flipbox--flip');
   },
   // render the answer text on the card and insert appropriate user controls
-  answer(aText = '', diff) {
+  answer(aText = '', diff, leftalign = false) {
     const long = aText.length > 290;
     // add text to card
     document
       .getElementById('answer')
-      .innerHTML = answerTemplate({ aText, long, diff });
+      .innerHTML = answerTemplate({
+        aText,
+        long,
+        diff,
+        leftalign
+      });
     // animate card flip
     document
       .querySelector('.card__flipbox')
@@ -344,9 +352,17 @@ const Render = {
     // render the donut chart
     makeNewChart(correct, incorrect, `${correct} / ${total}`, 'endchart');
   },
-  settings(name, displayName) {
+  settings(name, displayName, usersettings) {
+    const context = {
+      name,
+      isSide2: usersettings.qSide === 'side2',
+      firstanswer: usersettings.firstanswer,
+      autocheck: usersettings.autocheck,
+      leftalign: usersettings.leftalign,
+      separator: usersettings.separator || '/'
+    };
     // build the modal contents
-    const contents = settingsTemplate();
+    const contents = settingsTemplate(context);
     // build and reveal the modal
     createModal(displayName, `edit/${name}`, contents);
   },

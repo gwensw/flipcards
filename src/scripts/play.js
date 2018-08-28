@@ -72,6 +72,8 @@ const Play = {
       // TODO: focus on retry button if some incorrect, shuffle button otherwise
     } else {
       Render.nextCard(currentCard.question[0], currentCard.difficulty);
+      // Render question text on the new card
+      this.showQuestion();
       Render.controls();
     }
   },
@@ -82,14 +84,16 @@ const Play = {
   },
   // reveal question (as a result of user flipping back, so no buttons redrawn)
   showQuestion() {
-    Render.question(currentCard.question[0], currentCard.difficulty);
+    const settings = getSettings();
+    Render.question(currentCard.question[0], currentCard.difficulty, settings.leftalign);
+    console.log(settings.leftalign);
   },
   // reveal answer (in self-check mode)
   showAnswer() {
     const settings = getSettings();
     const a = flashcards.revealAnswer();
     const aText = settings.firstanswer ? a.answers.slice(0, 1) : a.answers;
-    Render.answer(aText, currentCard.difficulty);
+    Render.answer(aText, currentCard.difficulty, settings.leftalign);
     Render.controls({ isQuestion: false });
   },
   // process user-submitted marking
