@@ -1,7 +1,7 @@
 // default user settings for deck behaviour
 const __defaultSettings = {
   qSide: 'side1',
-  autocheck: true,
+  autocheck: false,
   firstanswer: true,
   leftalign: false,
   separator: '/'

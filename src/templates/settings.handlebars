@@ -2,14 +2,18 @@
   <div class='settings__group'>
     <h2 class='settings__title'>QUIZ SETTINGS</h2>
     <div class='settings__option'>
-      <label class='settings__label'>Question side:</label>
+      <label for='side' class='settings__label'>Question side:</label>
       <select name='side' class='settings__select'>
         <option value='side1' {{#unless isSide2}}selected{{/unless}}>Side 1</option>
         <option value='side2' {{#if isSide2}}selected{{/if}}>Side 2</option>
       </select>
     </div>
     <div class='settings__option'>
-      <label class='settings__label'>Auto-mark answers:</label>
+      <label for='autocheck' class='settings__label'>Auto-mark answers:</label>
+      <label class="settings__checkslide">
+        <input name='autocheck' class='settings__checkbox' type='checkbox' {{#if autocheck}}checked{{/if}}>
+        <span class='settings__slider'></span>
+      </label>
     </div>
   </div>
   <div class='settings__group'>

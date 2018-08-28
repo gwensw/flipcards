@@ -97,11 +97,12 @@ const Listeners = {
       const us = UserSettings.get(name);
       if (el.name === 'align') {
         us.leftalign = el.value === 'left';
-        UserSettings.update(name, us);
       } else if (el.name === 'side') {
         us.qSide = el.value;
-        UserSettings.update(name, us);
+      } else if (el.name === 'autocheck') {
+        us.autocheck = el.checked;
       }
+      UserSettings.update(name, us);
     });
   }
 

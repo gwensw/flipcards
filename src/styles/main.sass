@@ -627,6 +627,49 @@ a
   background-color: $white
   color: $darkgrey
 
+.settings__checkslide
+  display: inline-block
+  position: relative
+  flex-shrink: 0
+  width: 69px
+  height: 38px
+  margin-left: 5px
+
+.settings__checkbox
+  display: none
+
+.settings__slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  border-radius: 20px
+  background-color: $lightgrey
+  +standardTransition()
+
+.settings__checkbox:checked + .settings__slider
+  background-color: $accent
+
+.settings__slider:before
+  position: absolute
+  content: ""
+  height: 32px
+  width: 32px
+  left: 3px
+  bottom: 3px
+  border-radius: 50%
+  background-color: $white
+  -webkit-transition: .4s
+  transition: .4s
+
+.settings__checkbox:checked + .settings__slider:before
+  background-color: $white
+  -webkit-transform: translateX(31px)
+  -ms-transform: translateX(31px)
+  transform: translateX(31px)
+
 .settings__radio > input
   visibility: hidden
   position: absolute
@@ -646,6 +689,9 @@ a
 
 .settings__radio > input:checked + div
   background-color: $accent
+
+.settings__radio > input:checked + div > svg > g > g
+  fill: $white
 
 .diffselector
   display: grid
