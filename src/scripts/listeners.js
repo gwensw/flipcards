@@ -89,10 +89,9 @@ const Listeners = {
         Difficulty.confirm(el.parentElement.dataset.name);
       } else if (el.id === 'deleteDeck') {
         // render the confirmation screen
-        Edit.deleteDeck();
+        Edit.deleteDeck(false);
       } else if (el.id === 'confirmDelete') {
-        const name = document.querySelector('.settings').dataset.deck;
-        Edit.deleteDeck(name);
+        Edit.deleteDeck(true);
       } else if (el.id === 'cancelDelete') {
         // trick router into reloading settings
         const oldhash = window.location.hash;
