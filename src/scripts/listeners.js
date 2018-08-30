@@ -54,6 +54,13 @@ const Listeners = {
         Play.retry();
       } else if (el.id === 'end') {
         Play.reset();
+      } else if (el.id === 'check') {
+        // submit the user's attempt for marking
+        console.log('sup');
+        const useranswer = document.getElementById('useranswer').value;
+        Play.processAnswer(useranswer);
+      } else if (el.id === 'next') {
+        Play.drawNextCard();
       }
     });
 
@@ -61,10 +68,14 @@ const Listeners = {
     main.addEventListener('keydown', (e) => {
       const el = e.target;
       if (e.keyCode === 13) {
-        // allow creation of new cards via enter key press
         if (el.classList.contains('js-makenew')) {
+          // allow creation of new cards via enter key press
           e.preventDefault();
           Edit.addCard(el.parentNode);
+        } else if (el.id === 'useranswer') {
+          // allow user to submit answer via enter key press
+          e.preventDefault();
+          Play.processAnswer(el.value);
         }
       }
     });

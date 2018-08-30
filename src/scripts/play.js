@@ -49,9 +49,8 @@ const Play = {
     if (usersettings.qSide !== flashcards.settings.questionSide) {
       flashcards.flipDeck();
     }
-    // render the basic page, passing in whether in autocheck or selfcheck mode
-    const { autocheck } = usersettings;
-    Render.trainingView(autocheck);
+    // render the basic page
+    Render.trainingView(usersettings.autocheck);
     Render.header({
       backlink: '#',
       deckTitle: flashcards.getDisplayName(),
@@ -71,10 +70,12 @@ const Play = {
       Render.controls({ isResults: true, retry: session.incorrect });
       // TODO: focus on retry button if some incorrect, shuffle button otherwise
     } else {
-      Render.nextCard(currentCard.question[0], currentCard.difficulty);
+      Render.nextCard();
       // Render question text on the new card
       this.showQuestion();
-      Render.controls();
+      // Render controls, passing in whether in autocheck or selfcheck mode
+      const { autocheck } = UserSettings.get(getName());
+      Render.controls({ autocheck });
     }
   },
   // autosaves progress and triggers progress bar render
@@ -86,13 +87,12 @@ const Play = {
   showQuestion() {
     const settings = getSettings();
     Render.question(currentCard.question[0], currentCard.difficulty, settings.leftalign);
-    console.log(settings.leftalign);
   },
   // reveal answer (in self-check mode)
   showAnswer() {
+    const a = flashcards.revealAnswer().answers;
     const settings = getSettings();
-    const a = flashcards.revealAnswer();
-    const aText = settings.firstanswer ? a.answers.slice(0, 1) : a.answers;
+    const aText = settings.firstanswer ? a.slice(0, 1) : a;
     Render.answer(aText, currentCard.difficulty, settings.leftalign);
     Render.controls({ isQuestion: false });
   },
@@ -101,6 +101,24 @@ const Play = {
     const submission = outcome === 'correct' ? flashcards.revealAnswer().answers[0] : '';
     flashcards.checkAnswer(submission);
     this.drawNextCard();
+  },
+  // process submissions in auto-check mode
+  processAnswer(useranswer) {
+    const result = flashcards.checkAnswer(useranswer.trim());
+    // reveal the correct answer
+    const settings = getSettings();
+    const aText = settings.firstanswer ? result.answers.slice(0, 1) : result.answers;
+    const correct = result.outcome ? 'correct' : 'incorrect';
+    Render.answer(aText, currentCard.difficulty, settings.leftalign);
+    // TODO: style the user's answer as correct/incorrect and record progress
+    this.recordProgress();
+    // Reveal the next / shuffle buttons
+    Render.controls({
+      isQuestion: false,
+      autocheck: true,
+      correct,
+      useranswer
+    });
   },
   // reset session and shuffle the deck
   shuffle() {
@@ -111,7 +129,7 @@ const Play = {
   retry() {
     cardsToRetry = flashcards.getSessionInfo().incorrectCards;
     numToRetry = cardsToRetry.length;
-    Render.trainingView();
+    Render.trainingView(getSettings().autocheck);
     flashcards.openDeck(getName());
     this.drawNextCard();
   },

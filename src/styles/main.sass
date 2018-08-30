@@ -457,6 +457,11 @@ a
   +standardTransition()
   cursor: pointer
 
+.card--autocheck
+  height: 360px
+  margin-bottom: 13px
+  +flex(0, 0, auto)
+
 .card__flipbox
   width: 100%
   height: 100%
@@ -538,6 +543,42 @@ a
 @for $i from 1 through 5
   .card__diffnumber--diff#{$i}
     color: nth($difffonts, $i)
+
+.useranswer
+  display: block
+  width: 90%
+  height: 43px
+  margin: 0 auto
+  font-family: $sans-serif
+  font-size: 20px
+  font-weight: $light
+  text-align: center
+  border: 0
+
+.useranswer--correct
+  border: 3px solid $accent
+
+.useranswer--incorrect
+  border: 3px solid $lightgrey
+
+.useranswer__container
+  position: relative
+  width: 100%
+
+.useranswer__icon
+  position: absolute
+  top: -10px
+  right: 0
+  width: 61px
+  height: 61px
+  background-repeat: no-repeat
+  background-position: center
+
+.useranswer__icon--correct
+  background-image: url("../assets/correct-circle.svg")
+
+.useranswer__icon--incorrect
+  background-image: url("../assets/incorrect-circle.svg")
 
 .results
   +flex(1, 1, 0)

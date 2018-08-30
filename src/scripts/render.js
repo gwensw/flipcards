@@ -265,6 +265,7 @@ const Render = {
   // render the answer text on the card and insert appropriate user controls
   answer(aText = '', diff, leftalign = false) {
     const long = aText.length > 290;
+    // TODO: render alternative answers too
     // add text to card
     document
       .getElementById('answer')
@@ -284,7 +285,9 @@ const Render = {
     isQuestion = true,
     isResults = false,
     autocheck = false,
-    retry = false
+    retry = false,
+    correct = 'incorrect',
+    useranswer = ''
   } = {}) {
     // destroy the existing controls
     document
@@ -300,8 +303,13 @@ const Render = {
         isQuestion,
         isResults,
         autocheck,
-        retry
+        retry,
+        correct,
+        useranswer
       }));
+    // focus
+    const focusTarget = (autocheck && isQuestion) ? '#useranswer' : '.button--primary';
+    document.querySelector(focusTarget).focus();
   },
   // renders updated user progress bar
   progress(sessionInfo, totalCards, numToRetry, deckLength) {
