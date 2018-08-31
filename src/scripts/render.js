@@ -163,6 +163,11 @@ const Render = {
       inTrainingMode
     };
     header.innerHTML = headerTemplate(context);
+    if (inTrainingMode) {
+      header.classList.remove('header--fixed');
+    } else {
+      header.classList.add('header--fixed');
+    }
   },
   decks(decks) {
     const sortedDecks = decks.sort((a, b) => parseInt(a.name, 10) - parseInt(b.name, 10));
