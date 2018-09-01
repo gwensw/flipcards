@@ -1,5 +1,6 @@
 import flashcards from 'flashcards';  // eslint-disable-line
 import Render from './render';
+import UserSettings from './settings';
 
 const Edit = {
   cardtext(e) {
@@ -19,10 +20,17 @@ const Edit = {
   addCard(el) {
     const side1 = el.firstElementChild;
     const side2 = side1.nextElementSibling;
+    const { separator } = UserSettings.get(flashcards.exposeDeck().name);
+    const side1val = side1.value.split(separator).map(x => x.trim());
+    const side2val = side2.value.split(separator).map(x => x.trim());
     const difficulty = 3;
-    flashcards.addCard(side1.value, side2.value, difficulty);
+    flashcards.addCard(
+      side1val,
+      side2val,
+      difficulty
+    );
     const newIndex = flashcards.deckLength() - 1;
-    Render.newCard(newIndex, side1.value, side2.value, difficulty);
+    Render.newCard(newIndex, side1val, side2val, difficulty, separator);
     Render.clearValues(side1, side2);
   },
   deleteCard(el) {
@@ -51,6 +59,22 @@ const Edit = {
       // render the confirmation screen
       Render.deletionConfirmation(flashcards.getDisplayName());
     }
+  },
+  // download a deck as JSON
+  download() {
+    const deck = flashcards.exposeDeck();
+    const filename = deck.displayName.replace(/ /g, '-');
+    const dataString = `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify(deck))}`;
+    const tempAnchor = document.createElement('a');
+    tempAnchor.setAttribute('href', dataString);
+    tempAnchor.setAttribute('download', `${filename}.json`);
+    document.body.appendChild(tempAnchor);
+    tempAnchor.click();
+    tempAnchor.remove();
+  },
+  // upload a JSON to create a new deck
+  upload() {
+    console.log('upload here');
   }
 };
 

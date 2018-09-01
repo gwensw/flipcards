@@ -52,7 +52,8 @@ function train(name) {
 function edit(name, backlink = '#') {
   flashcards.openDeck(name);
   const { cards } = flashcards.exposeDeck();
-  Render.editView(cards);
+  const { separator } = UserSettings.get(name);
+  Render.editView(cards, separator);
   Render.header({
     backlink,
     deckTitle: flashcards.getDisplayName(),

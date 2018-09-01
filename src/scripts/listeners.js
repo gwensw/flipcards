@@ -95,6 +95,8 @@ const Listeners = {
         const oldhash = window.location.hash;
         window.location.hash = oldhash.replace('/settings', '');
         window.location.hash = oldhash;
+      } else if (el.id === 'downloadDeck') {
+        Edit.download();
       }
     });
 
@@ -109,6 +111,8 @@ const Listeners = {
         us.qSide = el.value;
       } else if (el.name === 'autocheck') {
         us.autocheck = el.checked;
+      } else if (el.name === 'separator') {
+        us.separator = el.value.trim();
       }
       UserSettings.update(name, us);
     });

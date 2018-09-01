@@ -182,11 +182,11 @@ const Render = {
     // hide modal if necessary
     forceHideModal();
   },
-  editView(cards) {
+  editView(cards, separator = '/') {
     main.innerHTML = newCardTemplate();
     const len = cards.length;
     for (let i = 0; i < len; i += 1) {
-      this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty);
+      this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty, separator);
     }
     addTextareaListeners();
     // hide settings modal if necessary
@@ -197,11 +197,11 @@ const Render = {
     el.classList.remove(oldClass);
     el.classList.add(`edit__selector--diff${diffnum}`);
   },
-  newCard(index, side1, side2, difficulty) {
+  newCard(index, side1, side2, difficulty, separator) {
     const context = {
       index,
-      side1,
-      side2,
+      side1: side1.join(` ${separator} `),
+      side2: side2.join(` ${separator} `),
       difficulty
     };
     document
