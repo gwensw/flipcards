@@ -98,7 +98,7 @@
     grid-template-rows: 60px
     column-gap: 14px
     width: 714px
-    margin: 0 auto
+    margin: 0 auto 50px
     +align-self(center)
 
   .buttonrow--gap
@@ -112,6 +112,7 @@
     bottom: 25px
     right: 25px
     width: auto
+    margin-bottom: 0
 
   .buttonrow--modal
     position: relative
@@ -265,6 +266,10 @@
   .card
     max-width: 800px
     max-height: 500px
+    margin-bottom: 45px
+
+  .card--autocheck
+    margin-bottom: 18px
   
   .card__side
     border: 1px solid $lightgrey
@@ -274,6 +279,22 @@
   
   .card__text--long
     font-size: 20px
+
+  .useranswer
+    width: 750px
+    margin-bottom: 32px
+
+  .useranswer--correct,
+  .useranswer--incorrect
+    border-width: 4px
+
+  .useranswer__container
+    position: relative
+    width: 750px
+    margin: 0 auto
+
+  .useranswer__icon
+    right: -44px
 
   .results__chart
     margin-bottom: 85px
