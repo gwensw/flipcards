@@ -240,6 +240,10 @@ const Render = {
   trainingView(autocheck = false) {
     main.innerHTML = trainingTemplate({ autocheck });
     forceHideModal();
+    // if on mobile, autoscroll to hide the header
+    if (window.innerWidth < 768) {
+      window.scroll(46, 0);
+    }
   },
   nextCard() {
     // TODO: remove (and animate removal of) the old card

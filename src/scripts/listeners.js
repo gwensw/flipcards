@@ -56,7 +56,6 @@ const Listeners = {
         Play.reset();
       } else if (el.id === 'check') {
         // submit the user's attempt for marking
-        console.log('sup');
         const useranswer = document.getElementById('useranswer').value;
         Play.processAnswer(useranswer);
       } else if (el.id === 'next') {

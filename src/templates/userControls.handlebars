@@ -23,7 +23,7 @@
   {{else}}
     {{#if autocheck}}
       <div class="useranswer__container js-control">
-        <input type="text" class="useranswer useranswer--{{correct}}" value="{{useranswer}}" disabled>
+        <input type="text" class="useranswer useranswer--{{correct}}" value="{{useranswer}}" disabled  autocomplete="off" autocorrect="off" autocapitalize="off">
         <div class="useranswer__icon useranswer__icon--{{correct}}"></div>
       </div>
       <div class="buttonrow buttonrow--double js-control">
