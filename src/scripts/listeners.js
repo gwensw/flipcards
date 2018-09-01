@@ -37,7 +37,6 @@ const Listeners = {
       } else if (el.classList.contains('js-add')) {
         Edit.addCard(el.parentNode.firstElementChild);
       } else if (el.id === 'show' || el.closest('#questionside')) {
-        // reveal answer side when user taps card or 'show' button
         Play.showAnswer();
       } else if (el.closest('#answerside')) {
         // show question again when user taps card

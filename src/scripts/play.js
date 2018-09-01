@@ -88,10 +88,14 @@ const Play = {
     const settings = getSettings();
     Render.question(currentCard.question[0], currentCard.difficulty, settings.leftalign);
   },
-  // reveal answer (in self-check mode)
+  // reveal answer (in self-check mode only)
   showAnswer() {
-    const a = flashcards.revealAnswer().answers;
     const settings = getSettings();
+    // if in autocheck mode, tap-to-flip is disabled
+    if (settings.autocheck) {
+      return;
+    }
+    const a = flashcards.revealAnswer().answers;
     const aText = settings.firstanswer ? a.slice(0, 1) : a;
     Render.answer(aText, currentCard.difficulty, settings.leftalign);
     Render.controls({ isQuestion: false });
