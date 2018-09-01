@@ -5,6 +5,10 @@ $avgbarwide: 46px
   .deckmenu
     -ms-grid-columns: 1fr 1fr 1fr
     grid-template-columns: 1fr 1fr 1fr
+
+  .card--autocheck
+    height: 300px
+    +flex(1, 0, auto)
   
 @media screen and (min-width: $breakpoint-tablet)
   .header,
@@ -115,14 +119,26 @@ $avgbarwide: 46px
     margin: 26px auto 55px
 
   .card--autocheck
-    height: 300px
-    +flex(1, 0, auto)
+    max-height: 412px
+    margin-bottom: 20px
 
   .card__text
     line-height: 1.8em
 
   .card__text--long
     font-size: 20px
+
+  .useranswer
+    height: 67px
+    width: 82%
+    margin-bottom: 20px
+    font-size: 26px
+
+  .useranswer__icon
+    width: 88px
+    height: 88px
+    right: 5%
+    background-size: 88px
 
   .results__chart
     height: 350px
