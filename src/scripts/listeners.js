@@ -24,9 +24,17 @@ const Listeners = {
       }
     });
 
-    // handle updates to cards in edit mode
+    // handle changes, including updates to cards in edit mode
     main.addEventListener('change', (e) => {
-      Edit.cardtext(e);
+      const el = e.target;
+      if (el.id === 'upload') {
+        const { files } = el;
+        if (files.length) {
+          Edit.upload(files.item(0));
+        }
+      } else {
+        Edit.cardtext(e);
+      }
     });
 
     // handles clicks on main - for editing and training

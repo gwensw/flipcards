@@ -73,8 +73,32 @@ const Edit = {
     tempAnchor.remove();
   },
   // upload a JSON to create a new deck
-  upload() {
-    console.log('upload here');
+  upload(file) {
+    const newName = Math.floor(Date.now() / 1000).toString();
+    const fr = new FileReader();
+    fr.onload = (e) => {
+      try {
+        // Parse the file and build a new deck
+        const newdeck = JSON.parse(e.target.result);
+        flashcards.openDeck(newName);
+        // give deck a display name
+        flashcards.setDisplayName(newdeck.displayName);
+        // add the cards to the deck
+        const cards = newdeck.cards.map(card => Object.values(card));
+        flashcards.addCards(...cards);
+        // Save with default settings
+        UserSettings.update(newName);
+        // Render the new deck
+        Render.decks(flashcards.listDecks());
+        // TODO: render the success message at the end with status 'success'
+      } catch (error) {
+        // If error, delete the deck under construction
+        flashcards.deleteDeck(newName);
+        console.error('Error loading deck:', error);
+        // TODO: render the error message with status 'error'
+      }
+    };
+    fr.readAsText(file);
   }
 };
 
