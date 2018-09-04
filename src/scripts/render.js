@@ -18,6 +18,7 @@ import progressTemplate from '../templates/progress.handlebars';
 import modalHeaderTemplate from '../templates/modalHeader.handlebars';
 import settingsTemplate from '../templates/settings.handlebars';
 import deletionConfirmationTemplate from '../templates/deletionConfirmation.handlebars';
+import bannerTemplate from '../templates/banner.handlebars';
 
 const main = document.querySelector('.main');
 const header = document.querySelector('.header');
@@ -390,6 +391,26 @@ const Render = {
     settings.parentElement.removeChild(settings);
     // show the confirmation message inside the modal
     globalModal.insertAdjacentHTML('beforeEnd', deletionConfirmationTemplate({ displayName }));
+  },
+  // renders a banner message with optional auto-dimiss
+  banner(status, message, timeout) {
+    main.insertAdjacentHTML('afterbegin', bannerTemplate({ status, message }));
+    // make space for the banner if it's an alert
+    const deckmenu = document.querySelector('.deckmenu');
+    if (status === 'error' || status === 'success') {
+      deckmenu.classList.add('deckmenu--withbanner');
+    }
+    // if timeout specified, delete the banner after a pause
+    if (typeof timeout === 'number') {
+      const banner = main.childNodes[0];
+      setTimeout(() => {
+        banner.classList.add('banner--collapsing');
+        setTimeout(() => {
+          banner.remove();
+          deckmenu.classList.remove('deckmenu--withbanner');
+        }, 200);
+      }, timeout);
+    }
   }
 };
 

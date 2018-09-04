@@ -91,11 +91,11 @@ const Edit = {
         // Render the new deck
         Render.decks(flashcards.listDecks());
         // TODO: render the success message at the end with status 'success'
+        Render.banner('success', `${newdeck.displayName} was successfully uploaded`, 4000);
       } catch (error) {
-        // If error, delete the deck under construction
+        // If error, delete the deck under construction & render error message
         flashcards.deleteDeck(newName);
-        console.error('Error loading deck:', error);
-        // TODO: render the error message with status 'error'
+        Render.banner('error', 'Upload failed! You must upload a correctly formatted JSON file. Download an existing deck for an example.', 4000);
       }
     };
     fr.readAsText(file);

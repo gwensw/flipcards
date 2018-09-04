@@ -67,6 +67,9 @@ const Listeners = {
         Play.processAnswer(useranswer);
       } else if (el.id === 'next') {
         Play.drawNextCard();
+      } else if (el.classList.contains('banner__close')) {
+        el.parentElement.remove();
+        document.querySelector('.deckmenu').classList.remove('deckmenu--withbanner');
       }
     });
 

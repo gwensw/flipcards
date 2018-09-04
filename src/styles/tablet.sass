@@ -49,6 +49,7 @@ $avgbarwide: 46px
 
   .main
     min-height: calc(100% - 63px)
+    padding-top: $header-height-big
 
   .buttonrow
     -ms-grid-rows: [row1-start] $primary-button-height-tablet [row1-end]
@@ -74,7 +75,10 @@ $avgbarwide: 46px
     justify-content: start
     grid-column-gap: 17px
     grid-row-gap: 20px
-    margin-top: $header-height-big+57px
+    margin-top: 57px
+
+  .deckmenu--withbanner
+    margin-top: 80px
 
   .deck
     width: $deckwidthbig
@@ -108,7 +112,7 @@ $avgbarwide: 46px
     text-align: center
 
   .edit--new
-    margin: $header-height-big+28px auto 38px
+    margin: 28px auto 38px
 
   .progress
     height: 16px
