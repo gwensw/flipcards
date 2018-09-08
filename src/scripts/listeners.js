@@ -89,6 +89,19 @@ const Listeners = {
       }
     });
 
+    // resize card during answer input on mobile
+    ['focusin', 'focusout'].forEach((event) => {
+      main.addEventListener(event, (e) => {
+        if (e.target.id === 'useranswer' && window.screen.width < 720) {
+          // apply this class, which only has effect on touchscreen devices
+          e.target.classList.toggle('useranswer--withinput');
+          document.getElementById('card').classList.toggle('card--withinput');
+          document.querySelector('.buttonrow').classList.toggle('buttonrow--withinput');
+          main.classList.toggle('main--withinput');
+        }
+      });
+    });
+
     // handle selections in modals
     globalModal.addEventListener('click', (e) => {
       const el = e.target;

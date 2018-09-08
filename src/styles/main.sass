@@ -33,7 +33,7 @@ a
   position: relative
   background-color: $white
   width: 100%
-  height: 100vh
+  height: 100%
   box-sizing: border-box
   overflow-y: auto
 
@@ -519,9 +519,8 @@ a
   cursor: pointer
 
 .card--autocheck
-  height: 220px
+  max-height: 524px
   margin-bottom: 13px
-  +flex(0, 0, auto)
 
 .card__flipbox
   width: 100%
@@ -860,10 +859,21 @@ a
     grid-column-start: $i - 6
     grid-column-end: $i - 5
 
-// handle navbar in mobile browsers
 @media (pointer: coarse)
-  .modal__container
-    margin-top: 56px
+  .card--withinput
+    height: 200px
+    +flex(1, 1, auto)
+    margin: 5px auto 5px
+
+  .main--withinput
+    margin-top: -46px
+
+  .buttonrow--withinput
+    -ms-grid-rows: [row1-start] 50px [row1-end]
+    grid-template-rows: [row1-start] 50px [row1-end]
+
+  .useranswer--withinput
+    margin-bottom: 5px
 
 @import 'tablet'
 @import 'desktop'
