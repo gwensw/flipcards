@@ -248,7 +248,7 @@ const Render = {
   },
   nextCard() {
     // TODO: remove (and animate removal of) the old card
-    // TODO: create a new card and animate its appearance
+    // create a new card
     document
       .querySelector('#card')
       .innerHTML = nextCardTemplate();

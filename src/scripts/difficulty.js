@@ -36,7 +36,7 @@ const Difficulty = {
     }
     lastnum = num;
     Render.selector(mindiff, maxdiff);
-    // TODO: calculate how many cards fit between min and max diff
+    // calculate how many cards fit between min and max diff
     totalCards = diffs.reduce((acc, val, index) => {
       if (index + 1 >= mindiff && index + 1 <= maxdiff) {
         return acc + val;
@@ -47,7 +47,6 @@ const Difficulty = {
     Render.selectorButton(totalCards);
   },
   confirm(name) {
-    // TODO: diffselect confirmation should trigger Play.setup(name, minDiff, maxDiff, total)
     Play.setup(name, mindiff, maxdiff, totalCards);
   }
 };

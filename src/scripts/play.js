@@ -114,7 +114,7 @@ const Play = {
     const aText = settings.firstanswer ? result.answers.slice(0, 1) : result.answers;
     const correct = result.outcome ? 'correct' : 'incorrect';
     Render.answer(aText, currentCard.difficulty, settings.leftalign);
-    // TODO: style the user's answer as correct/incorrect and record progress
+    // style the user's answer as correct/incorrect and record progress
     this.recordProgress();
     // Reveal the next / shuffle buttons
     Render.controls({

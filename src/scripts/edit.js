@@ -90,7 +90,7 @@ const Edit = {
         UserSettings.update(newName);
         // Render the new deck
         Render.decks(flashcards.listDecks());
-        // TODO: render the success message at the end with status 'success'
+        // render the success message
         Render.banner('success', `${newdeck.displayName} was successfully uploaded`, 4000);
       } catch (error) {
         // If error, delete the deck under construction & render error message
