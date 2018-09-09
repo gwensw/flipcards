@@ -77,6 +77,11 @@ function editnew() {
 
 function editcurrent(name) {
   edit(name, `#/train/${name}`);
+  // focus on the card you were just viewing
+  const { currentIndex } = UserSettings.get(name).state;
+  const currentCard = document.getElementById(`card-${currentIndex + 1}`).firstElementChild.firstElementChild;
+  currentCard.focus();
+  currentCard.scrollIntoView();
 }
 
 function showSettings(name) {
