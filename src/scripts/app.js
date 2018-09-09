@@ -38,15 +38,20 @@ function select() {
   Render.header();
 }
 
-function train(name) {
+function train(name, backlink = '/') {
   const { state } = UserSettings.get(name);
   if (state !== undefined) {
     // launch training session directly if saved state exists
     Play.setup(name);
   } else {
     // render the difficulty selection modal
-    Difficulty.init(name);
+    // TODO: find a way of passing the info about settings if needed. Use localstorage?
+    Difficulty.init(name, backlink);
   }
+}
+
+function traincurrent(name) {
+  train(name, `#/edit/${name}`);
 }
 
 function edit(name, backlink = '#') {
@@ -84,6 +89,7 @@ const routes = {
   '/': select,
   '/train/:deckname': train,
   '/edit/:deckname': edit,
+  '/edit/train/:deckname': traincurrent,
   '/editcurrent/:deckname': editcurrent,
   '/editnew': editnew,
   'edit/:deckname/settings': showSettings

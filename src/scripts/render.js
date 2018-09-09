@@ -198,9 +198,10 @@ const Render = {
   deletedCard(cardToDelete) {
     main.removeChild(cardToDelete);
   },
-  diffselect(name, displayName, totalCards) {
+  diffselect(name, displayName, totalCards, backlink) {
     // build and reveal the modal
-    createModal(displayName, '/', diffselectTemplate({ name }));
+    // TODO: redirect to settings if that's the page you came from
+    createModal(displayName, backlink, diffselectTemplate({ name }));
     // create the button
     this.selectorButton(totalCards);
   },

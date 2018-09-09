@@ -10,9 +10,9 @@ let totalCards = 0;
 
 const Difficulty = {
   // render the selector modal and calculate cards of each difficulty
-  init(name) {
+  init(name, backlink) {
     flashcards.openDeck(name);
-    Render.diffselect(name, flashcards.getDisplayName(), flashcards.deckLength());
+    Render.diffselect(name, flashcards.getDisplayName(), flashcards.deckLength(), backlink);
     const { cards } = flashcards.exposeDeck();
     diffs = [0, 0, 0, 0, 0];
     cards.forEach((card) => {
