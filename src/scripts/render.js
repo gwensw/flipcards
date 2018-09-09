@@ -69,22 +69,6 @@ Chart.pluginService.register({
   }
 });
 
-// make textarea grow on focus/input, and obey stylesheet otherwise
-function addTextareaListeners() {
-  function growOnInput() {
-    const newHeight = Math.max(this.scrollHeight, this.offsetHeight);
-    this.style.height = `${newHeight}px`;
-  }
-  function shrinkOnFocusout() {
-    this.removeAttribute('style');
-  }
-  document.querySelectorAll('.edit__input').forEach((el) => {
-    el.addEventListener('focus', growOnInput);
-    el.addEventListener('input', growOnInput);
-    el.addEventListener('focusout', shrinkOnFocusout);
-  });
-}
-
 // creates and returns a donut chart inside the specified element
 function makeNewChart(correct, incorrect, centertext, id) {
   const donutChart = new Chart(document.getElementById(id), {
@@ -189,7 +173,6 @@ const Render = {
     for (let i = 0; i < len; i += 1) {
       this.newCard(i, cards[i].side1, cards[i].side2, cards[i].difficulty, separator);
     }
-    addTextareaListeners();
     // hide settings modal if necessary
     forceHideModal();
   },
@@ -211,16 +194,9 @@ const Render = {
     document
       .querySelector('.js-newside1')
       .focus();
-    addTextareaListeners();
   },
   deletedCard(cardToDelete) {
     main.removeChild(cardToDelete);
-  },
-  clearValues(...elements) {
-    elements.forEach((el) => {
-      const element = el;
-      element.value = '';
-    });
   },
   diffselect(name, displayName, totalCards) {
     // build and reveal the modal

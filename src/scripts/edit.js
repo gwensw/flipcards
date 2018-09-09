@@ -30,8 +30,9 @@ const Edit = {
       difficulty
     );
     const newIndex = flashcards.deckLength() - 1;
+    side1.value = '';
+    side2.value = '';
     Render.newCard(newIndex, side1val, side2val, difficulty, separator);
-    Render.clearValues(side1, side2);
   },
   deleteCard(el) {
     const cardToDelete = el.parentNode;
@@ -95,7 +96,11 @@ const Edit = {
       } catch (error) {
         // If error, delete the deck under construction & render error message
         flashcards.deleteDeck(newName);
-        Render.banner('error', 'Upload failed! You must upload a correctly formatted JSON file. Download an existing deck for an example.', 4000);
+        Render.banner(
+          'error',
+          'Upload failed! You must upload a correctly formatted JSON file. Download an existing deck for an example.',
+          4000
+        );
       }
     };
     fr.readAsText(file);

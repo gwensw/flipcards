@@ -102,6 +102,26 @@ const Listeners = {
       });
     });
 
+    // make textarea grow on focus/input
+    ['focusin', 'input'].forEach((event) => {
+      main.addEventListener(event, (e) => {
+        if (e.target.classList.contains('edit__input')) {
+          if (e.target.value === '') {
+            e.target.removeAttribute('style');
+          } else {
+            const newHeight = Math.max(e.target.scrollHeight, e.target.offsetHeight);
+            e.target.style.height = `${newHeight}px`;
+          }
+        }
+      });
+    });
+
+    main.addEventListener('focusout', (e) => {
+      if (e.target.classList.contains('edit__input')) {
+        e.target.removeAttribute('style');
+      }
+    });
+
     // handle selections in modals
     globalModal.addEventListener('click', (e) => {
       const el = e.target;
