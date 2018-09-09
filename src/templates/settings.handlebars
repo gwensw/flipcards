@@ -48,7 +48,11 @@
       </div>
     </div>
     <div class='settings__option'>
-      <label class='settings__label'>Display all answers:</label>
+      <label class='settings__label'>Show alternative answers:</label>
+      <label class="settings__checkslide">
+        <input name='allanswers' class='settings__checkbox' type='checkbox' {{#if allanswers}}checked{{/if}}>
+        <span class='settings__slider'></span>
+      </label>
     </div>
     <div class='settings__option'>
       <label for='separator' class='settings__label'>Separate answers with:</label>

@@ -2,7 +2,7 @@
 const __defaultSettings = {
   qSide: 'side1',
   autocheck: false,
-  firstanswer: true,
+  allanswers: false,
   leftalign: false,
   separator: '/'
 };

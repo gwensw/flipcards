@@ -96,8 +96,8 @@ const Play = {
       return;
     }
     const a = flashcards.revealAnswer().answers;
-    const aText = settings.firstanswer ? a.slice(0, 1) : a;
-    Render.answer(aText, currentCard.difficulty, settings.leftalign);
+    const aText = settings.allanswers ? a : a.slice(0, 1);
+    Render.answer(aText, currentCard.difficulty, settings.leftalign, settings.separator);
     Render.controls({ isQuestion: false });
   },
   // process user-submitted marking
@@ -111,12 +111,12 @@ const Play = {
     const result = flashcards.checkAnswer(useranswer.trim());
     // reveal the correct answer
     const settings = getSettings();
-    const aText = settings.firstanswer ? result.answers.slice(0, 1) : result.answers;
-    const correct = result.outcome ? 'correct' : 'incorrect';
-    Render.answer(aText, currentCard.difficulty, settings.leftalign);
+    const aText = settings.allanswers ? result.answers : result.answers.slice(0, 1);
+    Render.answer(aText, currentCard.difficulty, settings.leftalign, settings.separator);
     // style the user's answer as correct/incorrect and record progress
     this.recordProgress();
     // Reveal the next / shuffle buttons
+    const correct = result.outcome ? 'correct' : 'incorrect';
     Render.controls({
       isQuestion: false,
       autocheck: true,

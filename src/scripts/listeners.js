@@ -157,6 +157,8 @@ const Listeners = {
         us.autocheck = el.checked;
       } else if (el.name === 'separator') {
         us.separator = el.value.trim();
+      } else if (el.name === 'allanswers') {
+        us.allanswers = el.checked;
       }
       UserSettings.update(name, us);
     });

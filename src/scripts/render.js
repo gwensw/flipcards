@@ -250,9 +250,8 @@ const Render = {
       .remove('card__flipbox--flip');
   },
   // render the answer text on the card and insert appropriate user controls
-  answer(aText = '', diff, leftalign = false) {
-    const long = aText.length > 290;
-    // TODO: render alternative answers too
+  answer(aText = [''], diff, leftalign = false, separator = '') {
+    const long = aText.join('').length > 290;
     // add text to card
     document
       .getElementById('answer')
@@ -260,7 +259,8 @@ const Render = {
         aText,
         long,
         diff,
-        leftalign
+        leftalign,
+        separator: ` ${separator} `
       });
     // animate card flip
     document
@@ -351,7 +351,7 @@ const Render = {
     const context = {
       name,
       isSide2: usersettings.qSide === 'side2',
-      firstanswer: usersettings.firstanswer,
+      allanswers: usersettings.allanswers,
       autocheck: usersettings.autocheck,
       leftalign: usersettings.leftalign,
       separator: usersettings.separator || '/'
