@@ -38,6 +38,11 @@ function select() {
   Render.header();
 }
 
+function about() {
+  Render.about();
+  Render.header({ backlink: '#', inInfo: true });
+}
+
 function train(name, backlink = '/') {
   const { state } = UserSettings.get(name);
   if (state !== undefined) {
@@ -92,6 +97,7 @@ function showSettings(name) {
 
 const routes = {
   '/': select,
+  '/about': about,
   '/train/:deckname': train,
   '/edit/:deckname': edit,
   '/edit/train/:deckname': traincurrent,

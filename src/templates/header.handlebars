@@ -9,24 +9,24 @@
     </a>
     <a href="#">
       <div class="logo logo--min">
-        <img src="../assets/index-card-icon.svg" alt="flipcards" class="logo__icon">
-        <h1 class="logo__title logo__title--min">FLIPCARDS</h1>
+        <img src="../assets/index-card-icon.svg" alt="flipcards" class="logo__icon {{#unless inInfo}}logo__icon--min{{/unless}}">
+        <h1 class="logo__title {{#unless inInfo}}logo__title--min{{/unless}}">FLIPCARDS</h1>
       </div>
     </a>
   </nav>
+{{else}}
+  {{#unless inTrainingMode}}
+      <div class="logo">
+        <img src="../assets/index-card-icon.svg" alt="flipcards" class="logo__icon">
+        <h1 class="logo__title">FLIPCARDS</h1>
+      </div>
+  {{/unless}}
 {{/if}}
 {{#if inTrainingMode}}
   <h1 class="header__title header__title--widescreen">{{deckTitle}}</h1>
 {{/if}}
 {{#if inEditMode}}
   <input class="header__title header__title--editable" value="{{deckTitle}}">
-{{else}}
-  {{#unless inTrainingMode}}
-    <div class="logo">
-      <img src="../assets/index-card-icon.svg" alt="flipcards" class="logo__icon logo__icon--large">
-      <h1 class="logo__title">FLIPCARDS</h1>
-    </div>
-  {{/unless}}
 {{/if}}
 <nav class="header__nav header__nav--right">
   {{#if inEditMode}}
@@ -44,14 +44,23 @@
         <p>SETTINGS</p>
       </div>
     </a>
-  {{/if}}
-  {{#if inTrainingMode}}
-    <a href='#/editcurrent/{{name}}'>
-      <img src="../assets/edit-white.svg" class="header__icon header__icon--edit">
-      <div class="button button--nav">
-        <img src="../assets/edit-white.svg">  
-        <p>EDIT DECK</p>
-      </div>
-    </a>
+  {{else}}
+    {{#if inTrainingMode}}
+      <a href='#/editcurrent/{{name}}'>
+        <img src="../assets/edit-white.svg" class="header__icon header__icon--edit">
+        <div class="button button--nav">
+          <img src="../assets/edit-white.svg">  
+          <p>EDIT DECK</p>
+        </div>
+      </a>
+    {{else}}
+      <a href='#/about'>
+        {{#unless inInfo}}<img src="../assets/info.svg" class="header__icon header__icon--info">{{/unless}}
+        <div class="button button--nav {{#if inInfo}}button--selected{{/if}}">
+          <img src="../assets/info.svg">  
+          <p>ABOUT</p>
+        </div>
+      </a>
+    {{/if}}
   {{/if}}
 </nav>

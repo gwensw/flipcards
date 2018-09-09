@@ -4,6 +4,7 @@ import MicroModal from 'micromodal';
 import truncate from './truncate';
 import headerTemplate from '../templates/header.handlebars';
 import decksTemplate from '../templates/decks.handlebars';
+import aboutTemplate from '../templates/about.handlebars';
 import editCardTemplate from '../templates/editCard.handlebars';
 import newCardTemplate from '../templates/newCard.handlebars';
 import diffselectTemplate from '../templates/diffselect.handlebars';
@@ -138,14 +139,16 @@ const Render = {
     deckTitle = '',
     name = false,
     inEditMode = false,
-    inTrainingMode = false
+    inTrainingMode = false,
+    inInfo = false
   } = {}) {
     const context = {
       backlink,
       deckTitle,
       name,
       inEditMode,
-      inTrainingMode
+      inTrainingMode,
+      inInfo
     };
     header.innerHTML = headerTemplate(context);
     if (inTrainingMode) {
@@ -166,6 +169,9 @@ const Render = {
     main.innerHTML = decksTemplate(context);
     // hide modal if necessary
     forceHideModal();
+  },
+  about() {
+    main.innerHTML = aboutTemplate();
   },
   editView(cards, separator = '/') {
     main.innerHTML = newCardTemplate();

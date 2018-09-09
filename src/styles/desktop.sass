@@ -77,16 +77,19 @@
 
   .logo__title--min
     margin-bottom: 0
-    font-size: 26px
+    font-size: 30px
 
   .logo__icon
-    margin-right: 2px
-    margin-bottom: -3px
-
-  .logo__icon--large
     height: 36px
     width: auto
     margin: 0 4px -5px 13px
+
+  .logo--min > .logo__icon
+    margin-left: 4px
+
+  .logo__icon--min
+    height: 24px
+    margin: 0 2px -3px 0
 
   .main
     +align-items(flex-start)
@@ -143,7 +146,8 @@
     font-weight: $semibold
     font-size: 18px
 
-  .button--nav:hover
+  .button--nav:hover,
+  .button--selected
     margin: 0 auto 0 6px
     border-width: 3px
     font-weight: $semibold
