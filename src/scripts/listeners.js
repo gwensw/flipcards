@@ -77,10 +77,10 @@ const Listeners = {
     main.addEventListener('keydown', (e) => {
       const el = e.target;
       if (e.keyCode === 13) {
-        if (el.classList.contains('js-makenew')) {
-          // allow creation of new cards via enter key press
+        if (el.classList.contains('js-add')) {
+          // allow creation of new cards via enter key press on plus button
           e.preventDefault();
-          Edit.addCard(el.parentNode);
+          Edit.addCard(document.querySelector('.js-newside1').parentElement);
         } else if (el.id === 'useranswer') {
           // allow user to submit answer via enter key press
           e.preventDefault();
