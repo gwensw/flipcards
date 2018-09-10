@@ -24,11 +24,6 @@ BIND EVENT LISTENERS
 
 Listeners.init();
 
-/*------
-HELPERS
--------*/
-
-
 /*---------
   ROUTING
 ----------*/
@@ -36,6 +31,11 @@ HELPERS
 function select() {
   Render.decks(flashcards.listDecks());
   Render.header();
+  // TODO: render the welcome banner unless previously dismissed
+  if (!localStorage.getItem('welcomeMessageDismissed')) {
+    const welcomeMessage = 'Welcome, new user! Create a new deck, or test your general knowledge with one of the sample decks below.';
+    Render.banner('welcome', welcomeMessage);
+  }
 }
 
 function about() {

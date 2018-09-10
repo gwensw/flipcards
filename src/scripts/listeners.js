@@ -70,6 +70,10 @@ const Listeners = {
       } else if (el.classList.contains('banner__close')) {
         el.parentElement.remove();
         document.querySelector('.deckmenu').classList.remove('deckmenu--withbanner');
+        // save dismissal of welcome banner
+        if (el.parentElement.classList.contains('banner--welcome')) {
+          localStorage.setItem('welcomeMessageDismissed', true);
+        }
       }
     });
 
