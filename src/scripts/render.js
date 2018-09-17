@@ -283,8 +283,7 @@ const Render = {
     useranswer = ''
   } = {}) {
     // destroy the existing controls
-    document
-      .querySelectorAll('.js-control')
+    Array.from(document.querySelectorAll('.js-control'))
       .forEach((el) => {
         el.remove();
       });

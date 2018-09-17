@@ -40,8 +40,7 @@ const Edit = {
     flashcards.deleteCard(indexToDelete);
     Render.deletedCard(cardToDelete);
     // reset the card indexes
-    Array
-      .from(document.querySelectorAll('.js-cardedit'))
+    Array.from(document.querySelectorAll('.js-cardedit'))
       .forEach((c) => {
         if (c.dataset.index > indexToDelete) {
           c.dataset.index -= 1; // eslint-disable-line no-param-reassign
